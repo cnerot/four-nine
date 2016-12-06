@@ -24,7 +24,6 @@ class IndexController
         $view->setView('indexIndex');
         $view->putData('name', 'moi');
         $view->putData('styles', ['home']);
-
     }
     public function testAction($args)
     {

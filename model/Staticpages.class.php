@@ -6,24 +6,24 @@
  */
 class Staticpages extends Entity
 {
-    public $idStaticpages;
+    public $id;
     public $title;
     public $content;
 
     /**
      * @return mixed
      */
-    public function getIdStaticpages()
+    public function getId()
     {
-        return $this->idStaticpages;
+        return $this->id;
     }
 
     /**
-     * @param mixed $idStaticpages
+     * @param mixed $id
      */
-    public function setIdStaticpages($idStaticpages)
+    public function setId($id)
     {
-        $this->idStaticpages = $idStaticpages;
+        $this->id = $id;
     }
 
     /**
@@ -57,6 +57,4 @@ class Staticpages extends Entity
     {
         $this->content = $content;
     }
-
-
 }

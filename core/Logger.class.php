@@ -8,6 +8,14 @@
  */
 class Logger
 {
+
+
+    public static function debug($data){
+
+        echo '<pre>';
+        var_dump($data);
+        echo '</pre>';
+    }
     public static function logExeption(Exception $data){
         Logger::log($data->__toString(), "exeption");
     }
