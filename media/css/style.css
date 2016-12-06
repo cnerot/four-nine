@@ -9,11 +9,20 @@ body{
 
 .panel-footer{
     background: black;
+    text-align: center;
+}
+.admin_a{
+    padding-top:22px;
+    text-align: center;
+    float:right;
+}
+.color-change{
+    color:#fffff;
 }
 .panel-over{
     position: absolute;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 115px;
     height: 50px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
 }
