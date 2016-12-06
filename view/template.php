@@ -31,9 +31,10 @@ if ($params['title'] != DEFAULT_TITLE) {
     <div class="row">
         <div class="col-xs-8 col-sm-offset-2">
             <header>
-                <div>
-                    <h3>Pardon-Maman</h3>
-                    <a href="">Admin</a>
+                <div class="header-top">
+                    <div><h3>Pardon Maman</h3></div>
+                    <div><a class="admin-link" href="">Admin</a></div>
+
                 </div>
                 <div class="panel-over"></div>
                 <img class="img_header" src="/media/images/header.png" alt="l'entete de la page"></img>
