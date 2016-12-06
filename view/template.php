@@ -23,7 +23,7 @@ if ($params['title'] != DEFAULT_TITLE) {
     <link rel="stylesheet" type="text/css" href="/media/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
     <?php foreach ($params['styles'] as $style): ?>
-        <link rel="stylesheet" href="/public/css/<?php echo $style; ?>.css">
+        <link rel="stylesheet" href="/media/css/<?php echo $style; ?>.css">
     <?php endforeach; ?>
 </head>
 <body class="body">
@@ -41,9 +41,8 @@ if ($params['title'] != DEFAULT_TITLE) {
 
             </header>
             <?php include $this->view; ?>
-            <!-- le bas de la page-->
             <footer class="panel-footer">
-                <p class="footer"> CGU - POLITIQUE DE CONFIDENTUALIT� - Condition d'utilisation - contactez nous &copy;</p>
+                <p class="footer"> CGU - POLITIQUE DE CONFIDENTUALITE - Condition d'utilisation - contactez nous &copy;</p>
             </footer>
         </div>
     </div>
