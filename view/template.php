@@ -23,7 +23,7 @@ if ($params['title'] != DEFAULT_TITLE) {
     <link rel="stylesheet" type="text/css" href="/media/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
     <?php foreach ($params['styles'] as $style): ?>
-        <link rel="stylesheet" href="/public/css/<?php echo $style; ?>.css">
+        <link rel="stylesheet" href="/media/css/<?php echo $style; ?>.css">
     <?php endforeach; ?>
 </head>
 <body class="body">
@@ -31,6 +31,10 @@ if ($params['title'] != DEFAULT_TITLE) {
     <div class="row">
         <div class="col-xs-8 col-sm-offset-2">
             <header>
+                <div>
+                    <h3>Pardon-Maman</h3>
+                    <a href="">Admin</a>
+                </div>
                 <div class="panel-over"></div>
                 <img class="img_header" src="/media/images/header.png" alt="l'entete de la page"></img>
                 <nav class="navbar navbar-inverse">
@@ -41,9 +45,8 @@ if ($params['title'] != DEFAULT_TITLE) {
 
             </header>
             <?php include $this->view; ?>
-            <!-- le bas de la page-->
             <footer class="panel-footer">
-                <p class="footer"> CGU - POLITIQUE DE CONFIDENTUALIT� - Condition d'utilisation - contactez nous &copy;</p>
+                <p class="footer"> CGU - POLITIQUE DE CONFIDENTUALITE - Condition d'utilisation - contactez nous &copy;</p>
             </footer>
         </div>
     </div>

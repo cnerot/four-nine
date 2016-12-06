@@ -20,10 +20,16 @@ class IndexController
     }
     public function indexAction($args)
     {
-
-        Logger::log("this is an other error");
         $view = new View();
         $view->setView('indexIndex');
+        $view->putData('name', 'moi');
+        $view->putData('styles', ['home']);
+
+    }
+    public function testAction($args)
+    {
+        $view = new View();
+        $view->setView('display');
         $view->putData('name', 'moi');
         $view->putData('styles', ['home']);
 
