@@ -31,6 +31,10 @@ if ($params['title'] != DEFAULT_TITLE) {
     <div class="row">
         <div class="col-xs-8 col-sm-offset-2">
             <header>
+                <div>
+                    <h3>Pardon-Maman</h3>
+                    <a href="">Admin</a>
+                </div>
                 <div class="panel-over"></div>
                 <img class="img_header" src="/media/images/header.png" alt="l'entete de la page"></img>
                 <nav class="navbar navbar-inverse">
