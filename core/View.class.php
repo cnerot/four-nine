@@ -35,11 +35,11 @@ class View
         $layoutPath = Config::VIEW_PATH . DIRECTORY_SEPARATOR . $layout . '.php';
 
         if (!file_exists($viewPath)) {
-            HTTPError::generate404('La vue n\'existe pas');
+            print_r('La vue n\'existe pas');
             exit;
         }
         if (!file_exists($layoutPath)) {
-            HTTPError::generate404('Le layout n\'existe pas');
+            print_r('Le layout n\'existe pas');
             exit;
         }
 

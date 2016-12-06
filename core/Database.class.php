@@ -33,7 +33,7 @@ class Database
         try {
             self::$pdo = new PDO($dsn, Config::DB_USER, Config::DB_PASSWORD);
         } catch (Exception $e) {
-            HTTPError::generate500('Connexion à la base de données impossible.', $e->getMessage());
+            print_r('Connexion à la base de données impossible.', $e->getMessage());
         }
     }
 

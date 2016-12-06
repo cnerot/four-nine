@@ -43,13 +43,13 @@ class Router
             if (method_exists($controller, $methodName)) {
                 $controller->$methodName($route['args']);
             } else {
-                HTTPError::generate404('Cette action n\'existe pas');
+                //print_r('Cette action n\'existe pas');
             }
             if (method_exists($controller, "postDeploy")) {
                 $controller->preDeploy($route['args']);
             }
         } else {
-            HTTPError::generate404('Controlleur introuvable');
+           // print_r('Controlleur introuvable');
         }
     }
 }
