@@ -9,14 +9,20 @@ body{
 
 .panel-footer{
     background: black;
+    text-align: center;
 }
-.navbar{
-    background-color: black;
+.admin_a{
+    padding-top:22px;
+    text-align: center;
+    float:right;
+}
+.color-change{
+    color:#fffff;
 }
 .panel-over{
     position: absolute;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 115px;
     height: 50px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
 }
@@ -30,3 +36,31 @@ body{
     height: 75px;
     line-height: 75px;
 }
+.navbar-inverse{
+    background-color: #000000;
+}
+.navbar-inverse .navbar-text{
+    color:#ffcc00
+}
+ .navbar-inverse .navbar-nav>li>a{
+     color:#ffcc00
+ }
+ .navbar-inverse .navbar-nav>li>a:focus,.navbar-inverse .navbar-nav>li>a:hover{
+     color:#ffcc00;
+     background-color:#000000
+ }
+ .navbar-inverse .navbar-brand{
+     color:#ffcc00
+ }
+ .navbar-inverse .navbar-brand:focus,.navbar-inverse .navbar-brand:hover{
+     color:#ffcc00;
+ }
+ .navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.active>a:focus{
+  color:#ffcc00;
+  background-color:#000000   
+ }
+ .navbar-inverse .navbar-nav>.active>a:hover
+ {
+  color:#1a1a00;
+  background-color: #ffcc00
+ }

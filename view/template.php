@@ -16,7 +16,6 @@ if ($params['title'] != DEFAULT_TITLE) {
 ?>
 <head>
     <title><?php echo $params['title']; ?></title>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <meta name="description" content="">
