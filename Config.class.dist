@@ -6,7 +6,7 @@ class Config {
     /* die on error */
     const DIE_MODE = true;
 
-
+    const URL = 'http://four-nine.local.fr/';
 
     const CONTROLLER_PATH = 'controller';
     const CORE_PATH = 'core';
