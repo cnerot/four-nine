@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Represents a database table with basic CRUD functionality
  */
@@ -9,12 +8,10 @@ abstract class Entity
      * @var string Table name
      */
     protected $tableName;
-
     /**
      * @var string columns
      */
     protected $columns;
-
     /**
      * @var Database
      */
@@ -27,32 +24,28 @@ abstract class Entity
     {
         $callClass = get_called_class();
         // fixme: camel case to snake case
-        $this->tableName = strtolower($callClass);
+        $this->tableName = lcfirst($callClass);
         $this->database = new Database();
-
-        /*foreach (array_keys(get_class_vars($callClass)) as $property) {
-            if (property_exists(DatabaseTable::class, $property)) {
-                continue;
-            }
-            $this->columns[] = $property;
-        }*/
-
         $allProps = get_class_vars($callClass);
         $classProps = get_class_vars(get_class());
         $this->columns = array_keys(array_diff_key($allProps, $classProps));
     }
-
     /**
      * Will update or save the entity to the database
+     *
+     * TODO: return whether or not it succeeded
      */
     public function save()
     {
         $pdo = $this->database->getPdo();
         $data = [];
         foreach ($this->columns as $column) {
-            $data[$column] = $this->$column;
+            $value = $this->$column;
+            if ($value instanceof Entity) {
+                $value = $value->getId();
+            }
+            $data[$column] = $value;
         }
-
         if (is_numeric($this->getId())) {
             $sets = [];
             foreach ($this->columns as $column) {
@@ -62,69 +55,71 @@ abstract class Entity
                 $sets[] = $column . ' = :' . $column;
             }
             $sql = 'UPDATE ' . $this->tableName . ' SET ' . implode(', ', $sets) . ' WHERE id = :id';
-
-            echo $sql;
+            //echo $sql;
             $query = $pdo->prepare($sql);
             $query->execute($data);
+            $this->handlePDOError($query);
         } else {
             $sql = 'INSERT INTO ' . $this->tableName . ' (' . implode(',', $this->columns) . ')'
                 . 'VALUES (:' . implode(',:', $this->columns) . ')';
-
             $query = $pdo->prepare($sql);
             $query->execute($data);
+            $this->handlePDOError($query);
             $this->setId($pdo->lastInsertId());
         }
+        return $this->getId();
     }
-
-    public function load() {
-        $pdo = $this->database->getPdo();
-        $data = [];
-        $sql = 'SELECT ';
-
-        implode(', ', array_keys($data));
-        $sql .= ' FROM ' . $this->tableName . ' WHERE id = ?';
-
-        $query = $pdo->prepare($sql);
-        $result = $query->execute(['id' => $this->getId()]);
-
-
-        var_dump($result);
-
-    }
-    public function getOneWhere($condition)
+    /**
+     * Deletes this entity from the database
+     */
+    public function delete()
     {
-        $result = $this->getWhere($condition);
-        if (!$result) {
-            return null;
+        $pdo = $this->database->getPdo();
+        $sql = "DELETE FROM " . $this->tableName . " where id = :id";
+        $query = $pdo->prepare($sql);
+        $query->execute([
+            'id' => $this->getId()
+        ]);
+        $callClass = get_called_class();
+        if ($query->errorCode() != '00000') {
+            // strategy: dev = display error and stop execution, prod = log and stop execution
+            $error = 'entity ' . $callClass . ' : ' . implode(' ', $query->errorInfo());
+            Logger::error('SQL Error on ' . $error);
+            // an unexpected error can have dramatic impact on the rest of the code (controllers, views, ...)
+            return $query->errorCode();
         }
-        return $result[0];
+        return true;
     }
+    /**
+     * @param $query PDOStatement
+     */
+    public function handlePDOError($query)
+    {
+        if ($query->errorCode() != '00000') {
+            // strategy: dev = display error and stop execution, prod = log and stop execution
+            $error = 'entity ' . get_called_class() . ' : ' . implode(' ', $query->errorInfo());
+            Logger::log('SQL Error on ' . $error);
+            // an unexpected error can have dramatic impact on the rest of the code (controllers, views, ...)
+            exit;
+        }
+    }
+    /**
+     * Returns a collection of this entity
+     * @param $condition
+     * You can specify other types of conditions in this parameter. e.g. for an = and a LIKE :
+     *  ['id' => 3, 'name' => ['operator' => 'like']]
+     * Supported operators are at the moment : 'equals' (default), 'like'
+     * @param $order array|null null for no ordering or e.g. ['column' => 'id', 'direction' => 'DESC']
+     * @param $limit null|int number of items to get
+     * @return array
+     * todo: multpile order by
+     */
     public function getWhere($condition = [], $order = null, $limit = null)
     {
+        // table columns (assumes there is at least 1 column in the entity)
         $columns = $this->tableName . '.' . implode(', ' . $this->tableName . '.', $this->columns);
         $linkedEntities = [];
         $joinStatements = '';
-        // joined columns (we add them to the select)
-        foreach ($this->joins as $join) {
-            // init other models
-            if (!isset($linkedEntities[$join['class']])) {
-                $linkedEntities[$join['class']] = [
-                    'entity' => new $join['class'](),
-                    'alias' => $join['alias'],
-                    'field' => $join['source'], // field to set later
-                    'columns' => [] // column list using their aliases in the SELECT
-                ];
-            }
-            // ex. output : user0.id AS user0_id, user0.name AS user0_name, ...
-            foreach ($linkedEntities[$join['class']]['entity']->getColumns() as $colName) {
-                $columns .= ', ' . $join['alias'] . '.' . $colName . ' AS ' . $join['alias'] . '_' . $colName . ' ';
-                $linkedEntities[$join['class']]['columns'][] = $join['alias'] . '_' . $colName;
-            }
-            // e.g. for LEFT JOIN User ON Comment.userId = User.id
-            $joinStatements .= ' LEFT JOIN ' . $join['table'] . ' ' . $join['alias'] . ' ON ' .
-                $this->tableName . '.' . $join['source'] . ' = ' .
-                $join['alias'] . '.' . $join['target'] . ' ';
-        }
         // build select statement
         $baseQueryString = "SELECT " . $columns . " FROM " . $this->tableName;
         $execArgs = [];
@@ -175,10 +170,6 @@ abstract class Entity
                 default:
                     $errorMessage = get_called_class() . ' getWhere: ' . $value['operator'] . 'is not a valid operator';
                     Logger::error($errorMessage);
-                    if (Config::ENV_DEBUG) {
-                        echo '<h1>' . $errorMessage . '</h1>';
-                        exit;
-                    }
                     break;
             }
             // add the value to the "prepared" argument list
@@ -217,9 +208,6 @@ abstract class Entity
             // strategy: dev = display error and stop execution, prod = log and stop execution
             $error = 'entity ' . $callClass . ' : ' . implode(' ', $query->errorInfo());
             Logger::error('SQL Error on ' . $error . '; The failed query was: ' . $baseQueryString);
-            if (Config::ENV_DEBUG) {
-                echo '<h1>SQL Error</h1>' . ucfirst($error) . '<hr>';
-            }
             // an unexpected error can have dramatic impact on the rest of the code (controllers, views, ...)
             exit;
         }
@@ -233,4 +221,69 @@ abstract class Entity
         }
         return $data;
     }
+    /**
+     * Returns one item of this entity
+     * @param $condition
+     * @return mixed|null
+     */
+    public function getOneWhere($condition)
+    {
+        $result = $this->getWhere($condition);
+        if (!$result) {
+            return null;
+        }
+        return $result[0];
+    }
+    /**
+     * Sets the linked entities data to this current Entity instance
+     * e.g. populates the "author" field with a populated User Entity
+     * @param $linkedEntities
+     * @param $data
+     */
+    public function processLinkedEntities($linkedEntities, $data)
+    {
+        // sets this fieldName (e.g. user) to the entity data we gathered, meaning that in example
+        // $this->user = a User Entity instance
+        foreach ($linkedEntities as &$linkedEntity) {
+            /** @var Entity $entity */
+            $entity = $linkedEntity['entity'];
+            $entity->fromArray($data, $linkedEntity['alias'] . '_');
+            if (property_exists(get_called_class(), $linkedEntity['field'])) {
+                $fieldName = $linkedEntity['field'];
+                $this->$fieldName = clone $entity;
+            }
+        }
+    }
+    /**
+     * Builds the entity from an array of data
+     * @param $data
+     * @param string $prefix column prefix
+     */
+    public function fromArray($data, $prefix = '')
+    {
+        foreach ($data as $colName => $value) {
+            if ($prefix != '') {
+                // if there is a prefix, we skip the columns not begining with the prefix
+                if (substr($colName, 0, strlen($prefix)) != $prefix) {
+                    continue;
+                } else {
+                    // if it does begin with the prefix, we cut it out
+                    $colName = substr($colName, strlen($prefix));
+                }
+            }
+            if (!property_exists(get_called_class(), $colName)) {
+                continue;
+            }
+            $this->$colName = $value;
+        }
+    }
+    /**
+     * @return array column list
+     */
+    public function getColumns()
+    {
+        return $this->columns;
+    }
+    abstract function getId();
+    abstract function setId($id);
 }

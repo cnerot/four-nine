@@ -6,26 +6,26 @@
  */
 class Photo extends Entity
 {
-    public $idPhoto;
+    public $id;
     public $description;
-    public $date_ajout;
-    public $id_utilisateur;
-    public $titre;
+    public $created;
+    public $id_user;
+    public $title;
 
     /**
      * @return mixed
      */
-    public function getIdPhoto()
+    public function getId()
     {
-        return $this->idPhoto;
+        return $this->id;
     }
 
     /**
-     * @param mixed $idPhoto
+     * @param mixed $id
      */
-    public function setIdPhoto($idPhoto)
+    public function setId($id)
     {
-        $this->idPhoto = $idPhoto;
+        $this->id = $id;
     }
 
     /**
@@ -47,49 +47,49 @@ class Photo extends Entity
     /**
      * @return mixed
      */
-    public function getDateAjout()
+    public function getCreated()
     {
-        return $this->date_ajout;
+        return $this->created;
     }
 
     /**
-     * @param mixed $date_ajout
+     * @param mixed $created
      */
-    public function setDateAjout($date_ajout)
+    public function setCreated($created)
     {
-        $this->date_ajout = $date_ajout;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdUtilisateur()
-    {
-        return $this->id_utilisateur;
-    }
-
-    /**
-     * @param mixed $id_utilisateur
-     */
-    public function setIdUtilisateur($id_utilisateur)
-    {
-        $this->id_utilisateur = $id_utilisateur;
+        $this->created = $created;
     }
 
     /**
      * @return mixed
      */
-    public function getTitre()
+    public function getIdUser()
     {
-        return $this->titre;
+        return $this->id_user;
     }
 
     /**
-     * @param mixed $titre
+     * @param mixed $id_user
      */
-    public function setTitre($titre)
+    public function setIdUser($id_user)
     {
-        $this->titre = $titre;
+        $this->id_user = $id_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
 }

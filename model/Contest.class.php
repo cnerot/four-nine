@@ -4,18 +4,18 @@
  * Created by PhpStorm.
  * User: Charles
  */
-class Concours extends Entity
+class Contest extends Entity
 {
-    public $concoursId;
-    public $date_debut;
-    public $date_fin;
-    public $nom;
+    public $id;
+    public $start;
+    public $end;
+    public $name;
     public $description;
 
     /**
      * @return mixed
      */
-    public function getConcoursId()
+    public function getId()
     {
         return $this->concoursId;
     }
@@ -23,7 +23,7 @@ class Concours extends Entity
     /**
      * @param mixed $concoursId
      */
-    public function setConcoursId($concoursId)
+    public function setId($concoursId)
     {
         $this->concoursId = $concoursId;
     }
@@ -31,49 +31,49 @@ class Concours extends Entity
     /**
      * @return mixed
      */
-    public function getDateDebut()
+    public function getStart()
     {
-        return $this->date_debut;
+        return $this->start;
     }
 
     /**
-     * @param mixed $date_debut
+     * @param mixed $start
      */
-    public function setDateDebut($date_debut)
+    public function setStart($start)
     {
-        $this->date_debut = $date_debut;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDateFin()
-    {
-        return $this->date_fin;
-    }
-
-    /**
-     * @param mixed $date_fin
-     */
-    public function setDateFin($date_fin)
-    {
-        $this->date_fin = $date_fin;
+        $this->start = $start;
     }
 
     /**
      * @return mixed
      */
-    public function getNom()
+    public function getEnd()
     {
-        return $this->nom;
+        return $this->end;
     }
 
     /**
-     * @param mixed $nom
+     * @param mixed $end
      */
-    public function setNom($nom)
+    public function setEnd($end)
     {
-        $this->nom = $nom;
+        $this->end = $end;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**
@@ -91,6 +91,5 @@ class Concours extends Entity
     {
         $this->description = $description;
     }
-
 
 }

@@ -6,24 +6,24 @@
  */
 class Link extends Entity
 {
-    public $idLink;
+    public $id;
     public $id_photo;
-    public $id_concours;
+    public $id_contest;
 
     /**
      * @return mixed
      */
-    public function getIdLink()
+    public function getId()
     {
-        return $this->idLink;
+        return $this->id;
     }
 
     /**
-     * @param mixed $idLink
+     * @param mixed $id
      */
-    public function setIdLink($idLink)
+    public function setId($id)
     {
-        $this->idLink = $idLink;
+        $this->id = $id;
     }
 
     /**
@@ -45,18 +45,17 @@ class Link extends Entity
     /**
      * @return mixed
      */
-    public function getIdConcours()
+    public function getIdContest()
     {
-        return $this->id_concours;
+        return $this->id_contest;
     }
 
     /**
-     * @param mixed $id_concours
+     * @param mixed $id_contest
      */
-    public function setIdConcours($id_concours)
+    public function setIdContest($id_contest)
     {
-        $this->id_concours = $id_concours;
+        $this->id_contest = $id_contest;
     }
-
 
 }
