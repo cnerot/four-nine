@@ -8,7 +8,6 @@ class HTTPError
     public static function generate404($message = false)
     {
         header('404 Not Found');
-
         $view = new View();
         $view->setView('404');
         $view->putData('message', $message);

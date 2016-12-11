@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: xorus
- * Date: 10/02/16
- * Time: 10:19
- */
 class View
 {
     /**

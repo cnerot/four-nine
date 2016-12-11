@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . '/../media/vendor/autoload.php';
+require_once __DIR__ . '/../lib/vendor/autoload.php';
 
 //TODO:: test FB object;
 class FBApp
