@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php
-const DEFAULT_TITLE = 'TechFinder';
+const DEFAULT_TITLE = 'Pardon Maman';
 
 $params = array_merge([
     'connected' => isset($connected) ? $connected : false,
