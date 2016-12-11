@@ -14,7 +14,6 @@ class ConcourController
      */
     public function preDeploy($args){
 
-
     }
     /**
     * This will execute after every action
@@ -28,14 +27,12 @@ class ConcourController
     {
         $view = new View();
         $view->setView('gestionConcour');
-        $view->putData('name', 'moi');
         $view->putData('styles', ['home']);
     }
     public function newAction($args)
     {
         $view = new View();
         $view->setView('newConcour');
-        $view->putData('name', 'moi');
         $view->putData('styles', ['home']);
     }
 }
