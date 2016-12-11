@@ -43,13 +43,35 @@ class Router
             if (method_exists($controller, $methodName)) {
                 $controller->$methodName($route['args']);
             } else {
-                //print_r('Cette action n\'existe pas');
+                HTTPError::generate404('Cette action n\'existe pas');
             }
             if (method_exists($controller, "postDeploy")) {
                 $controller->preDeploy($route['args']);
             }
         } else {
-           // print_r('Controlleur introuvable');
+            HTTPError::generate404('Controlleur introuvable');
         }
     }
+
+    /**
+     * Generates URL from controller & action and params
+     */
+    public static function getUrl($controller, $action, $data = [])
+    {
+        $request = trim($_SERVER['REQUEST_URI'], '/');
+        $uri = explode('/', explode('?', $request)[0]);
+        $current_controller = !empty($uri[0]) ? $uri[0] : 'index';
+        $current_action = !empty($uri[1]) ? $uri[1] : 'index';
+
+        if ($controller != "*"){$current_controller = $controller;}
+        if ($action != "*"){$current_action = $action;}
+
+        $return_url = Config::URL . $current_controller . "/" . $current_action;
+        if (!empty($data)){
+            $return_url .= "?";
+        }
+        $return_url .= http_build_query($data);
+        return $return_url;
+    }
+
 }

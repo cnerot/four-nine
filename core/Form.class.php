@@ -165,6 +165,10 @@ class Form
         return $data;
     }
 
+    /**
+     * @param array $html -> html to be placed before form & inputs
+     * @param array $data -> needs to be removed (deprecated)
+     */
     public function display($html = [], $data = [])
     {
         if (isset($html['form']) && isset($html['form']['before'])) {
@@ -272,6 +276,5 @@ class Form
         if (isset($html['form']) && isset($html['form']['after'])) {
             echo $html['form']['after'];
         }
-        return true;
     }
 }

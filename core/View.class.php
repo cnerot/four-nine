@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: xorus
- * Date: 10/02/16
- * Time: 10:19
- */
 class View
 {
     /**
@@ -32,7 +26,7 @@ class View
     public function setView($view, $layout = 'template')
     {
         $viewPath = Config::VIEW_PATH . DIRECTORY_SEPARATOR . $view . '.php';
-        $layoutPath = Config::VIEW_PATH . DIRECTORY_SEPARATOR . $layout . '.php';
+        $layoutPath = Config::TEMPLATE_PATH . DIRECTORY_SEPARATOR . $layout . '.php';
 
         if (!file_exists($viewPath)) {
             print_r('La vue n\'existe pas');
