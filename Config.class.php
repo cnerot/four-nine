@@ -4,7 +4,7 @@ class Config {
     /* display error */
     const DEV_MODE = true;
     /* die on error */
-    const DIE_MODE = true;
+    const DIE_MODE = false;
 
 
 

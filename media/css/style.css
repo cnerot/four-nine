@@ -10,6 +10,10 @@ body{
 .panel-footer{
     background: black;
     text-align: center;
+    margin-top: 40px;
+}
+.margin-top{
+  margin-top:10px;  
 }
 .admin_a{
     padding-top:22px;
@@ -33,7 +37,7 @@ body{
     height: 75px;
 }
 .admin-link{
-    height: 75px;
+    height: 53px;
     line-height: 75px;
 }
 .navbar-inverse{
@@ -63,4 +67,30 @@ body{
  {
   color:#1a1a00;
   background-color: #ffcc00
+ }
+ .left{
+     float:left;
+ }
+ .right{
+     float:right;
+ }
+ textarea {
+    width: 100%;
+ }
+ .top-5{
+  margin-top:5px;   
+ }
+ h1 { 
+     color: #ffffff;
+     font-family:  'Raleway',sans-serif;
+     font-size: 28px;
+     margin: 15px;
+     text-align: center;
+ }
+ .title{
+      color: #e8e27d;
+      font-family: "Great Vibes", cursive;
+      font-size: 30px; 
+      font-weight: normal;
+      text-shadow: 0 1px 1px #f7eb02;
  }

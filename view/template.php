@@ -28,27 +28,41 @@ if ($params['title'] != DEFAULT_TITLE) {
 <body class="body">
 <div class="container">
     <div class="row">
-        <div class="col-xs-8 col-sm-offset-2">
+        <div class="col-md-12">
             <header>
                 <div class="header-top">
-                    <div><h3>Pardon Maman</h3></div>
-                    <div><a class="admin-link" href="">Admin</a></div>
-
+                    <div class="col-md-4"><h1 class="title">Pardon Maman</h1></div>
+                    <div class="dropdown admin-link">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          Administration
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <li><a href="#">Créer un concour</a></li>
+                          <li><a href="#">Gestion des concours</a></li>
+                          <li><a href="#">Pages statiques</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="panel-over"></div>
                 <img class="img_header" src="/media/images/header.png" alt="l'entete de la page"></img>
                 <nav class="navbar navbar-inverse">
                     <ul class="nav navbar-nav ">
-                        <li class="active"><a href="index.php">Accueil<span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="<?php // echo Router::getURL("index","index") ?>">Accueil<span class="sr-only">(current)</span></a></li>
                     </ul>
                 </nav>
-
             </header>
-            <?php include $this->view; ?>
+            <article>
+                <div>
+                    <?php include $this->view; ?>
+                </div>
+            </article>
+        </div>
+         <div class="col-md-12">
             <footer class="panel-footer">
                 <p class="footer"> CGU - POLITIQUE DE CONFIDENTUALITE - Condition d'utilisation - contactez nous &copy;</p>
             </footer>
-        </div>
+         </div>
     </div>
 </div>
 <script src="../media/js/jquery-3.1.1.min.js"></script>
