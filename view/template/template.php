@@ -48,11 +48,8 @@ if ($params['title'] != DEFAULT_TITLE) {
                 <img class="img_header" src="/media/images/header.png" alt="l'entete de la page"></img>
                 <nav class="navbar navbar-inverse">
                     <ul class="nav navbar-nav ">
-<<<<<<< HEAD:view/template.php
-                        <li class="active"><a href="<?php // echo Router::getURL("index","index") ?>">Accueil<span class="sr-only">(current)</span></a></li>
-=======
+
                         <li class="active"><a href="<?php echo Router::getUrl("index","index");?>">Accueil<span class="sr-only">(current)</span></a></li>
->>>>>>> 4b7c389d9c308de793d64b408c134c7fc1a2b83d:view/template/template.php
                     </ul>
                 </nav>
             </header>
