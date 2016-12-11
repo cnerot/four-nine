@@ -19,6 +19,11 @@ class Logger
     public static function logExeption(Exception $data){
         Logger::log($data->__toString(), "exeption");
     }
+
+    /**
+     * @param $data -> string to be logged
+     * @param string $file -> no ending needed
+     */
     public static function log($data, $file = "system")
     {
         if (!is_dir(Config::LOG_DIR)) {

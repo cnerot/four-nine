@@ -52,6 +52,10 @@ class Router
             HTTPError::generate404('Controlleur introuvable');
         }
     }
+
+    /**
+     * Generates URL from controller & action and params
+     */
     public static function getUrl($controller, $action, $data = [])
     {
         $request = trim($_SERVER['REQUEST_URI'], '/');

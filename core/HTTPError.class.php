@@ -3,6 +3,8 @@
 /**
  * HTTP Errors
  */
+
+//TODO place 404 & 500 in differnet directory
 class HTTPError
 {
     public static function generate404($message = false)
@@ -12,7 +14,7 @@ class HTTPError
         $view->setView('404');
         $view->putData('message', $message);
     }
-
+    //TODO: create 500 view
     public static function generate500($message = false, $details = false)
     {
         header('500 Internal Server Error');

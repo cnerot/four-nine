@@ -5,11 +5,20 @@ require_once __DIR__ . '/../lib/vendor/autoload.php';
 //TODO:: test FB object;
 class FBApp
 {
+    const FB_CALLBACK = Config::URL . 'facebook/callback';
+    const FB_PERMISSIONS = ['user_photos'];
+
+
     private $fb;
     private $permissions;
     private $loginhelper;
     private $callback;
 
+    /***
+     * FBApp constructor.
+     *
+     * Initilises FB app / Get login helper / set token if need be
+     */
     public function __construct()
     {
         $this->fb = new Facebook\Facebook([
@@ -24,17 +33,30 @@ class FBApp
         }
     }
 
-    public function printFBLogin($callback, $permissions = [], $login_text = 'Log in with Facebook!', $logged_text = 'Logged in with FB!!')
+
+    /**
+     * Print login button or login success
+     *
+     * @param string $login_text
+     * @param string $logged_text
+     */
+    //TODO: update for better more options
+    public function printFBLogin($login_text = 'Log in with Facebook!', $logged_text = 'Logged in with FB!!')
     {
         if (!isset($_SESSION['facebook_access_token'])) {
             $this->loginhelper = $this->fb->getRedirectLoginHelper();
-            $loginUrl = $this->loginhelper->getLoginUrl($callback, $permissions);
+            $loginUrl = $this->loginhelper->getLoginUrl(FBApp::FB_CALLBACK, FBApp::FB_PERMISSIONS);
             echo '<a href="' . $loginUrl . '">' . $login_text . '</a>';
         } else {
             echo '<p>' . $logged_text . '</p>';
         }
     }
 
+    /**
+     * Only used on FB callback page
+     *
+     * @return bool
+     */
     public function fbCallback()
     {
         try {
@@ -67,12 +89,38 @@ class FBApp
 
 
     }
+    /**
+     * Check if user is logged in with fb
+     *
+     * @return bool
+     */
+    public function isLogged()
+    {
+        if (isset($SESSION['facebook_access_token'])) {
+            return true;
+        }
+        return false;
+    }
 
+
+    /**
+     * Get data from App or User
+     *
+     * @param $fb_query -> check graph API
+     * @return \Facebook\FacebookResponse
+     */
     public function getFBData($fb_query)
     {
         return $this->fb->get($fb_query);
     }
 
+    /**
+     * @param $file -> Path of file to upload
+     * @param $fbpath -> Where to put it in Fb -> check graph api
+     * @param $name -> File name
+     * @param string $message -> Upload message or msg to attach to pic => needs to be verified
+     * @return true on success
+     */
     //TODO:: test upload
     public function upload($file, $fbpath, $name, $message = "Uploaded with fournine")
     {
