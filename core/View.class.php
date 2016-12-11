@@ -26,7 +26,7 @@ class View
     public function setView($view, $layout = 'template')
     {
         $viewPath = Config::VIEW_PATH . DIRECTORY_SEPARATOR . $view . '.php';
-        $layoutPath = Config::VIEW_PATH . DIRECTORY_SEPARATOR . $layout . '.php';
+        $layoutPath = Config::TEMPLATE_PATH . DIRECTORY_SEPARATOR . $layout . '.php';
 
         if (!file_exists($viewPath)) {
             print_r('La vue n\'existe pas');

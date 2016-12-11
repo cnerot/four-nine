@@ -39,14 +39,14 @@ if ($params['title'] != DEFAULT_TITLE) {
                 <img class="img_header" src="/media/images/header.png" alt="l'entete de la page"></img>
                 <nav class="navbar navbar-inverse">
                     <ul class="nav navbar-nav ">
-                        <li class="active"><a href="index.php">Accueil<span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="<?php echo Router::getUrl("index","index");?>">Accueil<span class="sr-only">(current)</span></a></li>
                     </ul>
                 </nav>
 
             </header>
             <?php include $this->view; ?>
             <footer class="panel-footer">
-                <p class="footer"> CGU - POLITIQUE DE CONFIDENTUALITE - Condition d'utilisation - contactez nous &copy;</p>
+                <p class="footer">CGU - POLITIQUE DE CONFIDENTUALITE - Condition d'utilisation - contactez nous &copy;</p>
             </footer>
         </div>
     </div>
