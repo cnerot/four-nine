@@ -31,5 +31,12 @@ class ConcourController
         $view->putData('name', 'moi');
         $view->putData('styles', ['home']);
     }
+    public function newAction($args)
+    {
+        $view = new View();
+        $view->setView('newConcour');
+        $view->putData('name', 'moi');
+        $view->putData('styles', ['home']);
+    }
 }
   
