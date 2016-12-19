@@ -7,6 +7,10 @@ body{
     color: white;
 }
 
+.center{
+	text-align: center;
+}
+
 .panel-footer{
     background: black;
     text-align: center;
