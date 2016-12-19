@@ -32,6 +32,7 @@ class Router
         $methodName = $route['action'] . 'Action';
 
         $controllerPath = Config::CONTROLLER_PATH . DIRECTORY_SEPARATOR . $controllerName . '.class.php';
+
         if (file_exists($controllerPath)) {
             include $controllerPath;
 

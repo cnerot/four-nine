@@ -38,7 +38,7 @@ if ($params['title'] != DEFAULT_TITLE) {
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                          <li><a href="#">Créer un concour</a></li>
+                          <li><a href="#">Créer un concours</a></li>
                           <li><a href="#">Gestion des concours</a></li>
                           <li><a href="#">Pages statiques</a></li>
                         </ul>
@@ -61,12 +61,13 @@ if ($params['title'] != DEFAULT_TITLE) {
         </div>
          <div class="col-md-12">
             <footer class="panel-footer">
-                <p class="footer">CGU - POLITIQUE DE CONFIDENTUALITE - Condition d'utilisation - contactez nous &copy;</p>
+                <p class="footer">CGU - POLITIQUE DE CONFIDENTUALITE - Condition d'utilisation - contactez-nous &copy;</p>
             </footer>
          </div>
     </div>
 </div>
-<script src="../media/js/jquery-3.1.1.min.js"></script>
-<script src="../media/js/bootstrap.js"></script>
+<script src="/media/js/jquery-3.1.1.min.js"></script>
+<script src="/media/js/bootstrap.min.js"></script>
+<script src="/media/js/imageGallery.js"></script>
 </body>
 </html>

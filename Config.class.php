@@ -8,7 +8,9 @@ class Config {
 
 
     /*Urls & path*/
-    const URL = 'http://four-nine.local.fr/';
+    //const URL = 'http://four-nine.local.fr/';
+    const URL = 'http://localhost/fournine/';
+    //const PATH = 'C:\xampp\htdocs\fournine';
     const PATH = 'C:\xampp\htdocs\fournine';
 
     /*Facebook Data*/

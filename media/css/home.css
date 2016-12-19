@@ -1,0 +1,15 @@
+.description{
+	font-size: 12px;
+	padding-bottom: 24px;
+	padding-top: 24px;
+}
+
+.intro{
+	padding-bottom: 24px;
+	padding-top: 24px;
+}
+
+#prize{
+	width: 50px;
+	max-height: 100px;
+}
