@@ -71,5 +71,6 @@ if ($params['title'] != DEFAULT_TITLE) {
 <script src="/media/js/jquery-3.1.1.min.js"></script>
 <script src="/media/js/bootstrap.min.js"></script>
 <script src="/media/js/imageGallery.js"></script>
+<script src="/media/js/script.js"></script>
 </body>
 </html>

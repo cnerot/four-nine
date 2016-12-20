@@ -3,6 +3,14 @@
 	height: 1px;
 }
 
+.margin-auto{
+	margin: 0 auto !important;
+}
+
+.padding-top-5{
+	padding-top: 10px;
+}
+
 .padding-top-10{
 	padding-top: 10px;
 }
@@ -31,6 +39,7 @@
     width:100%;
     height:100px;;
 }
+
 body{
     background: black;
     color: white;
@@ -141,6 +150,23 @@ body{
 .input-group{
 	margin: 0 auto;
 	width: 100%;
+}
+
+.containerImageGift{
+	border: 1px solid white;
+    padding: 10px;
+    text-align: center;    
+}
+
+.containerImageGift img{
+	max-height: 200px;
+    width: 100px;    
+}
+
+#infoNameGift{
+	width: 100%;
+	font-size: 10px;
+	font-style: italic;
 }
 
 @media (min-width: 362px) {

@@ -21,6 +21,17 @@
                  <span class="input-group-addon">Lot</span>
                  <input type="text" class="form-control" aria-label="" placeholder="Ex: Casque">
                </div>
+               <div class="center margin-auto padding-top-5 input-group">
+				  <label class="margin-top-7 btn btn-default btn-file">
+					  Image du lot <input type="file" id="nameGift" style="display: none;">
+				  </label>
+				  <input type="button" class="cancelImageGift margin-top-7 btn btn-danger" value="Annuler image lot">
+			   </div>
+			   <div class="margin-top-10 containerImageGift">
+					<img src="/media/images/gift.png">
+					<label class="center" id="infoNameGift"></label>
+			   </div>
+			    <hr>
 				<div class="clear padding-top-10"></div>
                <label class="center disp-block" for="basic-url">Description</label>
                <div class="padding-top-10">
@@ -29,7 +40,7 @@
                <div class="top-5">
                     <div class="margin-top-7 col-xs-12 col-md-6">
                         <button name="submit" id="cancel" type="reset" value="reset" class="col-xs-12 col-md-6 btn btn-danger left">
-							 Cancel <span class="glyphicon glyphicon-remove"></span>
+							 Annuler <span class="glyphicon glyphicon-remove"></span>
 						</button>
                     </div>
                     <div class="margin-top-7 col-xs-12 col-md-6">
