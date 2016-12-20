@@ -1,8 +1,12 @@
     <div class="container">
 		<div class="row">
 			<div class="pull-right">
-				<input type="button" class="btn btn-primary" value="PARTICIPER">
-				<input type="button" class="btn btn-primary" value="VOTER">
+				<a href="/concours/participer">
+					<input type="button" class="btn btn-primary" value="PARTICIPER">
+				</a>
+				<a href="/concours/vote">
+					<input type="button" class="btn btn-primary" value="VOTER">
+				</a>
 			</div>
 		</div>
 		<div class="row">

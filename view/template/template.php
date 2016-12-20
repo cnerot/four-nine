@@ -40,9 +40,9 @@ if ($params['title'] != DEFAULT_TITLE) {
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                          <li><a href="#">Créer un concours</a></li>
-                          <li><a href="#">Gestion des concours</a></li>
-                          <li><a href="#">Pages statiques</a></li>
+                          <li><a href="/concours/new">Créer un concours</a></li>
+                          <li><a href="/concours">Gestion des concours</a></li>
+                          <li><a href="/admin">Pages statiques</a></li>
                         </ul>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ if ($params['title'] != DEFAULT_TITLE) {
                 <nav class="navbar navbar-inverse">
                     <ul class="nav navbar-nav ">
 
-                        <li class="active"><a href="<?php echo Router::getUrl("index","index");?>">Accueil<span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="<?php //echo Router::getUrl("index","index");?>/">Accueil<span class="sr-only">(current)</span></a></li>
                     </ul>
                 </nav>
             </header>
