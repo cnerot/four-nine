@@ -1,16 +1,4 @@
-<!--
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="public/css/style.css" rel="stylesheet">
-        <title>Page d'accueil</title>    
-    </head>
-    <body>
--->
+
     <div class="container">
 		<div class="row">
 			<!-- Taille 12 sur tablettes (sm), 12 sur desktop (md) et plus -->
@@ -33,6 +21,22 @@
 									<img src="http://placehold.it/558x286&text=Second image" class="img-responsive img-gallery" alt="Second image" name="1">
 								</a>
 								<div class="imgStars 2 center">
+								</div>
+							</div> <!-- /.col -->
+							
+							<div class="col-sm-3 gallery-item">
+								<a href="#galleryImg1" class="link-gallery" data-toggle="modal" data-target="#modalGallery">
+									<img src="http://placehold.it/558x286&text=Third image" class="img-responsive img-gallery" alt="Third image" name="1">
+								</a>
+								<div class="imgStars 3 center">
+								</div>
+							</div> <!-- /.col -->
+							
+							<div class="col-sm-3 gallery-item">
+								<a href="#galleryImg1" class="link-gallery" data-toggle="modal" data-target="#modalGallery">
+									<img src="http://placehold.it/558x286&text=Third image" class="img-responsive img-gallery" alt="Third image" name="1">
+								</a>
+								<div class="imgStars 3 center">
 								</div>
 							</div> <!-- /.col -->
 							
@@ -87,22 +91,3 @@
 			</div>
 		</div>
 	</div>
-		
-<!--
-		<div class="row">
-			<div class="center col-sm-6 col-md-8">
-				Zone du centre
-			</div>
-			<div class="center col-sm-2 col-md-2">
-				Zone de droite
-			</div>
-		</div>
--->
-
-<!--
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-        <script src="public/js/imageGallery.js"></script>
-    </body>
-</html>
--->

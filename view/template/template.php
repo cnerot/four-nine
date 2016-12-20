@@ -20,7 +20,9 @@ if ($params['title'] != DEFAULT_TITLE) {
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="/media/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
+<!--
+    <link rel="stylesheet" type="text/css" href="/media/css/style.css" /> déjà appelé
+-->
     <?php foreach ($params['styles'] as $style): ?>
         <link rel="stylesheet" href="/media/css/<?php echo $style; ?>.css">
     <?php endforeach; ?>
