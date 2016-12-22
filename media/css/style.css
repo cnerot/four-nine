@@ -1,6 +1,6 @@
 .img_header{
-    width:100%;
-    height:100px;;
+    width:30%;
+    height:100px;
 }
 body{
     background: black;
@@ -21,7 +21,7 @@ body{
     float:right;
 }
 .color-change{
-    color:#fffff;
+    color:#ffffff;
 }
 .panel-over{
     position: absolute;

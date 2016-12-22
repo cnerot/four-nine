@@ -24,6 +24,8 @@ if ($params['title'] != DEFAULT_TITLE) {
     <?php foreach ($params['styles'] as $style): ?>
         <link rel="stylesheet" href="/media/css/<?php echo $style; ?>.css">
     <?php endforeach; ?>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body class="body">
 <div class="container">
@@ -38,18 +40,21 @@ if ($params['title'] != DEFAULT_TITLE) {
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                          <li><a href="#">Créer un concour</a></li>
-                          <li><a href="#">Gestion des concours</a></li>
-                          <li><a href="#">Pages statiques</a></li>
+                          <li><a href="<?php echo Router::getUrl("Concour","New");?>">Créer un concour</a></li>
+                          <li><a href="<?php echo Router::getUrl("Concour","index");?>">Gestion des concours</a></li>
+                          <li><a href="<?php echo Router::getUrl("Admin","index");?>">Pages statiques</a></li>
                         </ul>
                     </div>
                 </div>
+                <img class="img_header" src="/media/images/test.jpg" alt="l'entete de la page"></img>
+                <img class="img_header" src="/media/images/test.jpg" alt="l'entete de la page"></img>
+                <img class="img_header" src="/media/images/test.jpg" alt="l'entete de la page"></img>
                 <div class="panel-over"></div>
-                <img class="img_header" src="/media/images/header.png" alt="l'entete de la page"></img>
+               
                 <nav class="navbar navbar-inverse">
                     <ul class="nav navbar-nav ">
 
-                        <li class="active"><a href="<?php echo Router::getUrl("index","index");?>">Accueil<span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="<?php echo Router::getUrl("Index","Index");?>">Accueil<span class="sr-only">(current)</span></a></li>
                     </ul>
                 </nav>
             </header>
