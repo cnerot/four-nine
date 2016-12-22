@@ -13,13 +13,18 @@
         <form>
             <textarea class="form-control" rows="10" id="comment"></textarea>
             <div class="top-5">
-                <div class="col-md-6">
-                    <button name="submit" id="cancel" type="reset" value="reset" class="btn btn-danger left">Cancel<span class="glyphicon glyphicon-remove"></span></button>
-                </div>
-                <div class="col-lg-6">
-                    <button name="submit" id="submit" type="submit" value="submit" class="btn btn-primary right"><span class="glyphicon glyphicon-floppy-disk"></span>Valider<span class="glyphicon glyphicon-chevron-right"></span></button>
-                </div>
-            </div>
+				<div class="margin-top-7 col-xs-12 col-md-6">
+					<button name="submit" id="cancel" type="reset" value="reset" class="col-xs-12 col-md-6 btn btn-danger left">
+						 Annuler <span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</div>
+				<div class="margin-top-7 col-xs-12 col-md-6">
+					<button name="submit" id="submit" type="submit" value="submit" class="col-xs-12 col-md-6 btn btn-primary right">
+						<span class="glyphicon glyphicon-floppy-disk"></span>Valider<span class="glyphicon glyphicon-chevron-right"></span>
+					</button>
+				</div>
+		   </div>
+		   <div class="clear"></div>
         </form>
     </div>
 </div>

@@ -20,7 +20,9 @@ if ($params['title'] != DEFAULT_TITLE) {
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="/media/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
+<!--
+    <link rel="stylesheet" type="text/css" href="/media/css/style.css" /> déjà appelé
+-->
     <?php foreach ($params['styles'] as $style): ?>
         <link rel="stylesheet" href="/media/css/<?php echo $style; ?>.css">
     <?php endforeach; ?>
@@ -53,7 +55,6 @@ if ($params['title'] != DEFAULT_TITLE) {
                
                 <nav class="navbar navbar-inverse">
                     <ul class="nav navbar-nav ">
-
                         <li class="active"><a href="<?php echo Router::getUrl("Index","Index");?>">Accueil<span class="sr-only">(current)</span></a></li>
                     </ul>
                 </nav>
@@ -66,12 +67,14 @@ if ($params['title'] != DEFAULT_TITLE) {
         </div>
          <div class="col-md-12">
             <footer class="panel-footer">
-                <p class="footer">CGU - POLITIQUE DE CONFIDENTUALITE - Condition d'utilisation - contactez nous &copy;</p>
+                <p class="footer">CGU - POLITIQUE DE CONFIDENTUALITE - Condition d'utilisation - contactez-nous &copy;</p>
             </footer>
          </div>
     </div>
 </div>
-<script src="../media/js/jquery-3.1.1.min.js"></script>
-<script src="../media/js/bootstrap.js"></script>
+<script src="/media/js/jquery-3.1.1.min.js"></script>
+<script src="/media/js/bootstrap.min.js"></script>
+<script src="/media/js/imageGallery.js"></script>
+<script src="/media/js/script.js"></script>
 </body>
 </html>

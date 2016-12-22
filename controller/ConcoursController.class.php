@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class ConcourController
+class ConcoursController
 {
     /**
      * This will execute before every action
@@ -14,29 +14,27 @@ class ConcourController
      */
     public function preDeploy($args){
 
-
-    }
-    /**
-    * This will execute after every action
-    * @param $args
-    */
-    public function postDeploy($args){
-
-
     }
     public function indexAction($args)
     {
         $view = new View();
-        $view->setView('gestionConcour');
-        $view->putData('name', 'moi');
+        $view->setView('gestionConcours');
         $view->putData('styles', ['home']);
     }
     public function newAction($args)
     {
         $view = new View();
-        $view->setView('newConcour');
-        $view->putData('name', 'moi');
+        $view->setView('newConcours');
         $view->putData('styles', ['home']);
+    }
+    
+    public function voteAction($args)
+    {
+	$view = new View();
+        $view->setView('voteConcours');
+        $view->putData('styles', ['home']);
+        $view->putData('styles', ['gallery']);
+ 
     }
 }
   
