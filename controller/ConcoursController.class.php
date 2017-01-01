@@ -32,8 +32,8 @@ class ConcoursController
     {
 	$view = new View();
         $view->setView('voteConcours');
-        $view->putData('styles', ['home']);
-        $view->putData('styles', ['gallery']);
+        $view->putData('styles', ['home','gallery']);
+        //$view->putData('styles', ['gallery']); ->reecrire surcharge home
  
     }
 }
