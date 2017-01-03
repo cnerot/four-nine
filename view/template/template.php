@@ -42,8 +42,8 @@ if ($params['title'] != DEFAULT_TITLE) {
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                          <li><a href="<?php echo Router::getUrl("Concour","New");?>">Créer un concour</a></li>
-                          <li><a href="<?php echo Router::getUrl("Concour","index");?>">Gestion des concours</a></li>
+                          <li><a href="<?php echo Router::getUrl("Concours","New");?>">Créer un concour</a></li>
+                          <li><a href="<?php echo Router::getUrl("Concours","index");?>">Gestion des concours</a></li>
                           <li><a href="<?php echo Router::getUrl("Admin","index");?>">Pages statiques</a></li>
                         </ul>
                     </div>
