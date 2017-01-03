@@ -5,8 +5,8 @@ require_once __DIR__ . '/../lib/vendor/autoload.php';
 //TODO:: test FB object;
 class FBApp
 {
-    const FB_CALLBACK = Config::URL . 'facebook/callback';
-    const FB_PERMISSIONS = ['user_photos'];
+    private $fbCallback;
+    private $fbPermissions;
 
 
     private $fb;
@@ -21,6 +21,8 @@ class FBApp
      */
     public function __construct()
     {
+		$this->fbCallback = Config::URL . 'facebook/callback';
+		$this->fbPermissions = ['user_photos'];
         $this->fb = new Facebook\Facebook([
             'app_id' => Config::FB_ID,
             'app_secret' => Config::FB_SECRET,
@@ -45,7 +47,7 @@ class FBApp
     {
         if (!isset($_SESSION['facebook_access_token'])) {
             $this->loginhelper = $this->fb->getRedirectLoginHelper();
-            $loginUrl = $this->loginhelper->getLoginUrl(FBApp::FB_CALLBACK, FBApp::FB_PERMISSIONS);
+            $loginUrl = $this->loginhelper->getLoginUrl($this->fbCallback, $this->fbPermissions);
             echo '<a href="' . $loginUrl . '">' . $login_text . '</a>';
         } else {
             echo '<p>' . $logged_text . '</p>';
