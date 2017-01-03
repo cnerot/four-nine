@@ -153,7 +153,8 @@ class Form
                 }
             }
             if ($input['validation'] == 'file') {
-
+                $data[$key] = $_FILES[$key];
+                $default = false;
             }
             if ($default) {
                 Logger::log('invalid default value (or unknown component)');
@@ -166,17 +167,17 @@ class Form
     }
 
     /**
-     * @param array $html -> html to be placed before form & inputs
-     * @param array $data -> needs to be removed (deprecated)
+     * @param string $main_class
+     * @param array $data
+     * @return bool
      */
-    public function display($html = [], $data = [])
+    public function display($main_class = "", $data = [])
     {
-        if (isset($html['form']) && isset($html['form']['before'])) {
-            echo $html['form']['before'];
-        }
-        echo '<form action="' . $this->action . '" method="' . $this->method . '" name="' . $this->name . '" class="' . $this->class . '" enctype="' . $this->enctype . '">';
+        echo '<form action="' . $this->action . '" method="' . $this->method . '" name="' . $this->name . '" class="' . $this->class . ' ' . $main_class . '" enctype="' . $this->enctype . '">';
         echo '<input type="hidden" value="' . $this->name . '" name="type">';
-
+        if (isset($main_class)) {
+            echo '<input type="hidden" value="' . $main_class . '" name="seperator">';
+        }
 
         foreach ($this->inputs as $key => $input) {
             /**
@@ -210,71 +211,41 @@ class Form
             } else {
                 $label = "";
             }
+            if (isset($input['class'])) {
+                $class = $input['class'];
+            } else {
+                $class = "";
+            }
             /**
              * display input data
              */
             if ($type == "textarea") {
-
-                if (isset($html['label']) && isset($html['label']['before'])) {
-                    echo $html['label']['before'];
-                }
                 ?>
                 <label for="<?php echo $name ?>"><?php echo $label ?></label>
-                <?php
-                if (isset($html['label']) && isset($html['label']['after'])) {
-                    echo $html['label']['after'];
-                }
-
-                if (isset($html['input']) && isset($html['input']['before'])) {
-                    echo $html['label']['before'];
-                }
-                ?>
                 <textarea
                     name="<?php echo $name ?>"
                     placeholder="<?php echo $placeholder ?>"
+                    class="<?php echo $class ?>"
                 >
                             <?php echo (isset($data[$name])) ? $data[$name] : $value; ?>
                         </textarea>
                 <?php
-                if (isset($html['input']) && isset($html['input']['after'])) {
-                    echo $html['input']['after'];
-                }
             } else {
-                if (isset($html['label']) && isset($html['label']['before'])) {
-                    echo $html['label']['before'];
-                }
                 ?>
                 <label for="<?php echo $name ?>"><?php echo $label ?></label>
-                <?php
-                if (isset($html['label']) && isset($html['label']['after'])) {
-                    echo $html['label']['after'];
-                }
-                if (isset($html['input']) && isset($html['input']['before'])) {
-                    echo $html['input']['before'];
-                }
-                ?>
                 <input
                     name="<?php echo $name ?>"
                     type="<?php echo $type ?>"
+                    class="<?php echo $class ?>"
                     value="<?php echo (isset($data[$name])) ? $data[$name] : $value; ?>"
                     placeholder="<?php echo $placeholder ?>"
                 >
                 <?php
-                if (isset($html['input']) && isset($html['input']['after'])) {
-                    echo $html['input']['after'];
-                }
             }
         }
-        if (isset($html['submit']) && isset($html['submit']['before'])) {
-            echo $html['submit']['before'];
-        }
+
         echo '<input type="submit" value="' . $this->submit . '" onclick="' . $this->onclick . '">';
-        if (isset($html['submit']) && isset($html['submit']['after'])) {
-            echo $html['submit']['after'];
-        }
         echo '</form>';
-        if (isset($html['form']) && isset($html['form']['after'])) {
-            echo $html['form']['after'];
-        }
+
     }
 }

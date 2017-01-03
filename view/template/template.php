@@ -13,6 +13,12 @@ $params['styles'] = array_merge(['reset', 'style'], $params['styles']);
 if ($params['title'] != DEFAULT_TITLE) {
     $params['title'] .= ' - ' . DEFAULT_TITLE;
 }
+
+/**
+ * Initilise FB object
+ */
+
+$fb = new FBApp();
 ?>
 <head>
     <title><?php echo $params['title']; ?></title>
@@ -20,9 +26,6 @@ if ($params['title'] != DEFAULT_TITLE) {
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="/media/css/bootstrap.min.css" />
-<!--
-    <link rel="stylesheet" type="text/css" href="/media/css/style.css" /> déjà appelé
--->
     <?php foreach ($params['styles'] as $style): ?>
         <link rel="stylesheet" href="/media/css/<?php echo $style; ?>.css">
     <?php endforeach; ?>
@@ -30,6 +33,7 @@ if ($params['title'] != DEFAULT_TITLE) {
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body class="body">
+<?php $fb->printFBLogin("<div class='login_obligatory'><p>Please click anywhere to log in</p><img src='media/images/téléchargement.png'></div>", "<div class='logged_in'></div>")?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
