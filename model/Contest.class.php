@@ -17,7 +17,7 @@ class Contest extends Entity
      */
     public function getId()
     {
-        return $this->concoursId;
+        return $this->id;
     }
 
     /**

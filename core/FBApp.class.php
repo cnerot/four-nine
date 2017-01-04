@@ -83,7 +83,7 @@ class FBApp
                 echo 'Bad request';
             }
         } else {
-            $SESSION['facebook_access_token'] = (string)$accessToken;
+            $_SESSION['facebook_access_token'] = (string)$accessToken;
             $this->fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
             return true;
         }
@@ -98,7 +98,7 @@ class FBApp
      */
     public function isLogged()
     {
-        if (isset($SESSION['facebook_access_token'])) {
+        if (isset($_SESSION['facebook_access_token'])) {
             return true;
         }
         return false;
@@ -117,6 +117,16 @@ class FBApp
     }
 
     /**
+     * @param $fb_query
+     * @return \Facebook\FacebookResponse
+     */
+    public function postFBData($fb_query, $object)
+    {
+        return $this->fb->post($fb_query, $object);
+
+    }
+
+    /**
      * @param $file -> Path of file to upload
      * @param $fbpath -> Where to put it in Fb -> check graph api
      * @param $name -> File name
@@ -129,7 +139,7 @@ class FBApp
         $batch = [
             $name => $this->fb->request('POST', $fbpath, [
                 'message' => $message,
-                'source' => $this->fb->fileToUpload('/path/to/photo-one.jpg'),
+                'source' => $this->fb->fileToUpload('$file'),
             ])
         ];
         try {
