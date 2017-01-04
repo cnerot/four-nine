@@ -30,6 +30,11 @@ class ConcoursController
         $view->putData('form', $form);
     }
 
+    public function deleteAction($args){
+        $concours = new Contest();
+        $concours = $concours->getOneWhere(["id"=>$_REQUEST['id']]);
+        $concours->delete();
+    }
     public function newAction($args)
     {
         $form = new Form([
@@ -113,6 +118,67 @@ class ConcoursController
 
         $create_album = $facebook->getFBData('/' . Config::DATA_PAGE_ID . '/albums', $album_details);
         Logger::debug($create_album);
+
+    }
+    public  function editAction(){
+        $form = new Form([
+            'options' => [
+                'method' => 'POST',
+                'action' => '#',
+                'submit' => 'Send',
+                'name' => 'postform',
+                'class' => '',
+                'enctype' => "multipart/form-data"
+            ],
+            'data' => [
+                "start" => [
+                    "type" => "date",
+                    "validation" => "date",
+                    "value" => ''
+                ],
+                "end" => [
+                    "type" => "date",
+                    "validation" => "date",
+                    "value" => ''
+                ],
+                "name" => [
+                    "type" => "text",
+                    "validation" => "text",
+                    "value" => ''
+                ],
+                "prize" => [
+                    "type" => "text",
+                    "validation" => "text",
+                    "value" => ''
+                ],
+                "prize_img" => [
+                    "type" => "file",
+                    "validation" => "file",
+                    "value" => ''
+                ],
+                "description" => [
+                    "type" => "textarea",
+                    "validation" => "text",
+                    "value" => ''
+                ],
+            ]
+        ]);
+
+
+        $concours = new Contest();
+        $concours = $concours->getOneWhere(["id"=>$_REQUEST['id']]);
+
+        $data = $form->validate();
+        if ($data) {
+            $concours->fromArray($data);
+            $concours->save();
+        }
+
+        $view = new View();
+        $view->setView('newConcours');
+        $view->putData('styles', ['home']);
+        $view->putData('form', $form);
+        $view->putData('concours', $concours);
 
     }
 
