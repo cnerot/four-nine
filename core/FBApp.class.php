@@ -13,6 +13,8 @@ class FBApp
     private $permissions;
     private $loginhelper;
     private $callback;
+	
+	private $fbAppToken;
 
     /***
      * FBApp constructor.
@@ -33,6 +35,8 @@ class FBApp
         if (isset($_SESSION['facebook_access_token'])) {
             $this->fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
         }
+		
+		$this->fbAppToken = "1107373735984316|5bfq0Cjm7ydfn5k6YFJ445N0a1U";
     }
 
 
@@ -111,11 +115,62 @@ class FBApp
      * @param $fb_query -> check graph API
      * @return \Facebook\FacebookResponse
      */
-    public function getFBData($fb_query)
+    public function getFBData($fb_query, $token = null)
     {
-        return $this->fb->get($fb_query);
+		if ($token != null){
+			return $this->fb->get($fb_query, $token);	
+        }
+		return $this->fb->get($fb_query);
     }
 
+	// Function for looking for a value in a multi-dimensional array
+	public function in_multi_array($value, $array)
+	{   
+		foreach ($array as $key => $item)
+		{       
+			// Item is not an array
+			if (!is_array($item))
+			{
+				// Is this item our value?
+				if ($item == $value) return true;
+			}
+			
+			// Item is an array
+			else
+			{
+				// See if the array name matches our value
+				//if ($key == $value) return true;
+				
+				// See if this array matches our value
+				if (in_array($value, $item)) return true;
+				
+				// Search this array
+				else if (in_multi_array($value, $item)) return true;
+			}
+		}
+		
+		// Couldn't find the value in array
+		return false;
+	}
+	
+	public function isAdmin()
+    {
+		$idUser = $this->getFBData('/me?fields=id')->getDecodedBody()["id"];
+		$app_roles = $this->getFBData('/app/roles', $this->fbAppToken);
+				
+		$data = $app_roles->getDecodedBody();
+		$data = $data['data'];
+		
+		foreach($data as $key=>$value){ // cherche le rôle de l'utilisateur connecté
+			if($data[$key]["user"] == $idUser
+				&& $data[$key]["role"] == "administrators"){
+					return true;
+			}
+		}
+		
+		return false;
+    }
+	
     /**
      * @param $fb_query
      * @return \Facebook\FacebookResponse

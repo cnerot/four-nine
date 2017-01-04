@@ -108,16 +108,17 @@ class ConcoursController
     public function tempAction($args)
     {
         $facebook = new FBApp();
-
+		//$facebook->printFBLogin();
+	
         $album_details = array(
             'message' => 'Album desc',
             'name' => 'Album name'
         );
-        //$res = $facebook->getFBData(Config::DATA_PAGE_ID."?fields=access_token");
+        $facebook->isAdmin();
 
 
-        $create_album = $facebook->getFBData('/' . Config::DATA_PAGE_ID . '/albums', $album_details);
-        Logger::debug($create_album);
+        //$create_album = $facebook->getFBData('/' . Config::DATA_PAGE_ID . '/albums', $album_details);
+        //ogger::debug($create_album);
 
     }
     public  function editAction(){
