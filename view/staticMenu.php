@@ -1,30 +1,24 @@
-<div class="col-md-12">
-    <div><h1>Configuration des pages statiques</h1></div>
-    <div class="col-md-3">
-        <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Page statique 1</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Page statique 2</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>Page statique 3</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>Page statique 4</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>Page statique 5</a></li>
-        </ul>
+   <div class="container">
+        <div class="row">
+            <div class="col s12 p_pageStat">
+                <p>Création des pages statiques</p>
+            </div>
+            <div class="col s12 margin-top">
+                <a class="btn-floating btn-large green lighten-1 right"><i class="large material-icons">add</i></a>
+            </div>
+            <div class="col s12">
+                <ul class="collapsible popout" data-collapsible="accordion">
+                    <li>
+                      <div class="collapsible-header yellow"><i class="material-icons">description</i>page 3</div>
+                      <div class="collapsible-body yellow">
+                          <div class="container">
+                              <br>
+                            <input type="text" id="input_text_stat" class="" placeholder="Titre de la page">
+                            <textarea class="textarea_stat" rows="10" id="comment" placeholder="Contenur de la page"></textarea>
+                          </div>
+                      </div>
+                    </li>
+                </ul>
+            </div>
+        </div>         
     </div>
-    <div class="col-md-9">
-        <form>
-            <textarea class="form-control" rows="10" id="comment"></textarea>
-            <div class="top-5">
-				<div class="margin-top-7 col-xs-12 col-md-6">
-					<button name="submit" id="cancel" type="reset" value="reset" class="col-xs-12 col-md-6 btn btn-danger left">
-						 Annuler <span class="glyphicon glyphicon-remove"></span>
-					</button>
-				</div>
-				<div class="margin-top-7 col-xs-12 col-md-6">
-					<button name="submit" id="submit" type="submit" value="submit" class="col-xs-12 col-md-6 btn btn-primary right">
-						<span class="glyphicon glyphicon-floppy-disk"></span>Valider<span class="glyphicon glyphicon-chevron-right"></span>
-					</button>
-				</div>
-		   </div>
-		   <div class="clear"></div>
-        </form>
-    </div>
-</div>

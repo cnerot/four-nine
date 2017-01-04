@@ -19,8 +19,8 @@ if ($params['title'] != DEFAULT_TITLE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <meta name="description" content="">
-    <link rel="stylesheet" type="text/css" href="<?php echo Config::CSS_DIR; ?>/reset.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo Config::CSS_DIR; ?>/new_style.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo Config::CSS_DIR; ?>/reset.css"/>
     <?php foreach ($params['styles'] as $style): ?>
         <link rel="stylesheet" href="/media/css/<?php echo $style; ?>.css">
     <?php endforeach; ?>

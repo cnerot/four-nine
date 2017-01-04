@@ -1,56 +1,48 @@
- <div class="col-md-12">
-     <h1>Créer un concours</h1>
-     <div class="col-md-3"></div>
-     <div class="col-md-6">
-            <form>
-               <div class="input-group">
-                 <span class="input-group-addon">Date de début </span>
-                 <input type="date" class="form-control" placeholder="jj/mm/aaaa" aria-describedby="">
-               </div>
-
-               <div class="input-group">
-                 <span class="input-group-addon">Date de fin</span>
-                 <input type="date" class="form-control" placeholder="jj/mm/aaaa" aria-describedby="">
-               </div>
-
-               <div class="input-group">
-                 <span class="input-group-addon">Titre de concours</span>
-                 <input type="text" class="form-control" placeholder="Ex: photo de jour" aria-label="">
-               </div>
-               <div class="input-group">
-                 <span class="input-group-addon">Lot</span>
-                 <input type="text" class="form-control" aria-label="" placeholder="Ex: Casque">
-               </div>
-               <div class="center margin-auto padding-top-5 input-group">
-				  <label class="margin-top-7 btn btn-default btn-file">
-					  Image du lot <input type="file" id="nameGift" style="display: none;">
-				  </label>
-				  <input type="button" class="cancelImageGift margin-top-7 btn btn-danger" value="Annuler image lot">
-			   </div>
-			   <div class="margin-top-10 containerImageGift">
-					<img src="/media/images/gift.png">
-					<label class="center" id="infoNameGift"></label>
-			   </div>
-			    <hr>
-				<div class="clear padding-top-10"></div>
-               <label class="center disp-block" for="basic-url">Description</label>
-               <div class="padding-top-10">
-                        <textarea rows="4" class="form-control"></textarea>
-               </div>
-               <div class="top-5">
-                    <div class="margin-top-7 col-xs-12 col-md-6">
-                        <button name="submit" id="cancel" type="reset" value="reset" class="col-xs-12 col-md-6 btn btn-danger left">
-							 Annuler <span class="glyphicon glyphicon-remove"></span>
-						</button>
+   <div class="grey darken-2">
+    <div class="container">
+     <div class="row">
+       <div class="col s12 m4 l2"></div>
+        <div class="col s12 m4 l8 margin-top">
+             <form>
+                 <label for="datepicker" class="label">Date de début </label>
+                 <input type="date" class="datepicker">
+                 <label for="datepicker" class="label">Date de fin</label>
+                 <input type="date" class="datepicker">
+                <div class="input-field">
+                  <input type="text"  class="validate">
+                  <label for="titleConcours">Titre de concours</label>
+                </div>
+                <div class="input-field">
+                  <input type="text"  class="validate">
+                   <label for="lot">Lot</label>
+                </div>
+                <div class="file-field input-field">
+                     <div class="btn  amber accent-4">
+                         <i class="material-icons left">add_a_photo</i>
+                         <span>Image de lot</span>
+                         <input type="file">
+                     </div>
+                     <div class="file-path-wrapper">
+                       <input class="file-path validate" type="text">
+                     </div>
+                 </div>
+                     <div class="input-field">
+                         <textarea id="textarea1" class="materialize-textarea"></textarea>
+                         <label for="textarea1">Description</label>
                     </div>
-                    <div class="margin-top-7 col-xs-12 col-md-6">
-                        <button name="submit" id="submit" type="submit" value="submit" class="col-xs-12 col-md-6 btn btn-primary right">
-							<span class="glyphicon glyphicon-floppy-disk"></span>Valider<span class="glyphicon glyphicon-chevron-right"></span>
-						</button>
-                    </div>
-               </div>
-               <div class="clear"></div>
-            </form>
-        </div>
-   <div class="col-md-3"></div>    
- </div>
+                 <div class='row'>
+                     <div class="col s4">
+                         <a class="waves-effect waves-light btn left grey lighten-2 black-text"><i class="material-icons left">subdirectory_arrow_left</i>Retour</a>
+                     </div>
+                     <div class="col s4"></div>
+                     <div class="col s4">
+                         <button name="submit" id="submit" type="submit" class="btn right green accent-4">Valider<i class="material-icons right">arrow_forward</i></button>
+                     </div>
+                 </div>
+                <div class="clear"></div>
+             </form>
+         </div>
+         <div class="col s12 m4 l2"></div>
+         </div>
+    </div>
+</div>
