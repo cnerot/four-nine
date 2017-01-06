@@ -89,7 +89,7 @@ if ($params['title'] != DEFAULT_TITLE) {
             </div>
           </div>
         </footer>
-      <script type="text/javascript" src="/media/js/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="/media/js/jquery-3.1.1.min.js"></script>
       <script type="text/javascript" src="/media/js/materialize.js"></script>
       <script src="/media/js/init.js"></script>
 <script src="/media/js/script.js"></script>
