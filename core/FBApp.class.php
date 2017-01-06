@@ -35,7 +35,6 @@ class FBApp
         if (isset($_SESSION['facebook_access_token'])) {
             $this->fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
         }
-		
 		$this->fbAppToken = "1107373735984316|5bfq0Cjm7ydfn5k6YFJ445N0a1U";
     }
 
@@ -115,63 +114,17 @@ class FBApp
      * @param $fb_query -> check graph API
      * @return \Facebook\FacebookResponse
      */
-    public function getFBData($fb_query, $token = null)
+    public function getFBUserData($fb_query)
     {
-		if ($token != null){
-			return $this->fb->get($fb_query, $token);	
-        }
-		return $this->fb->get($fb_query);
+        return $this->fb->get($fb_query)->getDecodedBody();
     }
 
-	// Function for looking for a value in a multi-dimensional array
-	public function in_multi_array($value, $array)
-	{   
-		foreach ($array as $key => $item)
-		{       
-			// Item is not an array
-			if (!is_array($item))
-			{
-				// Is this item our value?
-				if ($item == $value) return true;
-			}
-			
-			// Item is an array
-			else
-			{
-				// See if the array name matches our value
-				//if ($key == $value) return true;
-				
-				// See if this array matches our value
-				if (in_array($value, $item)) return true;
-				
-				// Search this array
-				else if (in_multi_array($value, $item)) return true;
-			}
-		}
-		
-		// Couldn't find the value in array
-		return false;
-	}
-	
-	public function isAdmin()
+    public function getFBAppData($fb_query)
     {
-		$idUser = $this->getFBData('/me?fields=id')->getDecodedBody()["id"];
-		$app_roles = $this->getFBData('/app/roles', $this->fbAppToken);
-				
-		$data = $app_roles->getDecodedBody();
-		$data = $data['data'];
-		
-		foreach($data as $key=>$value){ // cherche le rôle de l'utilisateur connecté
-			if($data[$key]["user"] == $idUser
-				&& $data[$key]["role"] == "administrators"){
-					return true;
-			}
-		}
-		
-		return false;
+        return $this->fb->get($fb_query, $this->fbAppToken)->getDecodedBody();
     }
-	
-    /**
+
+	/**
      * @param $fb_query
      * @return \Facebook\FacebookResponse
      */
@@ -180,43 +133,19 @@ class FBApp
         return $this->fb->post($fb_query, $object);
 
     }
-
-    /**
-     * @param $file -> Path of file to upload
-     * @param $fbpath -> Where to put it in Fb -> check graph api
-     * @param $name -> File name
-     * @param string $message -> Upload message or msg to attach to pic => needs to be verified
-     * @return true on success
-     */
-    //TODO:: test upload
-    public function upload($file, $fbpath, $name, $message = "Uploaded with fournine")
+    public function isAdmin()
     {
-        $batch = [
-            $name => $this->fb->request('POST', $fbpath, [
-                'message' => $message,
-                'source' => $this->fb->fileToUpload('$file'),
-            ])
-        ];
-        try {
-            $responses = $this->fb->sendBatchRequest($batch);
-        } catch (Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error
-            Logger::logExeption($e);
-            exit;
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues
-            Logger::logExeption($e);
-            exit;
-        }
-        $return_status = true;
-        foreach ($responses as $key => $response) {
-            if ($response->isError()) {
-                $e = $response->getThrownException();
-                Logger::logExeption($e);
-                $return_status = true;
+        $idUser = $this->getFBUserData('/me?fields=id')["id"];
+        $app_roles = $this->getFBAppData('/app/roles')['data'];
+
+        foreach($app_roles as $value){
+            // cherche le rôle de l'utilisateur connecté
+            if($value["user"] == $idUser
+                && $value["role"] == "administrators"){
+                return true;
             }
         }
-        return $return_status;
-    }
 
+        return false;
+    }
 }

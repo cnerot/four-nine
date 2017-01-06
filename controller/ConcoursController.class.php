@@ -131,7 +131,6 @@ class ConcoursController
 
         $view = new View();
         $view->setView('newConcours');
-        $view->putData('styles', ['home']);
         $view->putData('form', $this->form);
         $view->putData('concours', $concours);
 
@@ -141,7 +140,7 @@ class ConcoursController
     {
         $view = new View();
         $view->setView('voteConcours');
-        $view->putData('styles', ['home', 'gallery']);
+        $view->putData('styles', ['gallery']);
     }
 }
   
