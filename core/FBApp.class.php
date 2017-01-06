@@ -46,18 +46,14 @@ class FBApp
      * @param string $login_text
      * @param string $logged_text
      */
-    //TODO: update for better more options
-    public function printFBLogin($login_text = 'Log in with Facebook!', $logged_text = 'Logged in with FB!!')
-    {
-        if (!isset($_SESSION['facebook_access_token'])) {
-            $this->loginhelper = $this->fb->getRedirectLoginHelper();
-            $loginUrl = $this->loginhelper->getLoginUrl($this->fbCallback, $this->fbPermissions);
-            echo '<a href="' . $loginUrl . '">' . $login_text . '</a>';
-        } else {
-            echo '<a href="' . $this->logoutUrl . '">' . $logged_text . '</p>';
-        }
-    }
 
+    public function getLoginUrl(){
+        $this->loginhelper = $this->fb->getRedirectLoginHelper();
+        return $this->loginhelper->getLoginUrl($this->fbCallback, $this->fbPermissions);
+    }
+    public function getLogoutUrl(){
+        return $this->logoutUrl;
+    }
     /**
      * Only used on FB callback page
      *
