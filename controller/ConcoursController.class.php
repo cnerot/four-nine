@@ -12,6 +12,9 @@ class ConcoursController
 
     public function preDeploy($args)
     {
+        if (!(new FBApp())->isAdmin()){
+            Router::redirect();
+        }
         $this->form = new Form([
             'options' => [
                 'method' => 'POST',

@@ -74,5 +74,9 @@ class Router
         $return_url .= http_build_query($data);
         return $return_url;
     }
+    public static function redirect($controller, $action, $data = [])
+    {
+        header("Location: ".self::getUrl($controller, $action, $data));
+    }
 
 }
