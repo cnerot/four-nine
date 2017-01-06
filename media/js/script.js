@@ -26,7 +26,8 @@ $(document).ready(function () {
     }
 
     $("#static-container-button").click(function () {
-        $.ajax({url: "http://four-nine.local.fr/pages/ajax", success: function(result){
+        var base_url = window.location.origin;
+        $.ajax({url: base_url+"/pages/ajax", success: function(result){
              $("#static-container").append(result);
         }});
     });
