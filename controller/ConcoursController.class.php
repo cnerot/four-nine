@@ -8,36 +8,11 @@
 
 class ConcoursController
 {
-    public function indexAction($args)
-    {
-        $concours = new Contest();
-        $concours = $concours->getWhere();
-        $form = new Form([
-            'options' => [
-                'method' => 'POST',
-                'action' => '#',
-                'submit' => 'Delete',
-                'name' => 'postform',
-                'class' => '',
-                'enctype' => "multipart/form-data"
-            ],
-            'data' => []
-        ]);
-        $view = new View();
-        $view->setView('gestionConcours');
-        $view->putData('styles', ['home']);
-        $view->putData('concours', $concours);
-        $view->putData('form', $form);
-    }
+    private $form;
 
-    public function deleteAction($args){
-        $concours = new Contest();
-        $concours = $concours->getOneWhere(["id"=>$_REQUEST['id']]);
-        $concours->delete();
-    }
-    public function newAction($args)
+    public function preDeploy($args)
     {
-        $form = new Form([
+        $this->form = new Form([
             'options' => [
                 'method' => 'POST',
                 'action' => '#',
@@ -80,7 +55,26 @@ class ConcoursController
             ]
         ]);
 
-        $data = $form->validate();
+    }
+    public function indexAction($args)
+    {
+        $concours = new Contest();
+        $concours = $concours->getWhere();
+
+        $view = new View();
+        $view->setView('gestionConcours');
+        $view->putData('styles', ['home']);
+        $view->putData('concours', $concours);
+    }
+
+    public function deleteAction($args){
+        $concours = new Contest();
+        $concours = $concours->getOneWhere(["id"=>$_REQUEST['id']]);
+        $concours->delete();
+    }
+    public function newAction($args)
+    {
+        $data = $this->form->validate();
 
         if ($data) {
 
@@ -102,7 +96,7 @@ class ConcoursController
         $view = new View();
         $view->setView('newConcours');
         $view->putData('styles', ['home']);
-        $view->putData('form', $form);
+        $view->putData('form', $this->form);
     }
 
     public function tempAction($args)
@@ -122,54 +116,11 @@ class ConcoursController
 
     }
     public  function editAction(){
-        $form = new Form([
-            'options' => [
-                'method' => 'POST',
-                'action' => '#',
-                'submit' => 'Send',
-                'name' => 'postform',
-                'class' => '',
-                'enctype' => "multipart/form-data"
-            ],
-            'data' => [
-                "start" => [
-                    "type" => "date",
-                    "validation" => "date",
-                    "value" => ''
-                ],
-                "end" => [
-                    "type" => "date",
-                    "validation" => "date",
-                    "value" => ''
-                ],
-                "name" => [
-                    "type" => "text",
-                    "validation" => "text",
-                    "value" => ''
-                ],
-                "prize" => [
-                    "type" => "text",
-                    "validation" => "text",
-                    "value" => ''
-                ],
-                "prize_img" => [
-                    "type" => "file",
-                    "validation" => "file",
-                    "value" => ''
-                ],
-                "description" => [
-                    "type" => "textarea",
-                    "validation" => "text",
-                    "value" => ''
-                ],
-            ]
-        ]);
-
 
         $concours = new Contest();
         $concours = $concours->getOneWhere(["id"=>$_REQUEST['id']]);
 
-        $data = $form->validate();
+        $data = $this->form->validate();
         if ($data) {
             $concours->fromArray($data);
             $concours->save();
@@ -178,7 +129,7 @@ class ConcoursController
         $view = new View();
         $view->setView('newConcours');
         $view->putData('styles', ['home']);
-        $view->putData('form', $form);
+        $view->putData('form', $this->form);
         $view->putData('concours', $concours);
 
     }
@@ -188,8 +139,6 @@ class ConcoursController
         $view = new View();
         $view->setView('voteConcours');
         $view->putData('styles', ['home', 'gallery']);
-        //$view->putData('styles', ['gallery']); ->reecrire surcharge home
-
     }
 }
   
