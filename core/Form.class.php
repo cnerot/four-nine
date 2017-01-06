@@ -123,7 +123,7 @@ class Form
             if ($input['validation'] == 'text') {
                 $default = false;
                 if (true) {
-                    $data[$key] = $_POST[$key];
+                    $data[$key] = trim($_POST[$key]);
                 } else {
                     Logger::log('invalid text value');
                 }
@@ -194,7 +194,7 @@ class Form
             if (isset($input['type'])) {
                 $type = $input['type'];
             } else {
-                $type = "test";
+                $type = "";
             }
             if (isset($input['value'])) {
                 $value = $input['value'];
