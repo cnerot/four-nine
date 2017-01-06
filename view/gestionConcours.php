@@ -16,17 +16,21 @@
                         </tr>
                       </thead>
                       <tbody class="">
-                        <tr>
-                          <td>Concours 1</td>
-                          <td>dd</td>
-                          <td>df</td>
-                          <td>
-                            <div class="right">
-                                <a class="btn-floating btn-small orange lighten-2"><i class="large material-icons">mode_edit</i></a>
-                                <a class="btn-floating btn-small red lighten-1"><i class="large material-icons">delete_forever</i></a>
-                            </div>
-                          </td>
-                        </tr>
+                      <?php foreach($concours as $concour): ?>
+                          <tr>
+                              <td><?php echo $concour->getName(); ?></td>
+                              <td><?php echo $concour->getStart(); ?></td>
+                              <td><?php echo $concour->getEnd(); ?></td>
+                              <td>
+                                  <div class="right">
+                                      <a class="btn-floating btn-small orange lighten-2" href="<?php echo Router::getUrl("concours", "edit", ["id"=>$concour->getId()])?>"><i class="large material-icons">mode_edit</i></a>
+                                      <a class="btn-floating btn-small red lighten-1" href="<?php echo Router::getUrl("concours", "delete", ["id"=>$concour->getId()])?>"><i class="large material-icons">delete_forever</i></a>
+                                  </div>
+                              </td>
+                          </tr>
+                      <?php endforeach; ?>
+
+
                       </tbody>
                     </table>
                 </div>

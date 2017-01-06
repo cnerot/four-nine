@@ -120,26 +120,29 @@ class Form
                 return null;
             }
             $default = true;
-            if ($input['validation'] == 'text') {
+            if ($input['validation'] == 'wysiwyg') {
                 $default = false;
-                if (true) {
-                    $data[$key] = $_POST[$key];
+                if (is_string($_POST[$key])) {
+                    /* remove all tags except h2, h3, h4, h5, h6, p, img, table, th, td, tr, ul, li*/
+                    $data[$key] = preg_replace("(?i)<(?!\/?(img|h[2-6]|p|div|label|table|th|td|tr|ul|li)).*?>"
+                        , "", trim($_POST[$key]));
                 } else {
                     Logger::log('invalid text value');
                 }
             }
-            if ($input['validation'] == 'password') {
+            if ($input['validation'] == 'text') {
                 $default = false;
-                if (true) {
-                    $data[$key] = $_POST[$key];
+                if (is_string($_POST[$key])) {
+                    /* remove all tags*/
+                    $data[$key] = preg_replace("<[^>]*>", "", trim($_POST[$key]));
                 } else {
-                    Logger::log('invalid password value');
+                    Logger::log('invalid text value');
                 }
             }
             if ($input['validation'] == 'int') {
                 $default = false;
-                if (true) {
-                    $data[$key] = $_POST[$key];
+                if (!is_int($_POST[$key])) {
+                    $data[$key] = intval($_POST[$key]);
                 } else {
                     Logger::log('invalid int value');
                 }
@@ -194,7 +197,7 @@ class Form
             if (isset($input['type'])) {
                 $type = $input['type'];
             } else {
-                $type = "test";
+                $type = "";
             }
             if (isset($input['value'])) {
                 $value = $input['value'];

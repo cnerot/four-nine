@@ -16,7 +16,6 @@ class IndexController
     */
     public function postDeploy($args){
 
-
     }
     public function indexAction($args)
     {
@@ -24,13 +23,5 @@ class IndexController
         $view->setView('indexIndex');
         $view->putData('name', 'moi');
         $view->putData('styles', ['home']);
-    }
-    public function testAction($args)
-    {
-        $view = new View();
-        $view->setView('display');
-        $view->putData('name', 'moi');
-        $view->putData('styles', ['home']);
-
     }
 }

@@ -8,15 +8,18 @@ class Config {
 
 
     /*Urls & path*/
-    //const URL = 'http://four-nine.local.fr/';
-    const URL = 'http://localhost/fournine/';
+    const URL = 'http://www.fournine.dev/';
+    //const URL = 'http://localhost/fournine/';
     //const PATH = 'C:\xampp\htdocs\fournine';
     const PATH = 'C:\xampp\htdocs\fournine';
 
     /*Facebook Data*/
+    const DATA_PAGE_TOKEN = 'EAACEdEose0cBAMZAZANWB0xjy8G1AMwErsVEJmXGODr9nBxalndsohIMmpGvdVa0wjETnVDYvuiddXoZBuY4CYIl3qUoCZBgZCKsV8lJZB7cgArGKlr8lGLN9PxCCSsvs4KqkDLWx19sUwlsb2HsDufbCd75Izzr1bCO2ZB6ZBU3zQZDZD';
+    const DATA_PAGE_ID = '218906198517590';
     const FB_ID = '1107373735984316';
     const FB_SECRET = '7591bd0c73ee79d013e714c5b1ca2177';
-
+    const FB_CALLBACK = 'http://www.fournine.dev/facebook/callback';
+    //const FB_APP_TOKEN = "1107373735984316|5bfq0Cjm7ydfn5k6YFJ445N0a1U";
     /*Base path*/
     const CONTROLLER_PATH = 'controller';
     const CORE_PATH = 'core';
@@ -29,6 +32,6 @@ class Config {
     /*Database data*/
     const DB_HOST = 'localhost';
     const DB_NAME = 'fournine';
-    const DB_PASSWORD = '';
+    const DB_PASSWORD = 'doudou';
     const DB_USER = 'root';
 }

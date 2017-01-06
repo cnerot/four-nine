@@ -3,7 +3,21 @@
      <div class="row">
        <div class="col s12 m4 l2"></div>
         <div class="col s12 m4 l8 margin-top">
-             <form>
+            <?php
+            if (isset($concours)){
+                /* prepare data */
+                $data = [
+                  'start'       => $concours->getStart(),
+                  'end'         => $concours->getEnd(),
+                  'name'        => $concours->getName(),
+                  'description' => $concours->getDescription(),
+                ];
+                $form->display("",$data);
+            } else {
+                $form->display();
+            }
+             ?>
+            <!--<form>
                  <label for="datepicker" class="label">Date de début </label>
                  <input type="date" class="datepicker">
                  <label for="datepicker" class="label">Date de fin</label>
@@ -40,7 +54,7 @@
                      </div>
                  </div>
                 <div class="clear"></div>
-             </form>
+             </form>-->
          </div>
          <div class="col s12 m4 l2"></div>
          </div>

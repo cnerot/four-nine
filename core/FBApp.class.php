@@ -13,6 +13,8 @@ class FBApp
     private $permissions;
     private $loginhelper;
     private $callback;
+	
+	private $fbAppToken;
 
     /***
      * FBApp constructor.
@@ -33,6 +35,7 @@ class FBApp
         if (isset($_SESSION['facebook_access_token'])) {
             $this->fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
         }
+		$this->fbAppToken = "1107373735984316|5bfq0Cjm7ydfn5k6YFJ445N0a1U";
     }
 
 
@@ -83,7 +86,7 @@ class FBApp
                 echo 'Bad request';
             }
         } else {
-            $SESSION['facebook_access_token'] = (string)$accessToken;
+            $_SESSION['facebook_access_token'] = (string)$accessToken;
             $this->fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
             return true;
         }
@@ -98,7 +101,7 @@ class FBApp
      */
     public function isLogged()
     {
-        if (isset($SESSION['facebook_access_token'])) {
+        if (isset($_SESSION['facebook_access_token'])) {
             return true;
         }
         return false;
@@ -111,47 +114,38 @@ class FBApp
      * @param $fb_query -> check graph API
      * @return \Facebook\FacebookResponse
      */
-    public function getFBData($fb_query)
+    public function getFBUserData($fb_query)
     {
-        return $this->fb->get($fb_query);
+        return $this->fb->get($fb_query)->getDecodedBody();
     }
 
-    /**
-     * @param $file -> Path of file to upload
-     * @param $fbpath -> Where to put it in Fb -> check graph api
-     * @param $name -> File name
-     * @param string $message -> Upload message or msg to attach to pic => needs to be verified
-     * @return true on success
-     */
-    //TODO:: test upload
-    public function upload($file, $fbpath, $name, $message = "Uploaded with fournine")
+    public function getFBAppData($fb_query)
     {
-        $batch = [
-            $name => $this->fb->request('POST', $fbpath, [
-                'message' => $message,
-                'source' => $this->fb->fileToUpload('/path/to/photo-one.jpg'),
-            ])
-        ];
-        try {
-            $responses = $this->fb->sendBatchRequest($batch);
-        } catch (Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error
-            Logger::logExeption($e);
-            exit;
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues
-            Logger::logExeption($e);
-            exit;
-        }
-        $return_status = true;
-        foreach ($responses as $key => $response) {
-            if ($response->isError()) {
-                $e = $response->getThrownException();
-                Logger::logExeption($e);
-                $return_status = true;
+        return $this->fb->get($fb_query, $this->fbAppToken)->getDecodedBody();
+    }
+
+	/**
+     * @param $fb_query
+     * @return \Facebook\FacebookResponse
+     */
+    public function postFBData($fb_query, $object)
+    {
+        return $this->fb->post($fb_query, $object);
+
+    }
+    public function isAdmin()
+    {
+        $idUser = $this->getFBUserData('/me?fields=id')["id"];
+        $app_roles = $this->getFBAppData('/app/roles')['data'];
+
+        foreach($app_roles as $value){
+            // cherche le rôle de l'utilisateur connecté
+            if($value["user"] == $idUser
+                && $value["role"] == "administrators"){
+                return true;
             }
         }
-        return $return_status;
-    }
 
+        return false;
+    }
 }

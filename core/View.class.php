@@ -32,13 +32,21 @@ class View
             print_r('La vue n\'existe pas');
             exit;
         }
-        if (!file_exists($layoutPath)) {
+        if (!file_exists($layoutPath) && $layout != 'no_layout') {
             print_r('Le layout n\'existe pas');
             exit;
         }
 
         $this->view = $viewPath;
         $this->layout = $layoutPath;
+        if ($layout == 'no_layout'){
+            $this->layout = "no_layout";
+        }
+    }
+    public function getChild($name, $data){
+        extract($data);
+        include trim($this->view, '.php'). DIRECTORY_SEPARATOR . $name . '.php';
+
     }
 
     /**
@@ -57,6 +65,10 @@ class View
     public function __destruct()
     {
         extract($this->data);
-        include $this->layout;
+        if ($this->layout == 'no_layout'){
+            include $this->view;
+        } else {
+            include $this->layout;
+        }
     }
 }
