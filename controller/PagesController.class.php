@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class AdminController
+class PagesController
 {
     public $form;
 
