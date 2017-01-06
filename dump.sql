@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 06 Décembre 2016 à 18:08
+-- Généré le :  Ven 06 Janvier 2017 à 19:30
 -- Version du serveur :  10.1.16-MariaDB
 -- Version de PHP :  7.0.9
 
@@ -28,11 +28,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `contest` (
   `id` int(11) NOT NULL,
-  `start` datetime NOT NULL,
-  `end` datetime NOT NULL,
+  `start` date NOT NULL,
+  `end` date NOT NULL,
   `name` varchar(45) NOT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `contest`
+--
+
+INSERT INTO `contest` (`id`, `start`, `end`, `name`, `description`) VALUES
+(3, '2017-01-05', '2017-01-07', 'test13DGVDbdffebhhbthegghtht', '                                                                                                                             ioefheoizn                                                                                                                                                                        '),
+(4, '2017-01-05', '2017-01-18', 'name2', 'egfnbzfongvpzifnvz');
 
 -- --------------------------------------------------------
 
@@ -68,9 +76,21 @@ CREATE TABLE `photo` (
 
 CREATE TABLE `staticpages` (
   `id` int(11) NOT NULL,
-  `Title` varchar(45) DEFAULT NULL,
-  `Content` varchar(45) DEFAULT NULL
+  `title` varchar(45) DEFAULT NULL,
+  `content` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `staticpages`
+--
+
+INSERT INTO `staticpages` (`id`, `title`, `content`) VALUES
+(1, 'cgu1', 'testing'),
+(2, 'cguhyigi', 'testing'),
+(3, 'cgu', 'testing'),
+(4, 'test', 'bnfoigieofngvvvvvvvvvvvvvvvvvvvvv'),
+(5, 'cgu2t eee', 'testing'),
+(6, 'uzribgvuzivo', 'dvfnzodnvoz');
 
 -- --------------------------------------------------------
 
@@ -165,7 +185,7 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT pour la table `contest`
 --
 ALTER TABLE `contest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `link`
 --
@@ -180,7 +200,7 @@ ALTER TABLE `photo`
 -- AUTO_INCREMENT pour la table `staticpages`
 --
 ALTER TABLE `staticpages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
