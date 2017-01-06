@@ -41,7 +41,7 @@ $fb = new FBApp();
     <li><a href="<?php echo Router::getUrl("Concours", "index"); ?>"><span class="yellow-text text-darken-2">Gestion des concours</span></a>
     </li>
     <li class="divider"><span class="yellow-text text-darken-2"></span></li>
-    <li><a href="<?php echo Router::getUrl("Admin", "index"); ?>"><span class="yellow-text text-darken-2">Pages statiques</span></a>
+    <li><a href="<?php echo Router::getUrl("Pages", "index"); ?>"><span class="yellow-text text-darken-2">Pages statiques</span></a>
     </li>
 </ul>
 <ul id="dropdown2" class="dropdown-content grey darken-4 ">
@@ -50,7 +50,7 @@ $fb = new FBApp();
     <li><a href="<?php echo Router::getUrl("Concours", "index"); ?>"><span class="yellow-text text-darken-2">Gestion des concours</span></a>
     </li>
     <li class="divider"><span class="yellow-text text-darken-2"></span></li>
-    <li><a href="<?php echo Router::getUrl("Admin", "index"); ?>"><span class="yellow-text text-darken-2">Pages statiques</span></a>
+    <li><a href="<?php echo Router::getUrl("Pages", "index"); ?>"><span class="yellow-text text-darken-2">Pages statiques</span></a>
     </li>
 </ul>
 <nav class="grey darken-4 " role="navigation">
