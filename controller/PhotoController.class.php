@@ -20,10 +20,21 @@ class PhotoController
     {
         $fb = new FBApp();
 
-        $albums = $fb->getFBUserData("/me?fields=albums{name,photos{source}}")['albums']['data'];
 
+        $albums = $fb->getFBUserData("/me?fields=albums{name,photos{source}}");
+        if (isset($albums['albums'])) {
+            $albums = $albums['albums']['data'];
+        } else {
+            $albums = [];
+        }
         $view = new View();
         $view->setView('photoSelect');
         $view->putData('albums', $albums);
+    }
+    public function testAction($args)
+    {
+        $fb = new FBApp();
+        $data = $fb->getFBUserData('app');
+        Logger::debug($data);
     }
 }

@@ -38,7 +38,7 @@ $pages = (new Staticpages())->getWhere([]);
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body class="grey darken-2">
-<?php $fb->printFBLogin("<div class='login_obligatory'><p>Please click anywhere to log in</p><img src='media/images/téléchargement.png'></div>", "<div class='logged_in'></div>") ?>
+<?php $fb->printFBLogin("<div class='login_obligatory'><p>Please click anywhere to log in</p><img src='media/images/téléchargement.png'></div>", "<div class='logged_in'>LogOut</div>") ?>
 
 <ul id="dropdown1" class="dropdown-content grey darken-4 ">
     <li><a href="<?php echo Router::getUrl("Concours", "New"); ?>"> <span class="yellow-text text-darken-2">Créer un concour</span></a>

@@ -124,7 +124,7 @@ class ConcoursController
         $concours = $concours->getOneWhere(["id"=>$_REQUEST['id']]);
 
         $data = $this->form->validate();
-        if ($data) {
+        if ($data && !$data['error']) {
             $concours->fromArray($data);
             $concours->save();
         }

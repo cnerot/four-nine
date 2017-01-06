@@ -8,12 +8,12 @@ class FBApp
     private $fbCallback;
     private $fbPermissions;
 
-
     private $fb;
     private $permissions;
     private $loginhelper;
     private $callback;
-	
+    private $logoutUrl;
+
 	private $fbAppToken;
 
     /***
@@ -24,7 +24,8 @@ class FBApp
     public function __construct()
     {
 		$this->fbCallback = Config::URL . 'facebook/callback';
-		$this->fbPermissions = ['user_photos'];
+		$this->logoutUrl = Config::URL . 'facebook/logout';
+		$this->fbPermissions = ['user_photos','publish_actions', 'manage_pages'];
         $this->fb = new Facebook\Facebook([
             'app_id' => Config::FB_ID,
             'app_secret' => Config::FB_SECRET,
@@ -53,7 +54,7 @@ class FBApp
             $loginUrl = $this->loginhelper->getLoginUrl($this->fbCallback, $this->fbPermissions);
             echo '<a href="' . $loginUrl . '">' . $login_text . '</a>';
         } else {
-            echo '<p>' . $logged_text . '</p>';
+            echo '<a href="' . $this->logoutUrl . '">' . $logged_text . '</p>';
         }
     }
 
@@ -106,6 +107,10 @@ class FBApp
         }
         return false;
     }
+    public function logout()
+    {
+        unset($_SESSION['facebook_access_token']);
+    }
 
 
     /**
@@ -131,7 +136,6 @@ class FBApp
     public function postFBData($fb_query, $object)
     {
         return $this->fb->post($fb_query, $object);
-
     }
     public function isAdmin()
     {

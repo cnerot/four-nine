@@ -114,6 +114,8 @@ class Form
             return false;
         }
         $data = [];
+        $error["error"] = false;
+        $error['fields'] = [];
         foreach ($this->inputs as $key => $input) {
             if (!isset($input['validation'])) {
                 Logger::log('No validation method selected in form ' . $this->name);
@@ -124,9 +126,11 @@ class Form
                 $default = false;
                 if (is_string($_POST[$key])) {
                     /* remove all tags except h2, h3, h4, h5, h6, p, img, table, th, td, tr, ul, li*/
-                    $data[$key] = preg_replace("(?i)<(?!\/?(img|h[2-6]|p|div|label|table|th|td|tr|ul|li)).*?>"
-                        , "", trim($_POST[$key]));
+                    $data[$key] = trim(preg_replace("#(?i)<(?!\/?(img|h[2-6]|p|div|label|table|th|td|tr|ul|li)).*?>#"
+                        , "", $_POST[$key]));
                 } else {
+                    $error["error"] = true;
+                    $error['fields'][] = $key;
                     Logger::log('invalid text value');
                 }
             }
@@ -134,16 +138,20 @@ class Form
                 $default = false;
                 if (is_string($_POST[$key])) {
                     /* remove all tags*/
-                    $data[$key] = preg_replace("<[^>]*>", "", trim($_POST[$key]));
+                    $data[$key] = trim(preg_replace("#(?i)<(?!\/?).*?>#", "", $_POST[$key]));
                 } else {
+                    $error["error"] = true;
+                    $error['fields'][] = $key;
                     Logger::log('invalid text value');
                 }
             }
             if ($input['validation'] == 'int') {
                 $default = false;
-                if (!is_int($_POST[$key])) {
+                if (is_int($_POST[$key])) {
                     $data[$key] = intval($_POST[$key]);
                 } else {
+                    $error["error"] = true;
+                    $error['fields'][] = $key;
                     Logger::log('invalid int value');
                 }
             }
@@ -152,19 +160,27 @@ class Form
                 if (true) {
                     $data[$key] = $_POST[$key];
                 } else {
+                    $error["error"] = true;
+                    $error['fields'][] = $key;
                     Logger::log('invalid int value');
                 }
             }
             if ($input['validation'] == 'file') {
-                $data[$key] = $_FILES[$key];
                 $default = false;
+                if (true){
+                    $data[$key] = $_FILES[$key];
+                } else {
+                    $error["error"] = true;
+                    $error['fields'][] = $key;
+                    Logger::log('invalid file');
+                }
             }
             if ($default) {
                 Logger::log('invalid default value (or unknown component)');
             }
         }
-        if (!isset($data['name']) && isset($key)) {
-            $data['name'] = $key;
+        if ($error['state']){
+            return $error;
         }
         return $data;
     }
