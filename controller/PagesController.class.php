@@ -12,9 +12,6 @@ class PagesController
 
     public function preDeploy($args)
     {
-        if (!(new FBApp())->isAdmin()){
-            Router::redirect();
-        }
         $this->form = new Form([
             'options' => [
                 'method' => 'POST',
@@ -44,11 +41,14 @@ class PagesController
      */
     public function indexAction($args)
     {
+        if (!(new FBApp())->isAdmin()) {
+            Router::redirect();
+        }
         $page = new Staticpages();
         $data = $this->form->validate();
-        if ($data){
-            if (isset($_POST['seperator'])){
-                $pages = $page->getWhere(['id'=>$_POST['seperator']]);
+        if ($data) {
+            if (isset($_POST['seperator'])) {
+                $pages = $page->getWhere(['id' => $_POST['seperator']]);
                 $data['id'] = $_POST['seperator'];
             }
             $page->fromArray($data);
@@ -69,7 +69,7 @@ class PagesController
     public function ajaxAction($args)
     {
         $data = $this->form->validate();
-        if ($data){
+        if ($data) {
             $page = new Staticpages();
             $page->fromArray($data);
             $page->save();
@@ -77,5 +77,14 @@ class PagesController
         $view = new View();
         $view->setView('staticMenu/clonable', 'no_layout');
         $view->putData('form', $this->form);
+    }
+
+    public function showAction($args)
+    {
+        $content = (new Staticpages())->getOneWhere(['id'=>$args['id']])->getContent();
+
+        $view = new View();
+        $view->setView('pageShow');
+        $view->putData('content', $content);
     }
 }

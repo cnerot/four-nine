@@ -18,6 +18,11 @@ if ($params['title'] != DEFAULT_TITLE) {
  * Initilise FB object
  */
 $fb = new FBApp();
+
+/**
+ * Get Static pages
+ */
+$pages = (new Staticpages())->getWhere([]);
 ?>
 <head>
     <title><?php echo $params['title']; ?></title>
@@ -87,10 +92,15 @@ $fb = new FBApp();
             </div>
             <div class="col l4 offset-l2 s12">
                 <ul>
+                    <?php foreach ($pages as $page): ?>
+                        <li><a class="yellow-text text-lighten-1" href="<?php echo Router::getUrl("pages","show", ['id'=>$page->getId()])?>"><?php echo strtoupper($page->getTitle()); ?></a></li>
+                    <?php endforeach; ?>
+                    <!--
                     <li><a class="yellow-text text-lighten-1" href="#!">CGU </a></li>
                     <li><a class="yellow-text text-lighten-1" href="#!">POLITIQUE DE CONFIDENTUALITE</a></li>
                     <li><a class="yellow-text text-lighten-1" href="#!">Condition d'utilisation</a></li>
                     <li><a class="yellow-text text-lighten-1" href="#!">Régles générales</a></li>
+                    -->
                 </ul>
             </div>
         </div>
