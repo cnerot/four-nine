@@ -1,30 +1,71 @@
-/* css de la galerie d'images */
-.gallery {
-    /*align-content: center;
-    -webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
-    -webkit-column-gap: 30px;
-    -moz-column-gap: 30px;
-    column-gap: 30px;
-    -webkit-column-rule: none;
-    -moz-column-rule: none;
-    column-rule: none;*/
-}
-.gallery img{
-    height: 130px;
-    border: 4px solid #555;
-    padding: 1px;
-    margin: 0 10px 10px 0;
+/**************non*******/
+#overlay {
+  background:rgba(0,0,0,0.7);
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+  text-align:center;
 }
 
-.gallery img:hover {
-	border: 4px solid yellow;
-	cursor:pointer;
+#overlay img {
+ margin-top: 5%; 
 }
 
-.preview img {
-	border: 4px solid #444;
-	padding: 1px;
-	width: 800px;
+#overlay p {
+ color:white; 
 }
+
+#leftArrow, #rightArrow{
+	background: url('http://www.nwtexhibits.ca/icepatch/img/icon-chevron-leftright-512px.png') no-repeat;
+	background-size: cover;
+	width: 75px;
+	height: 75px;
+	display: inline-block;
+	margin: 40px;
+	vertical-align: 50%;
+}
+
+#rightArrow{
+	background-position: -75px 0px;
+}
+
+#closeLightbox{
+	background: url('http://www.freeiconspng.com/uploads/close-icon-29.png') no-repeat;
+	background-size: cover;
+	width: 25px;
+	height: 25px;
+	margin: 20px;
+	float: right;
+}
+/*********************vote****************/
+    .rating {
+	width: 226px;
+	margin: 0 auto 1em;
+	font-size: 25px;
+	overflow:hidden;
+    }
+    .rating a {
+	float:right;
+	color: #aaa;
+	text-decoration: none;
+	-webkit-transition: color .4s;
+	-moz-transition: color .4s;
+	-o-transition: color .4s;
+	transition: color .4s;
+    }
+    .rating a:hover,
+    .rating a:hover ~ a,
+     rating a:focus,
+    .rating a:focus ~ a	{
+	color: orange;
+	cursor: pointer;
+    }
+    .rating2 {
+	direction: rtl;
+    }
+    .rating2 a {
+	float:none
+    }

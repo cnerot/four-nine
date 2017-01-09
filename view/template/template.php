@@ -121,6 +121,7 @@ $pages = (new Staticpages())->getWhere([]);
       <script type="text/javascript" src="/media/js/jquery-3.1.1.min.js"></script>
       <script type="text/javascript" src="/media/js/materialize.js"></script>
       <script src="/media/js/init.js"></script>
-<script src="/media/js/script.js"></script>
+      <script src="/media/js/script.js"></script>
+      <script src="/media/js/imageGallery.js"></script>
 </body>
 </html>
