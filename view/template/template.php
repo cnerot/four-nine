@@ -46,7 +46,7 @@ $pages = (new Staticpages())->getWhere([]);
     <a href="<?php echo $fb->getLogoutUrl()?>"><p>logout</p></a>
 <?php endif; ?>
 <ul id="dropdown1" class="dropdown-content grey darken-4 ">
-    <li><a href="<?php echo Router::getUrl("Concours", "New"); ?>"> <span class="yellow-text text-darken-2">Créer un concour</span></a>
+    <li><a href="<?php echo Router::getUrl("Concours", "New"); ?>"> <span class="yellow-text text-darken-2">Créer un concours</span></a>
     </li>
     <li><a href="<?php echo Router::getUrl("Concours", "index"); ?>"><span class="yellow-text text-darken-2">Gestion des concours</span></a>
     </li>
