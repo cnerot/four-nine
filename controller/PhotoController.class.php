@@ -41,9 +41,55 @@ class PhotoController
 		
 		$data = ["description"=>4, "created"=>1];
 		
+		$idUser = 1;
+		
 		$Photo->setDescription("desc");
-		$Photo->setIdUser(1); // récupérer idUser
+		$Photo->setIdUser($idUser); // récupérer idUser
 		$Photo->setTitle("titre");
+		
+		$Contest = new Contest();
+		
+		$today = date('Y-m-d');
+		
+		$contestsStart = $Contest->getWhere(['start' => ['operator' => 'less_equal', "value" => $today]]); // récupère contests quand date début du concours commencée
+		
+		$contestsEnd = $Contest->getWhere(['end' => ['operator' => 'greater_equal', "value" => $today]]); // récupère contests quand date fin du concours non atteinte
+		
+		// récupère le concours en cours
+		
+		foreach($contestsStart as $contestStartCurrent){
+			foreach($contestsEnd as $contestEndCurrent){
+				if($contestStartCurrent->id == $contestEndCurrent->id){
+					$contestCurrent = $contestStartCurrent;
+				}
+			}
+		}
+		
+		echo ":".$contestCurrent->start.":<br>";
+		
+		$photosUser = $Photo->getWhere(['id_user' => $idUser]);
+		
+		$Link = new Link();
+		
+		$links = $Link->getWhere([]);
+		
+		foreach($links as $linkCurrent){
+			foreach($photosUser as $photoUserCurrent){
+				if($linkCurrent->id_photo == $photoUserCurrent->id && $linkCurrent->id_contest == $contestCurrent->id){
+					$photosAlreadyAddForThisContest[] = $photoUserCurrent;
+				}
+			}
+		}
+		
+		echo "<pre>";
+			print_r($photosAlreadyAddForThisContest);
+		echo "</pre>";
+		
+		//echo "<pre>";
+		//	print_r($contests);
+		//echo "</pre>";
+		
+		
 		
 		$Photo->save();
 		
