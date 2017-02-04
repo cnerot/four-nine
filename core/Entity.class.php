@@ -148,6 +148,18 @@ abstract class Entity
                 case 'equals':
                     $conditionList[] = $wherePrefix . $key . " = :" . $key;
                     break;
+				case 'greater':
+					$conditionList[] = $wherePrefix . $key . " > :" . $key;
+                    break;
+				case 'less':
+					$conditionList[] = $wherePrefix . $key . " < :" . $key;
+                    break;
+				case 'greater_equal':
+					$conditionList[] = $wherePrefix . $key . " >= :" . $key;
+                    break;
+				case 'less_equal':
+					$conditionList[] = $wherePrefix . $key . " <= :" . $key;
+                    break;
                 case 'like':
                     $conditionList[] = $wherePrefix . $key . " LIKE CONCAT('%', :" . $key . ",'%') ";
                     break;

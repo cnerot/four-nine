@@ -3,7 +3,7 @@
             <div class="row">
                 <h5 class="header col s12 white-text light center-align margin-top">Liste des concours</h5>
                 <div class="col s12 margin-top">
-                    <a href="#" id="new_button" class="btn-large right lime darken-3">Créer un concour<i class="material-icons right">add</i></a>
+                    <a href="#" id="new_button" class="btn-large right lime darken-3">Créer un concours<i class="material-icons right">add</i></a>
                 </div>
                 <div class="margin-top">
                     <table class="responsive-table">
