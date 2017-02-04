@@ -28,32 +28,53 @@ class ConcoursController
                 "start" => [
                     "type" => "date",
                     "validation" => "date",
-                    "value" => ''
+                    "value" => '',
+                    "label" => 'Date de début :',
+                    "class"=> 'datepicker'
                 ],
                 "end" => [
                     "type" => "date",
                     "validation" => "date",
-                    "value" => ''
+                    "value" => '',
+                    "label" => 'Date de fin',
+                    "class"=> 'datepicker'
                 ],
                 "title" => [
                     "type" => "text",
                     "validation" => "text",
-                    "value" => ''
+                    "value" => '',
+                    "label" => 'Titre de concours :',
+                    "class" => 'validate',
+                    "div_class" => 'input-field'
                 ],
                 "prize" => [
                     "type" => "text",
                     "validation" => "text",
-                    "value" => ''
+                    "value" => '',
+                    "label" => 'Lot :',
+                    "class" => 'validate',
+                    "div_class" => 'input-field'
                 ],
                 "prize_img" => [
                     "type" => "file",
                     "validation" => "file",
-                    "value" => ''
+                    "value" => '',
+                    "div_class" =>'btn amber accent-4',
+                    "file_class" =>'file-field input-field',
+                    "icon_class" =>'material-icons left',
+                    "icon_content" =>'add_a_photo',
+                    "class_wrapper" =>'file-path-wrapper',
+                    "class_inputWrapper" =>'file-path validate',
+                    "type_inputWrapper" =>'text',
                 ],
                 "description" => [
                     "type" => "textarea",
                     "validation" => "text",
-                    "value" => ''
+                    "value" => '',
+                    "class" => 'materialize-textarea',
+                    "div_class" => 'input-field',
+                    "id" => 'textarea1',
+                    "label" => 'Description :'
                 ],
             ]
         ]);
