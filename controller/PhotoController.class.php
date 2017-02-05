@@ -96,8 +96,7 @@ class PhotoController
 			
 			$Link->setIdContest($contestCurrent->id);
 			$Link->setIdPhoto($lastIdPhoto);
-			//$Link->setId($contestCurrent->id);
-			
+			//$Link->setId($contestCurrent->id);			
 			
 			$Link->save();
 
