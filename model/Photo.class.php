@@ -7,6 +7,7 @@
 class Photo extends Entity
 {
     public $id;
+    public $id_fb;
     public $description;
     public $created;
     public $id_user;
@@ -19,7 +20,7 @@ class Photo extends Entity
     {
         return $this->id;
     }
-
+	
     /**
      * @param mixed $id
      */
@@ -27,7 +28,23 @@ class Photo extends Entity
     {
         $this->id = $id;
     }
-
+	
+	/**
+     * @return mixed
+     */
+    public function getIdFb()
+    {
+        return $this->id_fb;
+    }
+	
+    /**
+     * @param mixed $id_fb
+     */
+    public function setIdFb($id_fb)
+    {
+        $this->id = $id_fb;
+    }
+	
     /**
      * @return mixed
      */
