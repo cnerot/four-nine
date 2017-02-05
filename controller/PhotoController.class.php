@@ -41,11 +41,7 @@ class PhotoController
 		
 		$data = ["description"=>4, "created"=>1];
 		
-		$idUser = 1;
-		
-		$Photo->setDescription("desc");
-		$Photo->setIdUser($idUser); // récupérer idUser
-		$Photo->setTitle("titre");
+		$idUser = 2;				
 		
 		$Contest = new Contest();
 		
@@ -81,17 +77,33 @@ class PhotoController
 			}
 		}
 		
-		echo "<pre>";
-			print_r($photosAlreadyAddForThisContest);
-		echo "</pre>";
-		
-		//echo "<pre>";
-		//	print_r($contests);
-		//echo "</pre>";
-		
-		
-		
-		$Photo->save();
+		if(empty($photosAlreadyAddForThisContest)){
+			$Photo->setDescription("desc");
+			$Photo->setIdUser($idUser); // récupérer idUser
+			$Photo->setTitle("titre");
+			$Photo->save();
+			
+			// récupère l'id photo créé
+			
+			$photoAddForThisContest = $Photo->getWhere(['id_user' => $idUser]);
+			
+			$lastIdPhoto = 0;
+			foreach($photoAddForThisContest as $photoAddCurrent){
+				if($photoAddCurrent->id > $lastIdPhoto){
+					$lastIdPhoto = $photoAddCurrent->id;
+				}
+			}
+			
+			$Link->setIdContest($contestCurrent->id);
+			$Link->setIdPhoto($lastIdPhoto);
+			//$Link->setId($contestCurrent->id);
+			
+			
+			$Link->save();
+
+			echo "Ajout de la photo pour le concours réussie";			
+		}
+			
 		
 		/*echo "<br>a<pre>b";
 			print_r($data);
