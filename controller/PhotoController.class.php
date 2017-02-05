@@ -42,6 +42,7 @@ class PhotoController
 		$data = ["description"=>4, "created"=>1];
 		
 		$idUser = 2;				
+		$imgFb = false; // false si l'image est uploadée depuis ordinateur
 		
 		$Contest = new Contest();
 		
@@ -78,6 +79,8 @@ class PhotoController
 		}
 		
 		if(empty($photosAlreadyAddForThisContest)){
+			if($imgFb == true)
+				$Photo->setIdFb();
 			$Photo->setDescription("desc");
 			$Photo->setIdUser($idUser); // récupérer idUser
 			$Photo->setTitle("titre");
@@ -93,7 +96,7 @@ class PhotoController
 					$lastIdPhoto = $photoAddCurrent->id;
 				}
 			}
-			
+						
 			$Link->setIdContest($contestCurrent->id);
 			$Link->setIdPhoto($lastIdPhoto);
 			//$Link->setId($contestCurrent->id);			
