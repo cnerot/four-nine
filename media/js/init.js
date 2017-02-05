@@ -39,3 +39,9 @@ $(document).ready(function(){
     $('.materialboxed').materialbox();
   });
 $(".dropdown-button").dropdown();
+ $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
+ $(document).ready(function(){
+    $('ul.tabs').tabs('select_tab', 'tab_id');
+  });  

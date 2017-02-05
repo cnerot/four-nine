@@ -190,6 +190,7 @@ class Form
      * @param array $data
      * @return bool
      */
+   
     public function display($main_class = "", $data = [])
     {
         echo '<form action="' . $this->action . '" method="' . $this->method . '" name="' . $this->name . '" class="' . $this->class . ' ' . $main_class . '" enctype="' . $this->enctype . '">';
@@ -235,35 +236,122 @@ class Form
             } else {
                 $class = "";
             }
+            if (isset($input['id'])) {
+                $id = $input['id'];
+            } else {
+                $id = "";
+            }
+            if (isset($input['icon_class'])) {
+                $icon_class = $input['icon_class'];
+            } else {
+                $icon_class = "";
+            }
+            if (isset($input['icon_content'])) {
+                $icon_content = $input['icon_content'];
+            } else {
+                $icon_content = "";
+            }
+            if (isset($input['div_class'])) {
+                $div_class = $input['div_class'];
+            } else {
+                $div_class = "";
+            }
+            if (isset($input['file_class'])) {
+                $file_class = $input['file_class'];
+            } else {
+                $file_class = "";
+            }
+            if (isset($input['class_wrapper'])) {
+                $class_wrapper = $input['class_wrapper'];
+            } else {
+                $class_wrapper = "";
+            }
+            if (isset($input['class_inputWrapper'])) {
+                $class_inputWrapper= $input['class_inputWrapper'];
+            } else {
+                $class_inputWrapper = "";
+            }
+            if (isset($input['type_inputWrapper'])) {
+                $type_inputWrapper= $input['type_inputWrapper'];
+            } else {
+                $type_inputWrapper = "";
+            }
             /**
              * display input data
              */
             if ($type == "textarea") {
                 ?>
-                <label for="<?php echo $name ?>"><?php echo $label ?></label>
-                <textarea
-                    name="<?php echo $name ?>"
-                    placeholder="<?php echo $placeholder ?>"
-                    class="<?php echo $class ?>"
-                >
-                            <?php echo (isset($data[$name])) ? $data[$name] : $value; ?>
-                        </textarea>
+                <div class="<?php echo $div_class ?>">
+                    <i class="<?php echo $icon_class ?>"><?php echo $icon_content ?></i>
+                    <label for="<?php echo $name ?>"><?php echo $label ?></label>
+                    <textarea
+                        name="<?php echo $name ?>"
+                        placeholder="<?php echo $placeholder ?>"
+                        class="<?php echo $class ?>"
+                        id="<?php echo $id ?>"
+                    >
+                    <?php echo (isset($data[$name])) ? $data[$name] : $value; ?>
+                    </textarea>
+                </div>
+                <?php
+            } elseif($type == "file") {
+                ?>
+                    <div class="<?php echo $file_class ?>">
+                        <div class="<?php echo $div_class ?>">
+                            <i class="<?php echo $icon_class ?>"><?php echo $icon_content ?></i>
+                            <label for="<?php echo $name ?>"><?php echo $label ?></label>
+                            <input
+                                name="<?php echo $name ?>"
+                                type="<?php echo $type ?>"
+                                class="<?php echo $class ?>"
+                                value="<?php echo (isset($data[$name])) ? $data[$name] : $value; ?>"
+                                placeholder="<?php echo $placeholder ?>"
+                            >
+                        </div>
+                        <div class="<?php echo $class_wrapper ?>">
+                            <input class="<?php echo $class_inputWrapper ?>" type="text">
+                        </div>
+                    </div>
+    <!-- <div class="file-field input-field">
+                      <div class="btn  amber accent-4">
+                          <i class="material-icons left">add_a_photo</i>
+                          <span>Image de lot</span>
+                          <input type="file">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                  </div>-->
                 <?php
             } else {
                 ?>
-                <label for="<?php echo $name ?>"><?php echo $label ?></label>
-                <input
-                    name="<?php echo $name ?>"
-                    type="<?php echo $type ?>"
-                    class="<?php echo $class ?>"
-                    value="<?php echo (isset($data[$name])) ? $data[$name] : $value; ?>"
-                    placeholder="<?php echo $placeholder ?>"
-                >
+                    <div class="<?php echo $div_class ?>">
+                        <i class="<?php echo $icon_class ?>"><?php echo $icon_content ?></i>
+                        <label for="<?php echo $name ?>"><?php echo $label ?></label>
+                        <input
+                            name="<?php echo $name ?>"
+                            type="<?php echo $type ?>"
+                            class="<?php echo $class ?>"
+                            value="<?php echo (isset($data[$name])) ? $data[$name] : $value; ?>"
+                        >
+                    </div>
+
                 <?php
             }
         }
 
-        echo '<input type="submit" value="' . $this->submit . '" onclick="' . $this->onclick . '">';
+        echo '<div class="row">'
+                             . '<div class="col s4">'
+                             . '<a class="waves-effect waves-light btn left grey lighten-2 black-text">'
+                             . '<i class="material-icons left">subdirectory_arrow_left</i>Retour'
+                             . '</a>'
+                             . '</div>'
+                             . '<div class="col s4"></div>'
+                             . '<div class="col s4">'
+                             . '<button name="submit" id="submit" type="submit" onclick="' . $this->onclick . '" class="btn right green accent-4">'. $this->submit 
+                             . '<i class="material-icons right">arrow_forward</i>'
+                             . '</button>'
+                             . '</div>';
         echo '</form>';
 
     }
