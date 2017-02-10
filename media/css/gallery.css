@@ -1,4 +1,4 @@
-/**************non*******/
+
 #overlay {
   background:rgba(0,0,0,0.7);
   width:100%;
@@ -40,36 +40,7 @@
 	margin: 20px;
 	float: right;
 }
-/*********************vote****************/
-    .rating {
-	width: 226px;
-	margin: 0 auto 1em;
-	font-size: 25px;
-	overflow:hidden;
-    }
-    .rating a {
-	float:right;
-	color: #aaa;
-	text-decoration: none;
-	-webkit-transition: color .4s;
-	-moz-transition: color .4s;
-	-o-transition: color .4s;
-	transition: color .4s;
-    }
-    .rating a:hover,
-    .rating a:hover ~ a,
-     rating a:focus,
-    .rating a:focus ~ a	{
-	color: orange;
-	cursor: pointer;
-    }
-    .rating2 {
-	direction: rtl;
-    }
-    .rating2 a {
-	float:none
-    }
-    .image_upload{
+.image_upload{
         margin: 1px;
         border: 1px solid black;
         width :150px;

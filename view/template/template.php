@@ -34,6 +34,7 @@ $pages = (new Staticpages())->getWhere([]);
     <?php foreach ($params['styles'] as $style): ?>
         <link rel="stylesheet" href="/media/css/<?php echo $style; ?>.css">
     <?php endforeach; ?>
+    <link href="/media/css/stars.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>

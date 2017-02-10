@@ -1,21 +1,14 @@
+
 var $overlay = $('<div id="overlay"></div>');
 var $image = $("<img>");
 var $caption = $("<p></p>");
-var $voting= $('<div class="rating rating2">\n\
-                        <a href="#5" title="Give 5 stars">★</a>\n\
-                        <a href="#4" title="Give 4 stars">★</a>\n\
-                        <a href="#3" title="Give 3 stars">★</a>\n\
-                        <a href="#2" title="Give 2 stars">★</a>\n\
-                        <a href="#1" title="Give 1 star">★</a>\n\
-                     </div>');
 //An image to overlay
 $overlay.append($image);
-
-
+$overlay.append('<div id="rating"> <form method="post" action="/Concours/vote/" id="ratingsForm"> <div class="stars"><input type="radio" name="star" value="1" class="star-1" id="star-1" /> <label class="star-1" for="star-1">1</label><input type="radio" value="2" name="star" class="star-2" id="star-2" /><label class="star-2" for="star-2">2</label><input type="radio" value="3" name="star" class="star-3" id="star-3" /><label class="star-3" for="star-3">3</label><input type="radio" value="4" name="star" class="star-4" id="star-4" /><label class="star-4" for="star-4">4</label><input type="radio" name="star" value="5" class="star-5" id="star-5" /><label class="star-5" for="star-5">5</label><span></span></div></form></div>');
 var $leftArrow = $("<div id='leftArrow'></div>");
 var $rightArrow = $("<div id='rightArrow'></div>");
 var $closeLightbox = $("<div id='closeLightbox'></div><div style='clear:both'></div>");
-var $voting= $('<div class="rating rating2"><a href="#5" title="Give 5 stars">★</a><a href="#4" title="Give 4 stars">★</a><a href="#3" title="Give 3 stars">★</a><a href="#2" title="Give 2 stars">★</a><a href="#1" title="Give 1 star">★</a></div>');
+
 
 $image.before($closeLightbox);
 $image.before($leftArrow);
@@ -36,9 +29,21 @@ $("#imageGallery a").click(function(event){
 
   //Show the overlay.
   $overlay.show();
+  
 });
 
+$('input[name=star]').click(function(event){
+     //$('#ratingsForm').submit();
+   $.post('/Concours/vote/', { star: $('input[name=star]').val()
+    }, function(data) {
+                // alert( $('input[name=star]').val());
+        // $('#imageGallery a').click();
+    });
+});
+
+
 $leftArrow.click(function(){
+    alert('prev');
   getPrevImage();
 });
 
@@ -58,11 +63,12 @@ function getCurrentImage (currentImage) {
     var captionText = $(currentImage).children("img").attr("title");
     //$(currentImage).children("img").append($voting);
     $caption.text(captionText);
-    $caption.after($voting);
+
 }
 
 function getPrevImage() {
     imageParent = $(thisImage).parent().prev();
+    alert("hi");
     if(imageParent.length!=0){
       thisImage = $(imageParent).children("a");
     // imageLocation = $(thisImage).attr("href");

@@ -65,7 +65,7 @@ class PhotoController
 			}
 		}
 		
-		echo ":".$contestCurrent->start.":<br>";
+		// ":".$contestCurrent->start.":<br>";
 		
 		$photosUser = $Photo->getWhere(['id_user' => $idUser]);
 		
@@ -81,9 +81,7 @@ class PhotoController
 			}
 		}
 		
-		echo "<pre>";
-			print_r($photosAlreadyAddForThisContest);
-		echo "</pre>";
+	
 		
 		//echo "<pre>";
 		//	print_r($contests);
