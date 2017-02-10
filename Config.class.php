@@ -32,6 +32,6 @@ class Config {
     /*Database data*/
     const DB_HOST = 'localhost';
     const DB_NAME = 'fournine';
-    const DB_PASSWORD = 'sanae';
+    const DB_PASSWORD = '';
     const DB_USER = 'root';
 }

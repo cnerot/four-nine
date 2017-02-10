@@ -78,7 +78,6 @@ class ConcoursController
                 ],
             ]
         ]);
-
     }
     public function indexAction($args)
     {
