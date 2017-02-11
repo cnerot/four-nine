@@ -155,6 +155,13 @@ class ConcoursController
         $view->putData('concours', $concours);
 
     }
+    public function ajaxAction($args)
+    {
+
+        $view = new View();
+        $view->setView('staticMenu/voter', 'no_layout');
+        
+    }
 
     public function voteAction($args)
     {

@@ -8,7 +8,17 @@
                 </a>
                 <?php
                 if (isset($_POST['star'])){
-                    echo"<script> alert('". $_POST['star'] ."')</script>";
+                    var_dump($_POST['star']);
+                }
+                ?>
+            </div>
+            <div class="col s3 ">
+                <a href="http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg">
+                    <img src="http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg" width="100" alt="nom2 prenom" title="nom2 prenom">
+                </a>
+                <?php
+                if (isset($_POST['star'])){
+                     var_dump($_POST['star']);
                 }
                 ?>
         </div>
