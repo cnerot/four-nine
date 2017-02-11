@@ -66,11 +66,20 @@ function getCurrentImage (currentImage) {
 
 }
 function voteFunction1() {
-   $.post('/Concours/vote/', { star: $("#star-1").val()
+    $.ajax('/Concours/vote/', { star: $("#star-1").val()
         }, function(data) {
             alert($("#star-1").val());
 
         });
+    /*data = {'star1':$("#star-1").val()};
+    $.ajax({
+        type: "POST",
+        url: "/Concours/vote/",
+        data: data,
+        success: function(success) {
+            alert('$(this).val()');
+        }
+    });*/
 }
 function voteFunction2() {
     $.post('/Concours/vote/', { star: $("#star-2").val()

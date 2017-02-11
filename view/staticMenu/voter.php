@@ -1,5 +1,5 @@
 <div id="rating"> 
-    <form method="post" action="/Concours/vote/" id="ratingsForm"> 
+    <!--<form method="post" action="/Concours/vote/" id="ratingsForm"> 
         <div class="stars">
             <input type="radio" name="star" value="1" class="star-1" id="star-1" /> 
             <label class="star-1" for="star-1">1</label>
@@ -13,5 +13,8 @@
             <label class="star-5" for="star-5">5</label>
             <span></span>
         </div>
-    </form>
+    </form>-->
+    <?php 
+        $form->display();
+    ?>
 </div>

@@ -193,7 +193,7 @@ class Form
    
     public function display($main_class = "", $data = [])
     {
-        echo '<form action="' . $this->action . '" method="' . $this->method . '" name="' . $this->name . '" class="' . $this->class . ' ' . $main_class . '" enctype="' . $this->enctype . '">';
+        echo '<form action="' . $this->action . '" method="' . $this->method . '" name="' . $this->name . '" class="' . $this->class . ' ' . $main_class . '" id="' . $this->id . ' ' . $main_class . '" enctype="' . $this->enctype . '">';
         echo '<input type="hidden" value="' . $this->name . '" name="type">';
         if (isset($main_class)) {
             echo '<input type="hidden" value="' . $main_class . '" name="seperator">';
@@ -276,6 +276,56 @@ class Form
             } else {
                 $type_inputWrapper = "";
             }
+            if (isset($input['value1'])) {
+                $value1 = $input['value1'];
+            } else {
+                $value1 = "";
+            }
+            if (isset($input['value2'])) {
+                $value2 = $input['value2'];
+            } else {
+                $value2 = "";
+            }
+            if (isset($input['value3'])) {
+                $value3 = $input['value3'];
+            } else {
+                $value3 = "";
+            }
+            if (isset($input['value4'])) {
+                $value4 = $input['value4'];
+            } else {
+                $value4 = "";
+            }
+            if (isset($input['value5'])) {
+                $value5 = $input['value5'];
+            } else {
+                $value5 = "";
+            }
+            if (isset($input['idClass1'])) {
+                $idClass1 = $input['idClass1'];
+            } else {
+                $idClass1 = "";
+            }
+            if (isset($input['idClass2'])) {
+                $idClass2 = $input['idClass2'];
+            } else {
+                $idClass2 = "";
+            }
+            if (isset($input['idClass3'])) {
+                $idClass3 = $input['idClass3'];
+            } else {
+                $idClass3 = "";
+            }
+            if (isset($input['idClass4'])) {
+                $idClass4 = $input['idClass4'];
+            } else {
+                $idClass4 = "";
+            }
+            if (isset($input['idClass5'])) {
+                $idClass5 = $input['idClass5'];
+            } else {
+                $idClass5 = "";
+            }
             /**
              * display input data
              */
@@ -312,16 +362,74 @@ class Form
                             <input class="<?php echo $class_inputWrapper ?>" type="text">
                         </div>
                     </div>
-    <!-- <div class="file-field input-field">
-                      <div class="btn  amber accent-4">
-                          <i class="material-icons left">add_a_photo</i>
-                          <span>Image de lot</span>
-                          <input type="file">
-                      </div>
-                      <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
-                      </div>
-                  </div>-->
+  
+                <?php
+            } elseif($type == "radio") {
+                ?>
+                <div class="<?php echo $div_class ?>">
+                    <input
+                        type="<?php echo $type ?>"
+                        value="<?php echo  $value1; ?>"
+                        name="<?php echo $name ?>"
+                        class="<?php echo $idClass1 ; ?>"
+                        id="<?php echo $idClass1 ; ?>"
+                    /> 
+                    <label
+                        class="<?php echo $idClass1 ; ?>"
+                        for="<?php echo $idClass1 ; ?>">
+                            <?php echo  $value1; ?>
+                    </label>
+                    <input
+                        type="<?php echo $type ?>"
+                        value="<?php echo  $value2; ?>"
+                        name="<?php echo $name ?>"
+                        class="<?php echo $idClass2 ; ?>"
+                        id="<?php echo $idClass2 ; ?>"
+                    />
+                    <label
+                        class="<?php echo $idClass2 ; ?>"
+                        for="<?php echo $idClass2 ; ?>">
+                            <?php echo  $value2; ?>
+                    </label>
+                    <input 
+                        type="<?php echo $type ?>"
+                        value="<?php echo  $value3; ?>"
+                        name="<?php echo $name ?>"
+                        class="<?php echo $idClass3 ; ?>"
+                        id="<?php echo $idClass3 ; ?>" 
+                    />
+                    <label 
+                        class="<?php echo $idClass3 ; ?>"
+                        for="<?php echo $idClass3 ; ?>">
+                        <?php echo $value3; ?>
+                    </label>
+                    <input
+                        type="<?php echo $type ?>"
+                        value="<?php echo  $value4; ?>"
+                        name="<?php echo $name ?>"
+                        class="<?php echo $idClass4; ?>"
+                        id="<?php echo $idClass4; ?>"
+                    />
+                    <label
+                        class="<?php echo $idClass4; ?>"
+                        for="<?php echo $idClass4; ?>">
+                        <?php echo $value4; ?>
+                    </label>
+                    <input
+                        type="<?php echo $type ?>"
+                        value="<?php echo  $value5; ?>"
+                        name="<?php echo $name ?>"
+                        class="<?php echo $idClass5; ?>"
+                        id="<?php echo $idClass5; ?>"
+                    />
+                    <label
+                        class="<?php echo $idClass5; ?>"
+                        for="<?php echo $idClass5; ?>">
+                        <?php echo $value5; ?>
+                    </label>
+                    <span></span>
+                </div>
+  
                 <?php
             } else {
                 ?>
