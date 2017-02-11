@@ -78,6 +78,35 @@ class ConcoursController
                 ],
             ]
         ]);
+            
+        $this->voteform = new Form([
+            'options' => [
+                'method' => 'POST',
+                'action' => '',
+                'submit' => 'Send',
+                'name' => 'postform',
+                'class' => '',
+                'id'    => 'ratingsForm',
+                'enctype' => "multipart/form-data"
+            ],
+            'data' => [
+                "star" => [
+                    "type" => "radio",
+                    "validation" => "star",
+                    "div_class" => "stars",
+                    "value1" => '1',
+                    "value2" => '2',
+                    "value3" => '3',
+                    "value4" => '4',
+                    "value5" => '5',
+                    "idClass1"=> 'star-1', //id and class have the same value, i will use it for the both.
+                    "idClass2"=> 'star-2',
+                    "idClass3"=> 'star-3',
+                    "idClass4"=> 'star-4',
+                    "idClass5"=> 'star-5',
+                ],
+            ]
+        ]);
 
     }
     public function indexAction($args)
@@ -166,9 +195,13 @@ class ConcoursController
 
     public function voteAction($args)
     {
+        $vote = new Vote();
+        $vote = $vote->getWhere();
+        
         $view = new View();
         $view->setView('voteConcours');
-        $view->putData('styles', ['gallery']);
+        $view->putData('styles', ['gallery','stars']);
+        $view->putData('voteForm', $this->voteForm);
     }
 }
   
