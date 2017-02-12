@@ -14,12 +14,13 @@ class PagesController
     {
         $this->form = new Form([
             'options' => [
-                'method' => 'POST',
-                'action' => '#',
-                'submit' => 'Send',
-                'name' => 'postform',
-                'class' => '',
-                'enctype' => "multipart/form-data"
+                'method'    => 'POST',
+                'action'    => '#',
+                'submit'    => 'Send',
+                'name'      => 'postform',
+                'class'     => '',
+                'enctype'   => "multipart/form-data",
+                'id'        => 'static_form'
             ],
             'data' => [
                 "title" => [
@@ -47,11 +48,9 @@ class PagesController
         $page = new Staticpages();
         $data = $this->form->validate();
 		
-		echo "<br>a<pre>b";
-			print_r($data);
-		echo "c</pre>d";
+
 		
-        if ($data && !$data['error']) {
+        if ($data && !isset($data['error'])) {
             if (isset($_POST['seperator'])) {
                 $pages = $page->getWhere(['id' => $_POST['seperator']]);
                 $data['id'] = $_POST['seperator'];
@@ -84,6 +83,11 @@ class PagesController
         $view->putData('form', $this->form);
     }
 
+    public function deleteAction($args){
+        $page = (new Staticpages())->getOneWhere(['id'=>$args['id']]);
+        $page->delete();
+        Router::redirect('Pages','index');
+    }
     public function showAction($args)
     {
         $content = (new Staticpages())->getOneWhere(['id'=>$args['id']])->getContent();

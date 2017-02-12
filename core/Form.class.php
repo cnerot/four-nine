@@ -3,6 +3,7 @@
 class Form
 {
     public $name;
+    protected $id;
     protected $method;
     protected $action;
     protected $submit;
@@ -75,6 +76,12 @@ class Form
             $this->name = $form['options']['name'];
         } else {
             Logger::log('The form must be named');
+            return false;
+        }
+        if (isset($form['options']['id'])) {
+            $this->id = $form['options']['name'];
+        } else {
+            Logger::log('The form must have an id');
             return false;
         }
         if (isset($form['options']['action'])) {
@@ -179,7 +186,7 @@ class Form
                 Logger::log('invalid default value (or unknown component)');
             }
         }
-        if ($error['state']){
+        if (isset($error['state'])){
             return $error;
         }
         return $data;
