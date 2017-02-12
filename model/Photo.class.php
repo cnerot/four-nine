@@ -42,7 +42,7 @@ class Photo extends Entity
      */
     public function setIdFb($id_fb)
     {
-        $this->id = $id_fb;
+        $this->id_fb = $id_fb;
     }
 	
     /**
