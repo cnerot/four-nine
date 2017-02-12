@@ -28,4 +28,6 @@ class Config {
     const DB_NAME = 'fournine';
     const DB_PASSWORD = '';
     const DB_USER = 'root';
+
+    /*crontab*/
 }

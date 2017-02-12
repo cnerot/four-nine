@@ -1,0 +1,30 @@
+<?xml version='1.0' standalone='yes'?>
+<cronjobs>
+  <!--<job>
+    <time>
+      <minute>*</minute>
+      <hour>*</hour>
+      <day_of_month>*</day_of_month>
+      <month>*</month>
+      <day_of_week>*</day_of_week>
+    </time>
+    <cmd></cmd>
+  </job>-->
+
+  <job>
+    <time>
+      <hour>3</hour>
+    </time>
+    <cmd>php trr.php</cmd>
+  </job>
+  <job>
+    <time>
+      <minute>*</minute>
+      <hour>*</hour>
+      <day_of_month>*</day_of_month>
+      <month>*</month>
+      <day_of_week>*</day_of_week>
+    </time>
+    <cmd>php tfffr.php</cmd>
+  </job>
+</cronjobs>
