@@ -66,7 +66,7 @@ function getCurrentImage (currentImage) {
 
 }
 function voteFunction1() {
-    $.ajax('/Concours/vote/', { star: $("#star-1").val()
+    $.post('/Concours/vote/', { star: $("#star-1").val()
         }, function(data) {
             alert($("#star-1").val());
 

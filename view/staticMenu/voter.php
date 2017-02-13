@@ -15,6 +15,7 @@
         </div>
     </form>-->
     <?php 
-        $form->display();
+        $voteform->display('','',1);
+        //echo $voteForm;
     ?>
 </div>
