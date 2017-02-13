@@ -1,5 +1,6 @@
 <?php
 
+
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,8 +19,9 @@ class PhotoController
      */
     public function indexAction($args)
     {
-        $fb = new FBApp();
-
+        $fb = new FBApp();		
+		
+		$error = false;
 
         $albums = $fb->getFBUserData("/me?fields=albums{name,photos{source}}");
         if (isset($albums['albums'])) {
@@ -29,27 +31,17 @@ class PhotoController
         }
         $view = new View();
         $view->setView('photoSelect');
-        $view->putData('albums', $albums);
-		
-		
-		
-		
-		
+        $view->putData('albums', $albums);				
 		
 		$Photo = new Photo();
-        //$data = $this->form->validate();
 		
 		$data = ["description"=>4, "created"=>1];
 		
-		$idUser = 2;				
-		$idFb = ""; // "" si l'image est uploadée depuis ordinateur
+		$_SESSION['idUser'] = $fb->getFBUserData("/me")['id'];				
 		
-		$Contest = new Contest();
-		
-		$today = date('Y-m-d');
-		
-		$contestsStart = $Contest->getWhere(['start' => ['operator' => 'less_equal', "value" => $today]]); // récupère contests quand date début du concours commencée
-		
+		$Contest = new Contest();		
+		$today = date('Y-m-d');		
+		$contestsStart = $Contest->getWhere(['start' => ['operator' => 'less_equal', "value" => $today]]); // récupère contests quand date début du concours commencée		
 		$contestsEnd = $Contest->getWhere(['end' => ['operator' => 'greater_equal', "value" => $today]]); // récupère contests quand date fin du concours non atteinte
 		
 		// récupère le concours en cours
@@ -62,13 +54,15 @@ class PhotoController
 			}
 		}
 		
-		// ":".$contestCurrent->start.":<br>";
-		
-		$photosUser = $Photo->getWhere(['id_user' => $idUser]);
+		$_SESSION['idContest'] = $contestCurrent->id;
+				
+		$photosUser = $Photo->getWhere(['id_user' => $_SESSION['idUser']]);
 		
 		$Link = new Link();
 		
 		$links = $Link->getWhere([]);
+		
+		$photosAlreadyAddForThisContest = [];
 		
 		foreach($links as $linkCurrent){
 			foreach($photosUser as $photoUserCurrent){
@@ -78,19 +72,19 @@ class PhotoController
 			}
 		}
 		
-		if(empty($photosAlreadyAddForThisContest)){
-			if($idFb != "")
-				$Photo->setIdFb($idFb);
-			$Photo->setDescription("desc");
-			$Photo->setIdUser($idUser); // récupérer idUser
-			$Photo->setTitle("titre");
+		if( empty($photosAlreadyAddForThisContest) && ( (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "fb") || (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "file") ) ){ // si pas encore participé
+			if($_POST['typeSubmit'] == "fb" && isset($_POST['idPhotoFbToSend']))
+				$Photo->setIdFb($_POST['idPhotoFbToSend']);
+			$Photo->setDescription($_POST['description']);
+			$Photo->setIdUser($_SESSION['idUser']); // récupérer idUser
+			$Photo->setTitle($_POST['title']);
 			$Photo->save();
 			
 			// récupère l'id photo créé
 			
-			$photoAddForThisContest = $Photo->getWhere(['id_user' => $idUser]);
+			$photoAddForThisContest = $Photo->getWhere(['id_user' => $_SESSION['idUser']]);
 			
-			$lastIdPhoto = 0;
+			$lastIdPhoto = 1;
 			foreach($photoAddForThisContest as $photoAddCurrent){
 				if($photoAddCurrent->id > $lastIdPhoto){
 					$lastIdPhoto = $photoAddCurrent->id;
@@ -99,33 +93,101 @@ class PhotoController
 						
 			$Link->setIdContest($contestCurrent->id);
 			$Link->setIdPhoto($lastIdPhoto);
-			//$Link->setId($contestCurrent->id);			
 			
-			$Link->save();
-
-			echo "Ajout de la photo pour le concours réussie";			
+			$Link->save();			
+			
+			if(isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "fb"){			
+				foreach($albums[0]['photos']['data'] as $album){				
+					if(isset($_POST['idPhotoFbToSend']) && $album['id'] == $_POST['idPhotoFbToSend']){
+						$view->putData('photoChosen', ['source'=>$album['source'], 'id'=>$album['id'], 'typeId'=>"idFb"]);
+					}
+				}
+			}else if(isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "file"){
+				if($_FILES['file_img']['type'] != "image/png" && $_FILES['file_img']['type'] != "image/jpeg"){
+					echo "Veuillez sélectionner une image de type png ou jpg";
+					$error = true;
+				}else if($_FILES['file_img']['size'] > 10000000){
+					echo "Veuillez sélectionner un fichier de 10 mo maximum";
+					$error = true;
+				}else{
+					if($_FILES['file_img']['type'] == "image/jpeg"){ // png dans tous les cas
+						$ext = ".png";
+					}else{
+						$ext = ".png";
+					}
+					
+					move_uploaded_file($_FILES['file_img']['tmp_name'], "media/imgFiles/".$_SESSION['idUser']."_".$_SESSION['idContest'].$ext);
+					
+					$view->putData('photoChosen', ['source'=>"media/imgFiles/".$_SESSION['idUser']."_".$_SESSION['idContest'].".png", 'id'=>$lastIdPhoto, 'typeId'=>"idPhoto"]);
+				}
+			}else{
+				$error = true;
+			}
+			
+			if($error == false)
+				echo "Ajout de la photo pour le concours réussi";
+			
+		}else{ // montre la photo choisie pour le concours
+			if( !empty($photosAlreadyAddForThisContest) && ( (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "fb") || (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "file") ) )
+				echo "Vous avez déjà participé au concours";
+			
+			if(!empty($photosAlreadyAddForThisContest) && $photosAlreadyAddForThisContest[0]->id_fb == NULL){
+				$view->putData('photoChosen', ['source'=>"media/imgFiles/".$_SESSION['idUser']."_".$_SESSION['idContest'].".png", 'id'=>$photosAlreadyAddForThisContest[0]->id, 'typeId'=>"idPhoto"]);
+			}else if(!empty($photosAlreadyAddForThisContest)){
+				foreach($albums[0]['photos']['data'] as $album){				
+					if($album['id'] == $photosAlreadyAddForThisContest[0]->id_fb){
+						$view->putData('photoChosen', ['source'=>$album['source'], 'id'=>$album['id'], 'typeId'=>"idFb"]);
+					}
+				}
+			}				
 		}
-			
-		
-		/*echo "<br>a<pre>b";
-			print_r($data);
-		echo "c</pre>d";
-		
-        if ($data && !$data['error']) {
-            if (isset($_POST['seperator'])) {
-                $pages = $page->getWhere(['id' => $_POST['seperator']]);
-                $data['id'] = $_POST['seperator'];
-            }
-            $page->fromArray($data);
-            $page->save();
-        }
-        $pages = $page->getWhere([]);
-
-        $view = new View();
-        $view->setView('staticMenu');
-        $view->putData('pages', $pages);
-        $view->putData('form', $this->form);*/
     }
+	
+	public function deleteImgFbAction($args)
+    {
+		session_start();
+		$_SESSION['idUser'] = 2;
+		
+		$Photo = new Photo();	
+		
+		if(isset($_GET['idPhoto'])){
+			$photoToDelete = $Photo->getWhere(['id' => $_GET['idPhoto']]);
+		}else if(isset($_GET['idFb'])){
+			$photoToDelete = $Photo->getWhere(['id_fb' => $_GET['idFb']]);
+		}	
+		
+		
+			// vérifie que la photo appartient à l'utilisateur			
+		if($photoToDelete[0]->id_user == $_SESSION['idUser']){		
+			// suppression de la photo dans la table "photo"
+			
+			// suppression du link dans la table "link"
+			$Link = new Link();		
+			$linkToDelete = $Link->getWhere(['id_photo' => $photoToDelete[0]->id]);
+			
+			$exit = false;
+			foreach($linkToDelete as $linkToDeleteCurrent){
+				if($exit == false){
+					if($linkToDeleteCurrent->id_contest == $_SESSION['idContest']){ // si link correspond avec id_photo et id_contest
+						$Link->setId($linkToDeleteCurrent->id);
+						
+						if(count($linkToDelete) == 1){ // si la photo fb n'était liée qu'à un seul concours
+							$Photo->setId($photoToDelete[0]->id);	
+							$Photo->delete();
+						}
+						$Link->delete();
+						$exit = true;
+					}
+				}
+			}			
+		}
+		
+		// suppression du fichier sur serveur
+		unlink("media/imgFiles/".$_SESSION['idUser']."_".$_SESSION['idContest'].".png");
+		
+		header('Location: /Photo');		
+    }
+	
     public function testAction($args)
     {
         $fb = new FBApp();
