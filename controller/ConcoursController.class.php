@@ -204,6 +204,8 @@ class ConcoursController
 
     public function voteAction($args)
     {
+		$fb = new FBApp();		
+		
         $vote = new Vote();
         $vote = $vote->getWhere();
         
@@ -228,23 +230,40 @@ class ConcoursController
 		
 		$Photo = new Photo();
 		
-		$photosUser = $Photo->getWhere([]);
+		$photos = $Photo->getWhere([]);
 		
 		$listPhotosForCurrentContest = [];
 		
+		$i = 0;		
 		foreach($links as $linkCurrent){
 			foreach($photos as $photoCurrent){
 				if($linkCurrent->id_photo == $photoCurrent->id && $linkCurrent->id_contest == $contestCurrent->id){
 					$listPhotosForCurrentContest[] = $photoCurrent;  // liste les photos qui appartiennent au concours courant
+					$albums = $fb->getFBUserData($photoCurrent->id_user."?fields=albums{name,photos{source}}");
+					//$albums = $fb->getFBUserData("191380041334779"."?fields=albums{name,photos{source}}");
+					if (isset($albums['albums'])) {
+						$albums = $albums['albums']['data'];
+					} else {
+						$albums = [];
+					}
+					
+					foreach($albums[0]['photos']['data'] as $album){
+						if($photoCurrent->id_fb == $album['id']){
+						//if("123063731499744" == $album['id']){
+							$listPhotosForCurrentContest[$i]->infosPhotoFb = ['id'=>$album['id'], 'source'=>$album['source']];
+							$i++;
+							//echo $album['id']."::".$album['source'];
+						}													
+					}					
 				}
 			}
 		}
-		
-		
-		
-		echo "<pre>";
-			print_r($listPhotosForCurrentContest);
-		echo "</pre>";
+		//echo "<pre>";
+		//print_r($fb->getFBUserData("191380041334779?fields=albums{name,photos{source}}"));
+		//echo "</pre>";
+		//echo "<pre>";
+			//print_r($listPhotosForCurrentContest);
+		//echo "</pre>";
 		
 		$_SESSION['idContest'] = $contestCurrent->id;
 		
@@ -252,6 +271,7 @@ class ConcoursController
         $view->setView('voteConcours');
         $view->putData('styles', ['gallery','stars']);
         $view->putData('voteForm', $this->voteForm);
+		$view->putData('contestCurrent', $contestCurrent);
 		$view->putData('listPhotos', $listPhotosForCurrentContest);
     }
 }

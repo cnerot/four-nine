@@ -70,4 +70,14 @@ $(document).ready(function () {
 		}
 			
 	});
+	
+	$("#seeMorePhotos").click(function(){
+		var nbPhotosToDisp = $("#nbPhotosToDisp").val();
+
+		for(var i = 1; i<parseInt(nbPhotosToDisp)+1; i++){
+			$("."+parseInt(parseInt(nbPhotosToDisp)+i)).show();
+		}
+		
+		$("#nbPhotosToDisp").val((parseInt(nbPhotosToDisp)+8));
+	});
 });
