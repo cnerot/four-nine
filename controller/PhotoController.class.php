@@ -76,6 +76,7 @@ class PhotoController
 			if($_POST['typeSubmit'] == "fb" && isset($_POST['idPhotoFbToSend']))
 				$Photo->setIdFb($_POST['idPhotoFbToSend']);
 			$Photo->setDescription($_POST['description']);
+			echo $_SESSION['idUser'];
 			$Photo->setIdUser($_SESSION['idUser']); // récupérer idUser
 			$Photo->setTitle($_POST['title']);
 			$Photo->save();
@@ -146,7 +147,6 @@ class PhotoController
 	public function deleteImgFbAction($args)
     {
 		session_start();
-		$_SESSION['idUser'] = 2;
 		
 		$Photo = new Photo();	
 		

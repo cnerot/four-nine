@@ -11,17 +11,21 @@
 <?php $j= 1; ?>
 <?php foreach ($albums as $album): ?>
             <?php if($j % 2 == 1):  ?>
-                <div id="test-swipe-<?php echo $j; ?>" class="col s12 yellow">
+                <div id="test-swipe-<?php echo $j; ?>" class="col s12">
 					<form id="formAddPhoto" method="post" action="" enctype="multipart/form-data">
 						<h3 id="titleSourceDAajout">Ajout d'une image depuis Facebook</h1>
+							  
+						
 						<div id="addPhotoFb" class='row'>
-							<?php foreach ($album['photos']['data'] as $photo): ?>
-								<div class="col s3">
-									<input style="position: relative; opacity: 1; left: 0;" type="radio" name="idPhotoFbToSend" value="<?php echo $photo['id']; ?>">
-									<img class="materialboxed image_upload" src="<?php echo $photo['source']; ?>"width="100px"/>
-								</div>
-							<?php endforeach; ?>
-						</div>	
+							<div class="carousel">
+								<?php foreach ($album['photos']['data'] as $photo): ?>
+										<a class="carousel-item" href="#one!">
+											<input style="position: relative; opacity: 1; left: 0;" type="radio" name="idPhotoFbToSend" value="<?php echo $photo['id']; ?>">
+											<img class="image_upload" src="<?php echo $photo['source']; ?>"width="100px">
+										</a>
+								<?php endforeach; ?>
+							</div>
+						</div>
 						<div style="display: none;" id="addPhotoFile" class='row'>
 							<div class="file-field input-field">
 								<div class="btn amber accent-4">
