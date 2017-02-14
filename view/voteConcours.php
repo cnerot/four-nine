@@ -4,7 +4,9 @@
 	<br><span style="font-size: 20px;">(concours valable du <?php echo $contestCurrent->start; ?> au <?php echo $contestCurrent->end; ?>)</span></h1>
         <div id="imageGallery">
 			<?php if(empty($listPhotos)) : ?>
-				<div style="margin-bottom: 10px" class="center"><label>Aucune photo n'a encore été uploadée</label></div>
+				<div style="margin-bottom: 10px" class="center">
+					<label>Aucune photo n'a encore été uploadée</label>
+				</div>
 			<?php else : ?>
 			<pre>
 				<?php //print_r($listPhotos); ?>

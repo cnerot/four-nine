@@ -254,7 +254,6 @@ class ConcoursController
 								//if("123063731499744" == $album['id']){
 									$listPhotosForCurrentContest[$i]->infosPhotoFb = ['id'=>$album['id'], 'source'=>$album['source']];
 									$i++;
-									//echo $album['id']."::".$album['source'];
 								}	
 							}
 						}												

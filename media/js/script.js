@@ -100,6 +100,7 @@ $(document).ready(function () {
 			
 	});
 	
+	// vérifie si l'on montre ou cache le bouton
 	testHideButtonSeeMorePhotos();
 	
 	$("#seeMorePhotos").click(function(){
