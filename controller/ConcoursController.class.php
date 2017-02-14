@@ -204,7 +204,7 @@ class ConcoursController
 
     public function voteAction($args)
     {
-       /* $vote = new Vote();
+        $vote = new Vote();
         $vote = $vote->getWhere();
         
 		$Contest = new Contest();		
@@ -246,7 +246,7 @@ class ConcoursController
 			print_r($listPhotosForCurrentContest);
 		echo "</pre>";
 		
-		$_SESSION['idContest'] = $contestCurrent->id;*/
+		$_SESSION['idContest'] = $contestCurrent->id;
 		
         $view = new View();
         $view->setView('voteConcours');
