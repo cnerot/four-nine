@@ -48,6 +48,13 @@ $(document).ready(function () {
 		$("#formAddPhoto").submit();
 	});
 	
+	if($("#hasPhotosFb").val() == 0){
+		$(".titlePhoto").hide();
+		$(".descriptionPhoto").hide();
+		$(".reset").hide();
+		$(".validate").hide();
+	}
+	
 	$(".addPhotoFrom").click(function(){
 		if( $(this).attr("id")  == "addPhotoFromFile" ){
 			$(this).attr("id", "addPhotoFromFb");
@@ -55,6 +62,12 @@ $(document).ready(function () {
 			$("#addPhotoFb").css("display", "none");
 			$("#addPhotoFile").css("display", "block");
 			$("#titleSourceDAajout").html("Ajout d'une image depuis votre ordinateur");
+			$("#helpSourceDAajout").html("Cliquez sur le bouton d'upload d'image");
+			
+			$(".titlePhoto").show();
+			$(".descriptionPhoto").show();
+			$(".reset").show();
+			$(".validate").show();
 			
 			$("#ValidFormSendPhotoFromFb").css("display", "none");
 			$("#ValidFormSendPhotoFromFile").css("display", "inline");			
@@ -63,7 +76,23 @@ $(document).ready(function () {
 			$(this).val("Ajouter une photo depuis une image de votre ordinateur");
 			$("#addPhotoFb").css("display", "block");
 			$("#addPhotoFile").css("display", "none");
-			$("#titleSourceDAajout").html("Ajout d'une image depuis Facebook");
+			
+			if($("#hasPhotosFb").val() == 1){
+				$("#titleSourceDAajout").html("Ajout d'une image depuis Facebook");
+				$("#helpSourceDAajout").html("Sélectionnez une image en cochant le bouton radio");
+				$(".titlePhoto").show();
+				$(".descriptionPhoto").show();
+				$(".reset").show();
+				$(".validate").show();
+			}else{
+				$("#titleSourceDAajout").html("");
+				$("#helpSourceDAajout").html("");
+				$(".titlePhoto").hide();
+				$(".descriptionPhoto").hide();
+				$(".reset").hide();
+				$(".validate").hide();
+			}			
+			
 			
 			$("#ValidFormSendPhotoFromFb").css("display", "inline");
 			$("#ValidFormSendPhotoFromFile").css("display", "none");			
@@ -81,13 +110,33 @@ $(document).ready(function () {
 		$("#nbPhotosToDisp").val((parseInt(nbPhotosToDisp)+8));
 	});
 	
+	$('.carousel').carousel();
+	// Next slide
+	$('.carousel').carousel('next');
+	$('.carousel').carousel('next', 3); // Move next n times.
+	// Previous slide
+	$('.carousel').carousel('prev');
+	$('.carousel').carousel('prev', 4); // Move prev n times.
+	// Set to nth slide
+	$('.carousel').carousel('set', 4);
+	
+	$("[name='resetCarrousel']").click(function(){
 		$('.carousel').carousel();
-		// Next slide
-		$('.carousel').carousel('next');
-		$('.carousel').carousel('next', 3); // Move next n times.
-		// Previous slide
-		$('.carousel').carousel('prev');
-		$('.carousel').carousel('prev', 4); // Move prev n times.
-		// Set to nth slide
-		$('.carousel').carousel('set', 4);
+	});
+	
+	// date format français	
+	var date;
+	var dateSplit;
+	var y, m, d;
+	
+	for(var i = 0; i<$(".dateFR").length; i++){
+		date = $(".dateFR").eq(i).html();
+		dateSplit = date.split('-');
+		
+		y = dateSplit[0];
+		m = dateSplit[1];
+		d = dateSplit[2];
+
+		$(".dateFR").eq(i).html(d+"/"+m+"/"+y);
+	}
 });
