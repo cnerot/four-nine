@@ -7,6 +7,10 @@
 	cursor: pointer;
 }
 
+.hidden{
+	display: none;
+}
+
 .login_obligatory{
     position: fixed;
     height: 100vh;
