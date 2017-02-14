@@ -23,6 +23,7 @@ class ConcoursController
                 'submit' => 'Send',
                 'name' => 'postform',
                 'class' => '',
+                "id" => 'test',
                 'enctype' => "multipart/form-data"
             ],
             'data' => [
