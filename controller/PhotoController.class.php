@@ -30,8 +30,7 @@ class PhotoController
             $albums = [];
         }
         $view = new View();
-        $view->setView('photoSelect');
-        $view->putData('albums', $albums);				
+        $view->setView('photoSelect');        
 		
 		$Photo = new Photo();
 		
@@ -54,93 +53,121 @@ class PhotoController
 			}
 		}
 		
-		$_SESSION['idContest'] = $contestCurrent->id;
+		if(empty($contestCurrent)){
+			$nextContestsStart = $Contest->getWhere(['start' => ['operator' => 'greater_equal', "value" => $today]]);
+			
+			if(!empty($nextContestsStart)){
+				$nextDate = $nextContestsStart[0]->start;
+				foreach($nextContestsStart as $nextContestStartCurrent){
+					if( strtotime($nextContestStartCurrent->start) < strtotime($nextDate) ){
+						$nextDate = $nextContestStartCurrent->start;
+					}
+				}
 				
-		$photosUser = $Photo->getWhere(['id_user' => $_SESSION['idUser']]);
-		
-		$Link = new Link();
-		
-		$links = $Link->getWhere([]);
-		
-		$photosAlreadyAddForThisContest = [];
-		
-		foreach($links as $linkCurrent){
-			foreach($photosUser as $photoUserCurrent){
-				if($linkCurrent->id_photo == $photoUserCurrent->id && $linkCurrent->id_contest == $contestCurrent->id){
-					$photosAlreadyAddForThisContest[] = $photoUserCurrent;
-				}
-			}
-		}
-		
-		if( empty($photosAlreadyAddForThisContest) && ( (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "fb") || (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "file") ) ){ // si pas encore participé
-			if($_POST['typeSubmit'] == "fb" && isset($_POST['idPhotoFbToSend']))
-				$Photo->setIdFb($_POST['idPhotoFbToSend']);
-			$Photo->setDescription($_POST['description']);
-			echo $_SESSION['idUser'];
-			$Photo->setIdUser($_SESSION['idUser']); // récupérer idUser
-			$Photo->setTitle($_POST['title']);
-			$Photo->save();
-			
-			// récupère l'id photo créé
-			
-			$photoAddForThisContest = $Photo->getWhere(['id_user' => $_SESSION['idUser']]);
-			
-			$lastIdPhoto = 1;
-			foreach($photoAddForThisContest as $photoAddCurrent){
-				if($photoAddCurrent->id > $lastIdPhoto){
-					$lastIdPhoto = $photoAddCurrent->id;
-				}
-			}
-						
-			$Link->setIdContest($contestCurrent->id);
-			$Link->setIdPhoto($lastIdPhoto);
-			
-			$Link->save();			
-			
-			if(isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "fb"){			
-				foreach($albums[0]['photos']['data'] as $album){				
-					if(isset($_POST['idPhotoFbToSend']) && $album['id'] == $_POST['idPhotoFbToSend']){
-						$view->putData('photoChosen', ['source'=>$album['source'], 'id'=>$album['id'], 'typeId'=>"idFb"]);
-					}
-				}
-			}else if(isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "file"){
-				if($_FILES['file_img']['type'] != "image/png" && $_FILES['file_img']['type'] != "image/jpeg"){
-					echo "Veuillez sélectionner une image de type png ou jpg";
-					$error = true;
-				}else if($_FILES['file_img']['size'] > 10000000){
-					echo "Veuillez sélectionner un fichier de 10 mo maximum";
-					$error = true;
-				}else{
-					if($_FILES['file_img']['type'] == "image/jpeg"){ // png dans tous les cas
-						$ext = ".png";
-					}else{
-						$ext = ".png";
-					}
-					
-					move_uploaded_file($_FILES['file_img']['tmp_name'], "media/imgFiles/".$_SESSION['idUser']."_".$_SESSION['idContest'].$ext);
-					
-					$view->putData('photoChosen', ['source'=>"media/imgFiles/".$_SESSION['idUser']."_".$_SESSION['idContest'].".png", 'id'=>$lastIdPhoto, 'typeId'=>"idPhoto"]);
-				}
+				$nextDate = explode(" ", $nextDate)[0];
+				$view->putData('Error', 'Aucun concours photo pour le moment, le prochain concours démarrera le <span class="dateFR">'.$nextDate.'</span>');
 			}else{
-				$error = true;
-			}
+				$view->putData('Error', 'Aucun concours photo de prévu pour le moment');
+			}				
+				$view->putData('albums', []);				
+		}else{
+			$_SESSION['idContest'] = $contestCurrent->id;
 			
-			if($error == false)
-				echo "Ajout de la photo pour le concours réussi";
+			$view->putData('albums', $albums);				
 			
-		}else{ // montre la photo choisie pour le concours
-			if( !empty($photosAlreadyAddForThisContest) && ( (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "fb") || (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "file") ) )
-				echo "Vous avez déjà participé au concours";
+			$photosUser = $Photo->getWhere(['id_user' => $_SESSION['idUser']]);
 			
-			if(!empty($photosAlreadyAddForThisContest) && $photosAlreadyAddForThisContest[0]->id_fb == NULL){
-				$view->putData('photoChosen', ['source'=>"media/imgFiles/".$_SESSION['idUser']."_".$_SESSION['idContest'].".png", 'id'=>$photosAlreadyAddForThisContest[0]->id, 'typeId'=>"idPhoto"]);
-			}else if(!empty($photosAlreadyAddForThisContest)){
-				foreach($albums[0]['photos']['data'] as $album){				
-					if($album['id'] == $photosAlreadyAddForThisContest[0]->id_fb){
-						$view->putData('photoChosen', ['source'=>$album['source'], 'id'=>$album['id'], 'typeId'=>"idFb"]);
+			$Link = new Link();
+			
+			$links = $Link->getWhere([]);
+			
+			$photosAlreadyAddForThisContest = [];
+			
+			foreach($links as $linkCurrent){
+				foreach($photosUser as $photoUserCurrent){
+					if($linkCurrent->id_photo == $photoUserCurrent->id && $linkCurrent->id_contest == $contestCurrent->id){
+						$photosAlreadyAddForThisContest[] = $photoUserCurrent;
 					}
 				}
-			}				
+			}
+			
+			if( empty($photosAlreadyAddForThisContest) && ( (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "fb") || (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "file") ) ){ // si pas encore participé
+				if($_POST['typeSubmit'] == "fb" && isset($_POST['idPhotoFbToSend']))
+					$Photo->setIdFb($_POST['idPhotoFbToSend']);
+				$Photo->setDescription($_POST['description']);
+				$Photo->setIdUser($_SESSION['idUser']); // récupérer idUser
+				$Photo->setTitle($_POST['title']);
+				$Photo->save();
+				
+				// récupère l'id photo créé
+				
+				$photoAddForThisContest = $Photo->getWhere(['id_user' => $_SESSION['idUser']]);
+				
+				$lastIdPhoto = 1;
+				foreach($photoAddForThisContest as $photoAddCurrent){
+					if($photoAddCurrent->id > $lastIdPhoto){
+						$lastIdPhoto = $photoAddCurrent->id;
+					}
+				}
+							
+				$Link->setIdContest($contestCurrent->id);
+				$Link->setIdPhoto($lastIdPhoto);
+				
+				$Link->save();			
+				
+				if(isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "fb"){	
+					foreach($albums as $album_){
+						if(!empty($album_['photos'])){
+							foreach($album_['photos']['data'] as $album){				
+								if(isset($_POST['idPhotoFbToSend']) && $album['id'] == $_POST['idPhotoFbToSend']){
+									$view->putData('photoChosen', ['source'=>$album['source'], 'id'=>$album['id'], 'typeId'=>"idFb"]);
+								}
+							}
+						}
+					}
+				}else if(isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "file"){
+					if($_FILES['file_img']['type'] != "image/png" && $_FILES['file_img']['type'] != "image/jpeg"){
+						echo "Veuillez sélectionner une image de type png ou jpg";
+						$error = true;
+					}else if($_FILES['file_img']['size'] > 10000000){
+						echo "Veuillez sélectionner un fichier de 10 mo maximum";
+						$error = true;
+					}else{
+						if($_FILES['file_img']['type'] == "image/jpeg"){ // png dans tous les cas
+							$ext = ".png";
+						}else{
+							$ext = ".png";
+						}
+						
+						move_uploaded_file($_FILES['file_img']['tmp_name'], "media/imgFiles/".$_SESSION['idUser']."_".$_SESSION['idContest'].$ext);
+						
+						$view->putData('photoChosen', ['source'=>"media/imgFiles/".$_SESSION['idUser']."_".$_SESSION['idContest'].".png", 'id'=>$lastIdPhoto, 'typeId'=>"idPhoto"]);
+					}
+				}else{
+					$error = true;
+				}
+				
+				if($error == false)
+					echo "Ajout de la photo pour le concours réussi";
+				
+			}else{ // montre la photo choisie pour le concours
+				if( !empty($photosAlreadyAddForThisContest) && ( (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "fb") || (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "file") ) )
+					echo "Vous avez déjà participé au concours";
+				
+				if(!empty($photosAlreadyAddForThisContest) && $photosAlreadyAddForThisContest[0]->id_fb == NULL){
+					$view->putData('photoChosen', ['source'=>"media/imgFiles/".$_SESSION['idUser']."_".$_SESSION['idContest'].".png", 'id'=>$photosAlreadyAddForThisContest[0]->id, 'typeId'=>"idPhoto"]);
+				}else if(!empty($photosAlreadyAddForThisContest)){
+					foreach($albums as $album_){
+						if(!empty($album_['photos'])){
+							foreach($album_['photos']['data'] as $album){				
+								if($album['id'] == $photosAlreadyAddForThisContest[0]->id_fb){
+									$view->putData('photoChosen', ['source'=>$album['source'], 'id'=>$album['id'], 'typeId'=>"idFb"]);
+								}
+							}
+						}
+					}
+				}				
+			}
 		}
     }
 	
