@@ -188,15 +188,15 @@ class ConcoursController
     }
     public function ajaxAction($args)
     {
-       // $fb = new FBApp();
-       // $data = $fb->getFBUserData('app');
-      // besoin de user/ link de l'images/ note  
-        $data = $this->voteform->validate();
-        if ($data) {
-            $vote = new Vote();
-            $vote->fromArray($data);
-            $vote->save();
-        }
+        $fb = new FBApp();
+        $usr = $fb->getFBUserData('/me');
+
+        $vote = new Vote();
+        $vote->setGrade($_POST['star']);
+        $vote->setIdUtilisateurs($usr);
+        $vote->setIdLink(1);
+        $vote->save();
+        
         $view = new View();
         $view->setView('staticMenu/voter', 'no_layout');
         $view->putData('voteform', $this->voteform);
@@ -204,7 +204,7 @@ class ConcoursController
 
     public function voteAction($args)
     {
-        $vote = new Vote();
+       /* $vote = new Vote();
         $vote = $vote->getWhere();
         
 		$Contest = new Contest();		
@@ -246,13 +246,13 @@ class ConcoursController
 			print_r($listPhotosForCurrentContest);
 		echo "</pre>";
 		
-		$_SESSION['idContest'] = $contestCurrent->id;
+		$_SESSION['idContest'] = $contestCurrent->id;*/
 		
         $view = new View();
         $view->setView('voteConcours');
         $view->putData('styles', ['gallery','stars']);
-        $view->putData('voteForm', $this->voteForm);
-		$view->putData('listPhotos', $listPhotosForCurrentContest);
+      //  $view->putData('voteForm', $this->voteForm);
+		//$view->putData('listPhotos', $listPhotosForCurrentContest);
     }
 }
   

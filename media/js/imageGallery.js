@@ -66,43 +66,34 @@ function getCurrentImage (currentImage) {
 
 }
 function voteFunction1() {
-    $.post('/Concours/vote/', { star: $("#star-1").val()
+    $.post('/concours/ajax', { star: $("#star-1").val()
         }, function(data) {
             alert($("#star-1").val());
 
         });
-    /*data = {'star1':$("#star-1").val()};
-    $.ajax({
-        type: "POST",
-        url: "/Concours/vote/",
-        data: data,
-        success: function(success) {
-            alert('$(this).val()');
-        }
-    });*/
 }
 function voteFunction2() {
-    $.post('/Concours/vote/', { star: $("#star-2").val()
+    $.post('/concours/ajax', { star: $("#star-2").val()
         }, function(data) {
             alert($("#star-2").val());
 
         });
 }
 function voteFunction3() {
-    $.post('/Concours/vote/', { star: $("#star-3").val()
+    $.post('/concours/ajax', { star: $("#star-3").val()
         }, function(data) {
             alert($("#star-3").val());
 
         });}
 function voteFunction4() {
-    $.post('/Concours/vote/', { star: $("#star-4").val()
+    $.post('/concours/ajax', { star: $("#star-4").val()
         }, function(data) {
             alert($("#star-4").val());
 
         });
 }
 function voteFunction5() {
-    $.post('/Concours/vote/', { star: $("#star-5").val()
+    $.post('/concours/ajax', { star: $("#star-5").val()
         }, function(data) {
             alert($("#star-5").val());
 
