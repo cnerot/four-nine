@@ -1,8 +1,11 @@
   <div class="container">
     <div class="row">
-	<h1>Photos des participants au concours <?php echo $contestCurrent->name; ?> 
-	<br><span style="font-size: 20px;">(concours valable du <?php echo $contestCurrent->start; ?> au <?php echo $contestCurrent->end; ?>)</span></h1>
-        <div id="imageGallery">
+        <div class="col s12 p_pageStat">
+            <p>Photos des participants au concours <?php echo $contestCurrent->name; ?></p>
+            <p>(concours valable du <?php echo $contestCurrent->start; ?> au <?php echo $contestCurrent->end; ?>)</span></p>
+        </div>
+        <div class="col s12 panelGalerie">
+            <div id="imageGallery">
 			<?php if(empty($listPhotos)) : ?>
 				<div style="margin-bottom: 10px" class="center">
 					<label>Aucune photo n'a encore été uploadée</label>
@@ -27,7 +30,8 @@
 					</div>
 				<?php endfor; ?>
 			<?php endif; ?>
- </div>
+        </div>
+    </div>
 			<div class="col s12">
 				<input type="hidden" id="nbPhotosToDisp" value="8">
 				<?php if(!empty($listPhotos)) : ?>

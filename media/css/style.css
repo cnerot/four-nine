@@ -327,5 +327,9 @@
         color: white;
         border: none;
     }
+    .panelGalerie{
+       margin-top: 30px;
+       Border: 1px solid #ffff99;
+    }
 
  

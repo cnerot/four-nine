@@ -43,9 +43,6 @@ $pages = (new Staticpages())->getWhere([]);
 <?php if (!$fb->isLogged()): ?>
     <a href="<?php echo $fb->getLoginUrl()?>"><div class='login_obligatory'><p>Please click anywhere to log in</p><img src='media/images/téléchargement.png'></div></a>
 <?php endif; ?>
-<?php if ($fb->isLogged()): ?>
-    <a href="<?php echo $fb->getLogoutUrl()?>"><p>logout</p></a>
-<?php endif; ?>
 <ul id="dropdown1" class="dropdown-content grey darken-4 ">
     <li><a href="<?php echo Router::getUrl("Concours", "New"); ?>"> <span class="yellow-text text-darken-2">Créer un concours</span></a>
     </li>
@@ -70,7 +67,13 @@ $pages = (new Staticpages())->getWhere([]);
             <a id="logo-container" href="<?php echo Router::getUrl("Index", "Index"); ?>" class="brand-logo">
                 <i class="material-icons left red-text">home</i><span class="text-darken-2 knockout">Pardon maman</span>
             </a>
-            <?php if ($fb->isAdmin()): ?>
+         
+            <?php if ($fb->isLogged()): ?>
+            <div class="right">
+                <a href="<?php echo $fb->getLogoutUrl()?>"><i class="material-icons  yellow-text accent-4">power_settings_new</i></a>
+            </div>
+            <?php endif; ?>
+               <?php if ($fb->isAdmin()): ?>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrateur<span><i
                                         class="material-icons right">arrow_drop_down</i></a></li>
