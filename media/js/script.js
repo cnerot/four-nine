@@ -100,6 +100,9 @@ $(document).ready(function () {
 			
 	});
 	
+	// vérifie si l'on montre ou cache le bouton
+	testHideButtonSeeMorePhotos();
+	
 	$("#seeMorePhotos").click(function(){
 		var nbPhotosToDisp = $("#nbPhotosToDisp").val();
 
@@ -108,7 +111,18 @@ $(document).ready(function () {
 		}
 		
 		$("#nbPhotosToDisp").val((parseInt(nbPhotosToDisp)+8));
+		
+		testHideButtonSeeMorePhotos();
 	});
+	
+	function testHideButtonSeeMorePhotos(){
+		var nbAllPhotos = $("#nbAllPhotos").val()
+		var newNbPhotosToDisp = $("#nbPhotosToDisp").val();
+		
+		if(newNbPhotosToDisp >= nbAllPhotos){
+			$("#seeMorePhotos").hide();
+		}
+	}
 	
 	$('.carousel').carousel();
 	// Next slide

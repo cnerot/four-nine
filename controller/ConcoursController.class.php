@@ -247,13 +247,16 @@ class ConcoursController
 						$albums = [];
 					}
 					
-					foreach($albums[0]['photos']['data'] as $album){
-						if($photoCurrent->id_fb == $album['id']){
-						//if("123063731499744" == $album['id']){
-							$listPhotosForCurrentContest[$i]->infosPhotoFb = ['id'=>$album['id'], 'source'=>$album['source']];
-							$i++;
-							//echo $album['id']."::".$album['source'];
-						}													
+					foreach($albums as $album_){
+						if(!empty($album_['photos'])){
+							foreach($album_['photos']['data'] as $album){
+								if($photoCurrent->id_fb == $album['id']){
+								//if("123063731499744" == $album['id']){
+									$listPhotosForCurrentContest[$i]->infosPhotoFb = ['id'=>$album['id'], 'source'=>$album['source']];
+									$i++;
+								}	
+							}
+						}												
 					}					
 				}
 			}
@@ -262,7 +265,7 @@ class ConcoursController
 		//print_r($fb->getFBUserData("191380041334779?fields=albums{name,photos{source}}"));
 		//echo "</pre>";
 		//echo "<pre>";
-			//print_r($listPhotosForCurrentContest);
+		//	print_r($albums);
 		//echo "</pre>";
 		
 		$_SESSION['idContest'] = $contestCurrent->id;
