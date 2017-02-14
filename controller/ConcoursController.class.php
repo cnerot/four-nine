@@ -9,6 +9,7 @@
 class ConcoursController
 {
     private $form;
+    private $voteform;
 
     public function preDeploy($args)
     {
@@ -187,10 +188,18 @@ class ConcoursController
     }
     public function ajaxAction($args)
     {
-
+       // $fb = new FBApp();
+       // $data = $fb->getFBUserData('app');
+      // besoin de user/ link de l'images/ note  
+        $data = $this->voteform->validate();
+        if ($data) {
+            $vote = new Vote();
+            $vote->fromArray($data);
+            $vote->save();
+        }
         $view = new View();
         $view->setView('staticMenu/voter', 'no_layout');
-        
+        $view->putData('voteform', $this->voteform);
     }
 
     public function voteAction($args)
@@ -198,10 +207,52 @@ class ConcoursController
         $vote = new Vote();
         $vote = $vote->getWhere();
         
+		$Contest = new Contest();		
+		$today = date('Y-m-d');		
+		$contestsStart = $Contest->getWhere(['start' => ['operator' => 'less_equal', "value" => $today]]); // récupère contests quand date début du concours commencée		
+		$contestsEnd = $Contest->getWhere(['end' => ['operator' => 'greater_equal', "value" => $today]]); // récupère contests quand date fin du concours non atteinte
+		
+		// récupère le concours en cours
+		
+		foreach($contestsStart as $contestStartCurrent){
+			foreach($contestsEnd as $contestEndCurrent){
+				if($contestStartCurrent->id == $contestEndCurrent->id){
+					$contestCurrent = $contestStartCurrent;
+				}
+			}
+		}
+		
+		$Link = new Link();
+		
+		$links = $Link->getWhere([]); // récupère tous les link
+		
+		$Photo = new Photo();
+		
+		$photosUser = $Photo->getWhere([]);
+		
+		$listPhotosForCurrentContest = [];
+		
+		foreach($links as $linkCurrent){
+			foreach($photos as $photoCurrent){
+				if($linkCurrent->id_photo == $photoCurrent->id && $linkCurrent->id_contest == $contestCurrent->id){
+					$listPhotosForCurrentContest[] = $photoCurrent;  // liste les photos qui appartiennent au concours courant
+				}
+			}
+		}
+		
+		
+		
+		echo "<pre>";
+			print_r($listPhotosForCurrentContest);
+		echo "</pre>";
+		
+		$_SESSION['idContest'] = $contestCurrent->id;
+		
         $view = new View();
         $view->setView('voteConcours');
         $view->putData('styles', ['gallery','stars']);
         $view->putData('voteForm', $this->voteForm);
+		$view->putData('listPhotos', $listPhotosForCurrentContest);
     }
 }
   

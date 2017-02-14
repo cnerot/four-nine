@@ -198,7 +198,7 @@ class Form
      * @return bool
      */
    
-    public function display($main_class = "", $data = [])
+    public function display($main_class = "", $data = [], $sumited = null)
     {
         echo '<form action="' . $this->action . '" method="' . $this->method . '" name="' . $this->name . '" class="' . $this->class . ' ' . $main_class . '" id="' . $this->id . ' ' . $main_class . '" enctype="' . $this->enctype . '">';
         echo '<input type="hidden" value="' . $this->name . '" name="type">';
@@ -454,7 +454,7 @@ class Form
                 <?php
             }
         }
-
+if( $sumited != 1){
         echo '<div class="row">'
                              . '<div class="col s4">'
                              . '<a class="waves-effect waves-light btn left grey lighten-2 black-text">'
@@ -469,5 +469,6 @@ class Form
                              . '</div>';
         echo '</form>';
 
+    }
     }
 }
