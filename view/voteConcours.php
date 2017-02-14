@@ -17,11 +17,10 @@
 					?>
 				</div>
 			<?php endfor; ?>
-			
-			<div class="col s12">
+     </div>
+        <div class="col s12">
 				<input type="hidden" id="nbPhotosToDisp" value="8">
 				<input type="button" id="seeMorePhotos" value="Voir +" class="btn">
 			</div>
-     </div>
 </div>
   </div>
