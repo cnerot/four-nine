@@ -82,15 +82,32 @@ class IndexController
             $element = array_shift($vote_count_processed);
         }
 
-        if (Config::SINGLE_WINNER){
-            $single_winner = array();
-            $winner_key = array_rand($winners);
-            $single_winner[] = $winners[$winner_key];
-            $winners = $single_winner;
-        }
+        $winner_key = array_rand($winners);
+        $winners = $winners[$winner_key];
 
-        foreach ($winners as $winner){
-            //TODO: Notify winners & admin
+
+
+        /*Send email to admin */
+
+
+        $to      = Config::ADMIN_EMAIL;
+        $subject = 'Contest Winners';
+        $message = 'The contest has ended. The winner is : ' . $winners->getName();
+
+        $headers = 'From: pardonmaman@fournine.com' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $message, $headers);
+
+        $fb = new FBApp();
+        foreach ((new User())->getWhere() as $user){
+            $params = array(
+                "message" => "Le gagnant du concours est : " . $winners->getName(),
+                "name" => "Pardon-Maman",
+                "image" => "",
+                "token" => $user->getToken()
+            );
+            $fb->postFBData('/'.$user->getId().'/feed', $params);
         }
     }
 }
