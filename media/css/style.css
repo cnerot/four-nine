@@ -194,7 +194,7 @@
          height: 570px;
        } 
      .knockout {
-     background: url(http://www.publicdomainpictures.net/pictures/40000/nahled/yellow-and-white-background.jpg) -80px -80px;
+     background: white;
      color: red;
      -webkit-text-fill-color: transparent;
      -webkit-background-clip: text;
