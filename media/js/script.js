@@ -115,15 +115,6 @@ $(document).ready(function () {
 		testHideButtonSeeMorePhotos();
 	});
 	
-	function testHideButtonSeeMorePhotos(){
-		var nbAllPhotos = $("#nbAllPhotos").val()
-		var newNbPhotosToDisp = $("#nbPhotosToDisp").val();
-		
-		if(newNbPhotosToDisp >= nbAllPhotos){
-			$("#seeMorePhotos").hide();
-		}
-	}
-	
 	$('.carousel').carousel();
 	// Next slide
 	$('.carousel').carousel('next');

@@ -41,7 +41,8 @@
 	float: right;
 }
 .image_upload{
-        margin: 1px;
+        padding: 30%;
+        padding: auto;
         border: 1px solid black;
         width :150px;
         height :150px;

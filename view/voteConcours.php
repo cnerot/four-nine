@@ -27,12 +27,12 @@
 					</div>
 				<?php endfor; ?>
 			<?php endif; ?>
-			
+ </div>
 			<div class="col s12">
 				<input type="hidden" id="nbPhotosToDisp" value="8">
 				<?php if(!empty($listPhotos)) : ?>
 					<input type="button" id="seeMorePhotos" value="Voir +" class="btn">
 				<?php endif; ?>
 			</div>
-</div>
+
   </div>
