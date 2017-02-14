@@ -7,6 +7,8 @@
 class User extends Entity
 {
     public $id;
+    public $id_user_fb;
+    public $token;
     public $name;
     public $surname;
     public $birthday;
@@ -25,9 +27,41 @@ class User extends Entity
     /**
      * @param mixed $id
      */
+    public function setIdUserFb($id_user_fb)
+    {
+        $this->id_user_fb = $id_user_fb;
+    }
+	
+	/**
+     * @return mixed
+     */
+    public function getIdUserFb()
+    {
+        return $this->id_user_fb;
+    }
+
+    /**
+     * @param mixed $id
+     */
     public function setId($id)
     {
         $this->id = $id;
+    }
+	
+	/**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
     }
 
     /**
