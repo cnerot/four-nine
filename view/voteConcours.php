@@ -32,6 +32,5 @@
 					<input type="button" id="seeMorePhotos" value="Voir +" class="btn">
 				<?php endif; ?>
 			</div>
-     </div>
 </div>
   </div>
