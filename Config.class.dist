@@ -9,7 +9,7 @@ class Config {
 
     /*Urls & path*/
     const URL = 'http://four-nine.local.fr/';
-    const PATH = 'C:\xampp\htdocs\fournine';
+    const PATH = '/var/www/html/four-nine';
 
     /*Facebook Data*/
     const FB_ID = '1107373735984316';
@@ -26,7 +26,7 @@ class Config {
     /*Database data*/
     const DB_HOST = 'localhost';
     const DB_NAME = 'fournine';
-    const DB_PASSWORD = '';
+    const DB_PASSWORD = 'sanae';
     const DB_USER = 'root';
 
     /*crontab*/
