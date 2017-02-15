@@ -19,13 +19,147 @@
 }
 
 #leftArrow, #rightArrow{
-	background: url('http://www.nwtexhibits.ca/icepatch/img/icon-chevron-leftright-512px.png') no-repeat;
+	background: url('../images/leftRight.png') no-repeat;
 	background-size: cover;
 	width: 75px;
 	height: 75px;
 	display: inline-block;
-	margin: 40px;
+	margin-bottom: 110px;
+	margin-left: 40px;
+	margin-right: 40px;
 	vertical-align: 50%;
+}
+@media screen and (max-width: 913px) {
+    #overlay img {
+     margin-top: 0%; 
+     width : 80%;
+    }
+
+    #overlay p {
+     color:red; 
+    }
+
+    #leftArrow, #rightArrow{
+            background: url('../images/leftRight.png') no-repeat;
+            background-size: cover;
+            width: 55px;
+            height: 55px;
+            display: inline-block;
+            margin-bottom: 110px;
+            margin-left: 40px;
+            margin-right: 40px;
+            vertical-align: 50%;
+    }
+}
+@media screen and (max-width: 917px) {
+    #overlay img {
+     margin-top: 0%; 
+     width : 70%;
+    }
+
+    #overlay p {
+     color:red; 
+    }
+
+    #leftArrow, #rightArrow{
+            background: url('../images/leftRight.png') no-repeat;
+            background-size: cover;
+            width: 66px;
+            height: 66px;
+            display: inline-block;
+            margin-bottom: 110px;
+            margin-left: 40px;
+            margin-right: 40px;
+            vertical-align: 50%;
+    }
+}
+@media screen and (max-width: 977px) {
+    #overlay img {
+     margin-top: 0%; 
+     width : 50%;
+    }
+
+    #overlay p {
+     color:red; 
+    }
+
+    #leftArrow, #rightArrow{
+            background: url('../images/leftRight.png') no-repeat;
+            background-size: cover;
+            width: 67px;
+            height: 67px;
+            display: inline-block;
+           margin-bottom: 110px;
+            margin-left: 30px;
+            margin-right: 30px;
+            vertical-align: 50%;
+    }
+}
+@media screen and (max-width: 511px) {
+    #overlay img {
+     margin-top: 0%; 
+     width : 40%;
+    }
+
+    #overlay p {
+     color:red; 
+    }
+
+    #leftArrow, #rightArrow{
+            background: url('../images/leftRight.png') no-repeat;
+            background-size: cover;
+            width: 67px;
+            height: 67px;
+            display: inline-block;
+           margin-bottom: 110px;
+            margin-left: 10px;
+            margin-right: 10px;
+            vertical-align: 50%;
+    }
+}
+@media screen and (max-width: 353px) {
+    #overlay img {
+     margin-top: 0%; 
+     width : 30%;
+    }
+
+    #overlay p {
+     color:red; 
+    }
+
+    #leftArrow, #rightArrow{
+            background: url('../images/leftRight.png') no-repeat;
+            background-size: cover;
+            width: 67px;
+            height: 67px;
+            display: inline-block;
+            margin-bottom: 110px;
+            margin-left: 10px;
+            margin-right: 10px;
+            vertical-align: 50%;
+    }
+}
+@media screen and (max-width: 256px) {
+    #overlay img {
+     margin-top: 0%; 
+     width : 15%;
+    }
+
+    #overlay p {
+     color:red; 
+    }
+
+    #leftArrow, #rightArrow{
+            background: url('../images/leftRight.png') no-repeat;
+            background-size: cover;
+            width: 60px;
+            height:65px;
+            display: inline-block;
+            margin-bottom: 110px;
+            margin-left: 10px;
+            margin-right: 10px;
+            vertical-align: 50%;
+    }
 }
 
 #rightArrow{
@@ -33,7 +167,7 @@
 }
 
 #closeLightbox{
-	background: url('http://www.freeiconspng.com/uploads/close-icon-29.png') no-repeat;
+	background: url('../images/close.png') no-repeat;
 	background-size: cover;
 	width: 25px;
 	height: 25px;

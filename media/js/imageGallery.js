@@ -68,34 +68,34 @@ function getCurrentImage (currentImage) {
 function voteFunction1() {
     $.post('/concours/ajax', { star: $("#star-1").val()
         }, function(data) {
-            alert($("#star-1").val());
+            //alert($("#star-1").val());
 
         });
 }
 function voteFunction2() {
     $.post('/concours/ajax', { star: $("#star-2").val()
         }, function(data) {
-            alert($("#star-2").val());
+            //alert($("#star-2").val());
 
         });
 }
 function voteFunction3() {
     $.post('/concours/ajax', { star: $("#star-3").val()
         }, function(data) {
-            alert($("#star-3").val());
+           // alert($("#star-3").val());
 
         });}
 function voteFunction4() {
     $.post('/concours/ajax', { star: $("#star-4").val()
         }, function(data) {
-            alert($("#star-4").val());
+           // alert($("#star-4").val());
 
         });
 }
 function voteFunction5() {
     $.post('/concours/ajax', { star: $("#star-5").val()
         }, function(data) {
-            alert($("#star-5").val());
+          //  alert($("#star-5").val());
 
         });
 }
