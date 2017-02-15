@@ -207,8 +207,12 @@ class ConcoursController
 
     public function voteAction($args)
     {
-		$fb = new FBApp();		
-		
+        $fb = new FBApp();		
+	$user = new User();
+        
+        //$nomUser = $user->getWhere();
+        //$prenomUser = $user->getWhere();
+        
         $vote = new Vote();
         $vote = $vote->getWhere();
         
@@ -255,8 +259,14 @@ class ConcoursController
 						if(!empty($album_['photos'])){
 							foreach($album_['photos']['data'] as $album){
 								if($photoCurrent->id_fb == $album['id']){
-								//if("123063731499744" == $album['id']){
-									$listPhotosForCurrentContest[$i]->infosPhotoFb = ['id'=>$album['id'], 'source'=>$album['source']];
+								//if("123063731499744" == $album['id'])
+                                                                    $temp_link = (new Link())->getOneWhere(
+                                                                                                           ['id_photo'=>$photoCurrent->id_fb,
+                                                                                                           // 'id_contest'=>$->getId()
+                                                                                                           ]);
+                                                                    $temp_user = (new User())->getOneWhere(['id'=>$temp_link->getUserId()]);
+                                                                    
+                                                                    $listPhotosForCurrentContest[$i]->infosPhotoFb = ['id'=>$album['id'], 'source'=>$album['source'], "name"=>$temp_user->getName(), "surname"=>getSurname()];
 									$i++;
 								}	
 							}

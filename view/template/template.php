@@ -35,6 +35,7 @@ $pages = (new Staticpages())->getWhere([]);
         <link rel="stylesheet" href="/media/css/<?php echo $style; ?>.css">
     <?php endforeach; ?>
     <link href="/media/css/stars.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/media/css/gallery.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
@@ -53,7 +54,7 @@ $pages = (new Staticpages())->getWhere([]);
     </li>
 </ul>
 <ul id="dropdown2" class="dropdown-content grey darken-4 ">
-    <li><a href="<?php echo Router::getUrl("Concours", "New"); ?>"> <span class="yellow-text text-darken-2">Créer un concour</span></a>
+    <li><a href="<?php echo Router::getUrl("Concours", "New"); ?>"> <span class="yellow-text text-darken-2">Créer un concours</span></a>
     </li>
     <li><a href="<?php echo Router::getUrl("Concours", "index"); ?>"><span class="yellow-text text-darken-2">Gestion des concours</span></a>
     </li>
@@ -98,9 +99,9 @@ $pages = (new Staticpages())->getWhere([]);
 <footer class="page-footer grey darken-4">
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
+            <div class="col s10 ">
             </div>
-            <div class="col l4 offset-l2 s12">
+            <div class="col s2 right-align">
                 <ul>
                     <?php foreach ($pages as $page): ?>
                         <li><a class="yellow-text text-lighten-1" href="<?php echo Router::getUrl("pages","show", ['id'=>$page->getId()])?>"><?php echo strtoupper($page->getTitle()); ?></a></li>
