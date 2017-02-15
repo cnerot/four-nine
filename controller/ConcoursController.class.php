@@ -243,7 +243,7 @@ class ConcoursController
 			foreach($photos as $photoCurrent){
 				if($linkCurrent->id_photo == $photoCurrent->id && $linkCurrent->id_contest == $contestCurrent->id){
 					$listPhotosForCurrentContest[] = $photoCurrent;  // liste les photos qui appartiennent au concours courant
-					$albums = $fb->getFBUserData(Config::DATA_PAGE_ID."?fields=albums{name,photos{source}}");
+					$albums = $fb->getFBUserData("1250869114948648?fields=albums{name,photos{source}}");
 					//$albums = $fb->getFBUserData("191380041334779"."?fields=albums{name,photos{source}}");
 					if (isset($albums['albums'])) {
 						$albums = $albums['albums']['data'];

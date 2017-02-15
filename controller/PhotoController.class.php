@@ -93,36 +93,53 @@ class PhotoController
 
 
             /*treat data and upload nex photo*/
-
-            if (isset($_POST['idPhotoFbToSend'])) {
-                $source = $fb->getFBUserData($_POST['idPhotoFbToSend'] . '?fields=source');
+		//var_dump($_POST);
+		//var_dump($_FILES);
+            if (isset($_POST)&& isset($_POST['idPhotoFbToSend'])) {
+        	try{
+	        $source = $fb->getFBUserData($_POST['idPhotoFbToSend'] . '?fields=source');
                 $source = $source['source'];
-                $args = array('message' => 'Photo Caption',
-                    'aid' => Config::DATA_ALBUM_ID,
-                    'image' =>'@' . $source
+
+	        $args = array('message' => 'Photo Caption',
+                   // 'id' => Config::DATA_ALBUM_ID,
+                    'url' => $source
                 );
-                $data = $fb->postFBPageData(Config::DATA_PAGE_ID . '/photos, $data', $args);
+	
+	                $data = $fb->postFBPageData('1250869114948648/photos', $args);
+		}catch (Exception $e){
+                    var_dump($e->getMessage());
+                }
             }
             if (isset($_FILES)) {
-                move_uploaded_file($_FILES['file_img']['tmp_name'], Config::PATH . '/media/images/tmp/tmp.png');
-                //$source = $fb->fb->fileToUpload(Config::PATH.'/media/images/tmp/tmp.png');
+		
+                try{
+			move_uploaded_file($_FILES["file_img"]["tmp_name"], Config::PATH . '/media/images/tmp/tmp.png');
+                }catch (Exception $e){
+                        var_dump($e->getMessage());
+                }
+
+
+
+		//$source = $fb->fb->fileToUpload(Config::PATH.'/media/images/tmp/tmp.png');
                 //$fb->fb->setFileUploadSupport(true);
+		
                 $token = $fb->getFBUserData(Config::DATA_PAGE_ID . '?fields=access_token');
 
                 $args = array('message' => 'Photo Caption',
-                    'aid' => Config::DATA_ALBUM_ID,
-                    'image' =>'@' . Config::PATH . '/media/images/tmp/tmp.png'
+                    'source' =>$fb->fb->fileToUpload(Config::PATH . '/media/images/tmp/tmp.png')
                 );
-                $data = $fb->postFBPageData(Config::DATA_PAGE_ID . '/photos, $data', $args);
-
+		try{
+ 	              	$data = $fb->postFBUserData('1250869114948648/photos', $args);
+		}catch(Facebook\Exceptions\FacebookResponseException $e) {
+ 			 echo 'Graph returned an error: ' . $e->getMessage();
+  			exit;
+		} catch(Facebook\Exceptions\FacebookSDKException $e) {
+ 			 echo 'Facebook SDK returned an error: ' . $e->getMessage();
+  			exit;
+		}catch (Exception $e){
+        		//var_dump($e->getMessage());
+                }
             }
-//
-            //$data = [
-            //    'message' => 'Contest Photo',
-            //    'source' => $source,
-            //];
-
-
 
             if (empty($photosAlreadyAddForThisContest) && ((isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "fb") || (isset($_POST['typeSubmit']) && $_POST['typeSubmit'] == "file"))) { // si pas encore participé
                 if ($_POST['typeSubmit'] == "fb" && isset($_POST['idPhotoFbToSend']))
