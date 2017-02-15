@@ -101,7 +101,7 @@ $(document).ready(function () {
 	});
 	
 	// vérifie si l'on montre ou cache le bouton
-	testHideButtonSeeMorePhotos();
+	//testHideButtonSeeMorePhotos();
 	
 	$("#seeMorePhotos").click(function(){
 		var nbPhotosToDisp = $("#nbPhotosToDisp").val();
@@ -112,7 +112,7 @@ $(document).ready(function () {
 		
 		$("#nbPhotosToDisp").val((parseInt(nbPhotosToDisp)+8));
 		
-		testHideButtonSeeMorePhotos();
+		//testHideButtonSeeMorePhotos();
 	});
 	
 	$('.carousel').carousel();
