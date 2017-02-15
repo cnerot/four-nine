@@ -6,7 +6,7 @@
                     <a href="#" id="new_button" class="btn-large right lime darken-3">Créer un concours<i class="material-icons right">add</i></a>
                 </div>
                 <div class="margin-top">
-                    <table class="responsive-table">
+                    <table class="table">
                       <thead>
                         <tr class="white-text">
                           <th>Concours</th>

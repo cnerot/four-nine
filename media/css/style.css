@@ -331,5 +331,8 @@
        margin-top: 30px;
        Border: 1px solid #ffff99;
     }
+    .materialboxed{
+        display: inline;
+    }
 
  

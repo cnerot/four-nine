@@ -11,13 +11,13 @@
 <?php $j= 1; ?>
 <?php foreach ($albums as $album): ?>
             <?php if($j % 2 == 1 && isset($album['photos']['data'])):  ?>
-               <div id="test-swipe-<?php echo $j; ?>" class="col s12 yellow">
+               <div id="test-swipe-<?php echo $j; ?>" class="col s12 grey darken-3">
                     <div class='row'>
                         <form method="post" action="" enctype="multipart/form-data">
                             <div class="col s12">
                                 <div class="col s10">
                                     <div class="file-field input-field">
-                                        <div class="btn">
+                                        <div class="btn   red accent-2">
                                             <i class="material-icons">add_a_photo</i>
                                             <label for="file_img"></label>
                                             <input type="file" placeholder="" value="" class="" name="file_img">
@@ -29,30 +29,58 @@
                                 </div>
                                 <div class="col s2 top-5">
                                     <div class="top-5">
-                                        <button name="submit" id="submit" type="submit" onclick="" class="btn right green accent-4">Envoyer</button>
+                                        <button name="submit" id="submit" type="submit" onclick="" class="btn-large right green accent-4">Envoyer</button>
                                     </div>
                                 </div>
                             </div>
-                            <?php foreach ($album['photos']['data'] as $photo): ?>
-                                <div class="col s3 center-align">
-                                    <input style="position: relative; opacity: 1; left: 0;" type="radio" name="idPhotoFbToSend" value="<?php echo $photo['id']; ?>">
-                                    <div class="image_upload">
-                                        <img class="materialboxed"  src="<?php echo $photo['source']; ?>"width="100px"/>
+                            <div class="col s12">
+                                <?php foreach ($album['photos']['data'] as $photo): ?>
+                                    <div class="col s3 center-align">
+                                        <input style="position: relative; opacity: 1; left: 0;" type="radio" name="idPhotoFbToSend" value="<?php echo $photo['id']; ?>">
+                                        <div class="image_upload">
+                                            <img class="materialboxed top-5"  src="<?php echo $photo['source']; ?>"width="100px"/>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </div>
                         </form>
                     </div>
                 </div>
-            <?php elseif($j % 2 == 0): ?>  
-                <div id="test-swipe-<?php echo $j; ?>" class="col s12 green ">
-                               <div class='row' id="imageGallery">
-                                   <?php foreach ($album['photos']['data'] as $photo): ?>
-                                       <div class="col s3">                                           
-										   <img class="materialboxed" src="<?php echo $photo['source']; ?>" width="100px">
-                                       </div>
-                                   <?php endforeach; ?>
+            <?php elseif($j % 2 == 0 && isset($album['photos']['data'])): ?>  
+             <div id="test-swipe-<?php echo $j; ?>" class="col s12 blue-grey darken-3">
+                    <div class='row'>
+                        <form method="post" action="" enctype="multipart/form-data">
+                            <div class="col s12">
+                                <div class="col s10">
+                                    <div class="file-field input-field">
+                                        <div class="btn  red accent-2">
+                                            <i class="material-icons">add_a_photo</i>
+                                            <label for="file_img"></label>
+                                            <input type="file" placeholder="" value="" class="" name="file_img">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input type="text" class="file-path validate">
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="col s2 top-5">
+                                    <div class="top-5">
+                                        <button name="submit" id="submit" type="submit" onclick="" class="btn-large right green accent-4">Envoyer</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <?php foreach ($album['photos']['data'] as $photo): ?>
+                                    <div class="col s3 center-align">
+                                        <input style="position: relative; opacity: 1; left: 0;" type="radio" name="idPhotoFbToSend" value="<?php echo $photo['id']; ?>">
+                                        <div class="image_upload">
+                                            <img class="materialboxed top-5"  src="<?php echo $photo['source']; ?>"width="100px"/>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             <?php endif; ?>
                 <?php  $j++ ; ?>
