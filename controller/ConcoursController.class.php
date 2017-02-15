@@ -276,7 +276,7 @@ class ConcoursController
         $view = new View();
         $view->setView('voteConcours');
         $view->putData('styles', ['gallery','stars']);
-        $view->putData('voteForm', $this->voteForm);
+        $view->putData('voteForm', $this->voteform);
 		$view->putData('contestCurrent', $contestCurrent);
 		$view->putData('listPhotos', $listPhotosForCurrentContest);
     }
