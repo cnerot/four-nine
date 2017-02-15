@@ -8,7 +8,7 @@ class FBApp
     private $fbCallback;
     private $fbPermissions;
 
-    private $fb;
+    public $fb;
     private $permissions;
     private $loginhelper;
     private $callback;
@@ -30,6 +30,7 @@ class FBApp
             'app_id' => Config::FB_ID,
             'app_secret' => Config::FB_SECRET,
             'default_graph_version' => 'v2.5',
+            'fileUpload' => true
         ]);
         $this->loginhelper = $this->fb->getRedirectLoginHelper();
 
@@ -132,6 +133,16 @@ class FBApp
     public function postFBData($fb_query, $object)
     {
         return $this->fb->post($fb_query, $object);
+    }
+    public function getFBPageData($fb_query, $object)
+    {
+        $token = $this->getFBUserData(Config::DATA_PAGE_ID.'?fields=access_token');
+        return $this->fb->get($fb_query, $token['access_token']);
+    }
+    public function postFBPageData($fb_query, $object)
+    {
+        $token = $this->getFBUserData(Config::DATA_PAGE_ID.'?fields=access_token');
+        return $this->fb->post($fb_query, $object, $token['access_token']);
     }
     public function isAdmin()
     {

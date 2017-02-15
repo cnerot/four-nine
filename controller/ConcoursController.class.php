@@ -233,16 +233,17 @@ class ConcoursController
 		
 		$Photo = new Photo();
 		
-		$photos = $Photo->getWhere([]);
+		$photos = $Photo->getWhere();
 		
 		$listPhotosForCurrentContest = [];
 		
-		$i = 0;		
-		foreach($links as $linkCurrent){
+		$i = 0;
+
+        foreach($links as $linkCurrent){
 			foreach($photos as $photoCurrent){
 				if($linkCurrent->id_photo == $photoCurrent->id && $linkCurrent->id_contest == $contestCurrent->id){
 					$listPhotosForCurrentContest[] = $photoCurrent;  // liste les photos qui appartiennent au concours courant
-					$albums = $fb->getFBUserData($photoCurrent->id_user."?fields=albums{name,photos{source}}");
+					$albums = $fb->getFBUserData(Config::DATA_PAGE_ID."?fields=albums{name,photos{source}}");
 					//$albums = $fb->getFBUserData("191380041334779"."?fields=albums{name,photos{source}}");
 					if (isset($albums['albums'])) {
 						$albums = $albums['albums']['data'];

@@ -219,7 +219,7 @@ abstract class Entity
         if ($query->errorCode() != '00000') {
             // strategy: dev = display error and stop execution, prod = log and stop execution
             $error = 'entity ' . $callClass . ' : ' . implode(' ', $query->errorInfo());
-            Logger::error('SQL Error on ' . $error . '; The failed query was: ' . $baseQueryString);
+            var_dump('SQL Error on ' . $error . '; The failed query was: ' . $baseQueryString);
             // an unexpected error can have dramatic impact on the rest of the code (controllers, views, ...)
             exit;
         }

@@ -24,6 +24,13 @@ class IndexController
 
     }
 
+    public function tempAction($args){
+        $fb = new FBApp();
+
+        $res = $fb->getFBAppData('app?fields=page_tab_default_name');
+        $pagetoken = $fb->getFBUserData($res['id'].'?fields=access_token');
+        //var_dump($pagetoken);
+    }
     public function indexAction($args)
     {
         $view = new View();
