@@ -145,3 +145,13 @@ $(document).ready(function () {
 		$(".dateFR").eq(i).html(d+"/"+m+"/"+y);
 	}
 });
+
+//cacher radio
+function upload(id){
+    $('#imageToUpload-'+id).css('border', '1px solid blue');
+    $('#idToUpload-'+id).prop("checked", true);
+}
+function uploadPair(id){
+    $('#imageToUploadP-'+id).css('border', '1px solid blue');
+    $('#idToUpload-'+id).prop("checked", true);
+}

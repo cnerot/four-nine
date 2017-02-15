@@ -34,13 +34,15 @@
                                 </div>
                             </div>
                             <div class="col s12">
+                                <?php $k = 1; ?>
                                 <?php foreach ($album['photos']['data'] as $photo): ?>
                                     <div class="col s3 center-align">
-                                        <input style="position: relative; opacity: 1; left: 0;" type="radio" name="idPhotoFbToSend" value="<?php echo $photo['id']; ?>">
+                                        <input type="radio" name="idPhotoFbToSend" id="idToUpload-<?php echo $k ?>" value="<?php echo $photo['id']; ?>">
                                         <div class="image_upload">
-                                            <img class="materialboxed top-5"  src="<?php echo $photo['source']; ?>"width="100px"/>
+                                            <a href="#" onclick="upload(<?php echo $k ?>)"><img class="top-5" id="imageToUpload-<?php echo $k ?>" src="<?php echo $photo['source']; ?>" width="100px"/></a>
                                         </div>
                                     </div>
+                                <?php $k++; ?>
                                 <?php endforeach; ?>
                             </div>
                         </form>
@@ -70,13 +72,15 @@
                                 </div>
                             </div>
                             <div class="col s12">
+                                <?php $h = 1; ?>
                                 <?php foreach ($album['photos']['data'] as $photo): ?>
                                     <div class="col s3 center-align">
-                                        <input style="position: relative; opacity: 1; left: 0;" type="radio" name="idPhotoFbToSend" value="<?php echo $photo['id']; ?>">
+                                        <input type="hidden" name="idPhotoFbToSend" id="idPhotoFbToSend" value="<?php echo $photo['id']; ?>">
                                         <div class="image_upload">
-                                            <img class="materialboxed top-5"  src="<?php echo $photo['source']; ?>"width="100px"/>
+                                            <a href="#" onclick="uploadPair(<?php echo $h ?>)"><img class="top-5" id="imageToUploadP-<?php echo $h ?>" src="<?php echo $photo['source']; ?>" width="100px"/></a>
                                         </div>
                                     </div>
+                                <?php $k++; ?>
                                 <?php endforeach; ?>
                             </div>
                         </form>

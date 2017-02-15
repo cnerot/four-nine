@@ -20,7 +20,7 @@ class ConcoursController
             'options' => [
                 'method' => 'POST',
                 'action' => '#',
-                'submit' => 'Send',
+                'submit' => 'Valider',
                 'name' => 'postform',
                 'class' => '',
                 "id" => 'test',
