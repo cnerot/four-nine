@@ -19,10 +19,8 @@ class PhotoController
      */
     public function indexAction($args)
     {
-        $fb = new FBApp();
-
-        $error = false;
-
+        $fb = new FBApp();		
+	$error = false;
         $albums = $fb->getFBUserData("/me?fields=albums{name,photos{source}}");
         if (isset($albums['albums'])) {
             $albums = $albums['albums']['data'];

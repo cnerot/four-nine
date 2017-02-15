@@ -148,10 +148,11 @@ $(document).ready(function () {
 
 //cacher radio
 function upload(id){
-    $('#imageToUpload-'+id).css('border', '1px solid blue');
+    $('#imageToUpload-'+id).css('border', '2px solid #ef5350  ');
     $('#idToUpload-'+id).prop("checked", true);
 }
 function uploadPair(id){
-    $('#imageToUploadP-'+id).css('border', '1px solid blue');
+    $('#imageToUploadP-'+id).css('border', '2px solid #ef5350 ');
     $('#idToUpload-'+id).prop("checked", true);
+    alert('#imageToUploadP-'+id);
 }

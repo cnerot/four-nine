@@ -16,7 +16,7 @@
                             <div class="col s3 <?php echo $i+1; ?> <?php if($i>=8) echo "hidden"; ?>">
                                 <div id="imageGallery">
                                    <a id="<?php echo $photo->infosPhotoFb['id']; ?>" href="<?php echo $photo->infosPhotoFb['source']; ?>">
-                                       <img src="<?php echo $photo->infosPhotoFb['source']; ?>" width="100" alt="nom prenom" class="top-5" title="nom prenom">
+                                       <img src="<?php echo $photo->infosPhotoFb['source']; ?>" width="100" alt="<?php echo $photo->infosPhotoFb['name'] .' '. $photo->infosPhotoFb['surname']; ?>" class="top-5" title="<?php echo $photo->infosPhotoFb['name'] .' '. $photo->infosPhotoFb['surname']; ?>">
                                    </a>
                                </div>
                             </div>

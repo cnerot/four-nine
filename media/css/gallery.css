@@ -175,9 +175,13 @@
 	float: right;
 }
 .image_upload{
-        padding: 30%;
-        padding: auto;
+        display: inline-block;
+        border: 1px solid white;
+        padding: 3px;
+        background: #fff;
+    }
+.image_upload img{
+        display: inline-block;
         border: 1px solid black;
-        width :150px;
-        height :150px;
+        padding: 3px;
     }
