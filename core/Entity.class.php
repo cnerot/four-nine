@@ -123,7 +123,7 @@ abstract class Entity
      * @return array
      * todo: multpile order by
      */
-    public function getWhere($condition = [], $order = null, $limit = null)
+    public function getWhere($condition = [], $order = null, $limit = null, $debug = false)
     {
         // table columns (assumes there is at least 1 column in the entity)
         $columns = $this->tableName . '.' . implode(', ' . $this->tableName . '.', $this->columns);
@@ -219,6 +219,11 @@ abstract class Entity
             } else {
                 $baseQueryString .= ' LIMIT ' . $limit;
             }
+        }
+        if ($debug){
+            var_dump($baseQueryString);
+            var_dump($execArgs);
+            die();
         }
         // all done!
         $query = $this->database->getPdo()->prepare($baseQueryString);

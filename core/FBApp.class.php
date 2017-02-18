@@ -134,7 +134,7 @@ class FBApp
     {
         return $this->fb->post($fb_query, $object);
     }
-    public function getFBPageData($fb_query, $object)
+    public function getFBPageData($fb_query)
     {
         $token = $this->getFBUserData(Config::DATA_PAGE_ID.'?fields=access_token');
         return $this->fb->get($fb_query, $token['access_token']);

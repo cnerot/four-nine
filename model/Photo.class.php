@@ -7,11 +7,46 @@
 class Photo extends Entity
 {
     public $id;
-    public $id_fb;
     public $description;
     public $created;
     public $id_user;
     public $title;
+    public $id_fb;
+
+    public function getCurrentUserPhoto($user_id, $contest_id){
+        $links = (new Link())->getWhere(['id_contest' =>$contest_id]);
+        $photos = $this->getWhere(['id_user' => $user_id]);
+        foreach ($links as $link){
+            foreach ($photos as $photo){
+                if ($link->getIdPhoto() == $photo->getId()){
+                    return $photo;
+                }
+            }
+        }
+        return false;
+    }
+    public function getFbPhotoUrl(){
+        $fb = new FBApp();
+        $data = $fb->getFBPageData($this->getIdFb() . '?fields=source');
+        $decodedBody = $data->getDecodedBody();
+        return $decodedBody["source"];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdFb()
+    {
+        return $this->id_fb;
+    }
+
+    /**
+     * @param mixed $id_fb
+     */
+    public function setIdFb($id_fb)
+    {
+        $this->id_fb = $id_fb;
+    }
 
     /**
      * @return mixed
@@ -27,22 +62,6 @@ class Photo extends Entity
     public function setId($id)
     {
         $this->id = $id;
-    }
-	
-	/**
-     * @return mixed
-     */
-    public function getIdFb()
-    {
-        return $this->id_fb;
-    }
-	
-    /**
-     * @param mixed $id_fb
-     */
-    public function setIdFb($id_fb)
-    {
-        $this->id_fb = $id_fb;
     }
 	
     /**

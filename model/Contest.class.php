@@ -15,6 +15,31 @@ class Contest extends Entity
     /**
      * @return mixed
      */
+    public function getCurrent()
+    {
+        $today = date('Y-m-d');
+        $contestsStart = $this->getWhere(['start' => ['operator' => 'less_equal', "value" => $today]]); // récupère contests quand date début du concours commencée
+        $contestsEnd = $this->getWhere(['end' => ['operator' => 'greater_equal', "value" => $today]]); // récupère contests quand date fin du concours non atteinte
+
+        // récupère le concours en cours
+
+        foreach ($contestsStart as $contestStartCurrent) {
+            foreach ($contestsEnd as $contestEndCurrent) {
+                if ($contestStartCurrent->id == $contestEndCurrent->id) {
+                    $contestCurrent = $contestStartCurrent;
+                }
+            }
+        }
+        if (!empty($contestCurrent)){
+            return $contestCurrent;
+        }
+        return false;
+
+    }
+
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;

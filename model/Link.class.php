@@ -10,6 +10,18 @@ class Link extends Entity
     public $id_photo;
     public $id_contest;
 
+    public function getCurrentUserLink($user_id, $contest_id){
+        $links = $this->getWhere(['id_contest' =>$contest_id]);
+        $photos = (new Photo())->getWhere(['id_user' => $user_id]);
+        foreach ($links as $link){
+            foreach ($photos as $photo){
+                if ($link->getIdPhoto() == $photo->getId()){
+                    return $link;
+                }
+            }
+        }
+        return false;
+    }
     /**
      * @return mixed
      */

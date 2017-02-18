@@ -250,7 +250,7 @@ class Theme extends Entity
      */
     public function setPageStat($pageStat)
     {
-        $this->pageStat = $pageStatr;
+        $this->pageStat = $pageStat;
     }
    
 }

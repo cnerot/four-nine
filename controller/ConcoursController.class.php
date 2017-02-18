@@ -20,7 +20,7 @@ class ConcoursController
             'options' => [
                 'method' => 'POST',
                 'action' => '#',
-                'submit' => 'Valider',
+                'submit' => 'Send',
                 'name' => 'postform',
                 'class' => '',
                 "id" => 'test',
@@ -242,8 +242,7 @@ class ConcoursController
 		$listPhotosForCurrentContest = [];
 		
 		$i = 0;
-
-        foreach($links as $linkCurrent){
+		foreach($links as $linkCurrent){
 			foreach($photos as $photoCurrent){
 				if($linkCurrent->id_photo == $photoCurrent->id && $linkCurrent->id_contest == $contestCurrent->id){
 					$listPhotosForCurrentContest[] = $photoCurrent;  // liste les photos qui appartiennent au concours courant
@@ -281,9 +280,7 @@ class ConcoursController
 		//echo "<pre>";
 		//	print_r($albums);
 		//echo "</pre>";
-		
 		$_SESSION['idContest'] = $contestCurrent->id;
-		
         $view = new View();
         $view->setView('voteConcours');
         $view->putData('styles', ['gallery','stars']);
