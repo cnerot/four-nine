@@ -5,11 +5,11 @@
     </div>
     <div class="collapsible-body yellow">
         <div class="container">
-            <a href="<?php echo Router::getUrl('Pages','delete', ["id"=> $page->getID()])?>" class="waves-effect waves-teal btn-flat right">
-                <i class="large material-icons left">not_interested</i>
-                Delete
-            </a>
-            <br>
+            <div class="right">
+                <a href="<?php echo Router::getUrl('Pages','delete', ["id"=> $page->getID()])?>" class="btn-floating btn-small waves-effect waves-light red">
+                    <i class="material-icons center-align">delete</i>
+                </a>
+            </div>
             <?php
             if (isset($page)) {
                 $data = [

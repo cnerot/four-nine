@@ -194,8 +194,6 @@
          height: 570px;
        } 
      .knockout {
-     background: white;
-     color: red;
      -webkit-text-fill-color: transparent;
      -webkit-background-clip: text;
      font-weight: bold;
@@ -323,7 +321,7 @@
         box-shadow: none;
     }
     .textarea_stat{
-         background-color: black;
+        background-color: black;
         color: white;
         border: none;
     }
@@ -333,6 +331,9 @@
     }
     .materialboxed{
         display: inline;
+    }
+    .no-margin{
+        margin-top: 0px;
     }
 
  

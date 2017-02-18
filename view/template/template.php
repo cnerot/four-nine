@@ -51,6 +51,7 @@ $pages = (new Staticpages())->getWhere([]);
     </li>
     <li class="divider"><span class="yellow-text text-darken-2"></span></li>
     <li><a href="<?php echo Router::getUrl("Pages", "index"); ?>"><span class="yellow-text text-darken-2">Pages statiques</span></a>
+    <li><a href="<?php echo Router::getUrl("Theme", "index"); ?>"><span class="yellow-text text-darken-2">Modifier le théme</span></a>
     </li>
 </ul>
 <ul id="dropdown2" class="dropdown-content grey darken-4 ">
@@ -66,7 +67,7 @@ $pages = (new Staticpages())->getWhere([]);
     <div class="nav-wrapper grey darken-4">
         <div class="nav-wrapper container">
             <a id="logo-container" href="<?php echo Router::getUrl("Index", "Index"); ?>" class="brand-logo">
-                <i class="material-icons left red-text">home</i><span class="text-darken-2 knockout">Pardon maman</span>
+                <i class="material-icons left red-text">home</i><span class="white knockout">Pardon maman</span>
             </a>
          
             <?php if ($fb->isLogged()): ?>

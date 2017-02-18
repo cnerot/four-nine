@@ -16,7 +16,7 @@ class PagesController
             'options' => [
                 'method'    => 'POST',
                 'action'    => '#',
-                'submit'    => 'Send',
+                'submit'    => 'Valider',
                 'name'      => 'postform',
                 'class'     => '',
                 'enctype'   => "multipart/form-data",
@@ -26,12 +26,17 @@ class PagesController
                 "title" => [
                     "type" => "text",
                     "validation" => "text",
-                    "value" => ''
+                    "value" => '',
+                    "class" => 'validate',
+                    "div_class" => 'input-field no-margin'
                 ],
                 "content" => [
                     "type" => "textarea",
                     "validation" => "wysiwyg",
-                    "value" => ''
+                    "value" => '',
+                    "class" => 'materialize-textarea',
+                    "div_class" => 'input-field',
+                    "id" => 'textarea1',
                 ],
             ]
         ]);

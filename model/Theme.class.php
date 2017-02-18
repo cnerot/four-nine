@@ -8,9 +8,19 @@ class Theme extends Entity
 {
     public $id;
     public $bgColor;
-    public $navColor;
+    public $bgImage;
+    public $bgNavColor;
     public $textColor;
     public $btnColor;
+    public $iconHomeColor; 
+    public $iconOffColor;
+    public $nameColor;
+    public $titleColor; 
+    public $textNavColor;
+    public $textBtnColor;
+    public $collapsibleHeader;
+    public $collapsibleBody;
+    public $pageStat;
 
 
     /**
@@ -42,23 +52,38 @@ class Theme extends Entity
     {
         return $this->bgColor;
     }
+    /**
+     * @param mixed $bgImage
+     */
+    public function setBgImage($bgImage)
+    {
+        $this->bgImage = $bgImage;
+    }
+	
+	/**
+     * @return mixed
+     */
+    public function getBgImage()
+    {
+        return $this->bgImage;
+    }
 
 
 	
 	/**
      * @return mixed
      */
-    public function getNavColor()
+    public function getBgNavColor()
     {
-        return $this->navColor;
+        return $this->bgNavColor;
     }
 
     /**
      * @param mixed $navColor
      */
-    public function setNavColor($navColor)
+    public function setNavColor($bgNavColor)
     {
-        $this->navColor = $navColor;
+        $this->bgNavColor = $bgNavColor;
     }
 
     /**
@@ -92,5 +117,140 @@ class Theme extends Entity
     {
         $this->btnColor = $btnColor;
     }
+    /**
+     * @return mixed
+     */
+    public function getIconHomeColor()
+    {
+        return $this->iconHomeColor;
+    }
 
+    /**
+     * @param mixed setIconHomeColor
+     */
+    public function setIconHomeColor($iconHomeColor)
+    {
+        $this->iconHomeColor = $iconHomeColor;
+    }
+    /**
+     * @return mixed
+     */
+    public function getIconOffColor()
+    {
+        return $this->iconHomeColor;
+    }
+
+    /**
+     * @param mixed $iconOffColor
+     */
+    public function setIconOffColor($iconOffColor)
+    {
+        $this->iconOffColor = $iconOffColor;
+    }
+    /**
+     * @return mixed
+     */
+    public function getNameColor()
+    {
+        return $this->nameColor;
+    }
+
+    /**
+     * @param mixed $nameColor
+     */
+    public function setNameColor($nameColor)
+    {
+        $this->nameColor = $nameColor;
+    }
+    /**
+     * @return mixed
+     */
+    public function getTitleColor()
+    {
+        return $this->titleColor;
+    }
+
+    /**
+     * @param mixed $titleColor
+     */
+    public function setTitleColor($titleColor)
+    {
+        $this->titleColor = $titleColor;
+    }
+    /**
+     * @return mixed
+     */
+    public function getTextNavColor()
+    {
+        return $this->textNavColor;
+    }
+
+    /**
+     * @param mixed $textNavColor
+     */
+    public function setTextNavColor($textNavColor)
+    {
+        $this->textNavColor = $textNavColor;
+    }
+    /**
+     * @return mixed
+     */
+    public function getTextBtnColor()
+    {
+        return $this->textBtnColor;
+    }
+
+    /**
+     * @param mixed $textBtnColor
+     */
+    public function setTextBtnColor($textBtnColor)
+    {
+        $this->textBtnColor = $textBtnColor;
+    }
+    /**
+     * @return mixed
+     */
+    public function getCollapsibleHeader()
+    {
+        return $this->collapsibleHeader;
+    }
+
+    /**
+     * @param mixed $collapsibleHeader
+     */
+    public function setCollapsibleHeader($collapsibleHeader)
+    {
+        $this->collapsibleHeader = $collapsibleHeader;
+    }
+    /**
+     * @return mixed
+     */
+    public function getCollapsibleBody()
+    {
+        return $this->collapsibleBody;
+    }
+
+    /**
+     * @param mixed $collapsibleBody
+     */
+    public function setCollapsibleBody($collapsibleBody)
+    {
+        $this->collapsibleBody = $collapsibleBody;
+    }
+    /**
+     * @return mixed
+     */
+    public function getPageStat()
+    {
+        return $this->pageStat;
+    }
+
+    /**
+     * @param mixed $pageStat
+     */
+    public function setPageStat($pageStat)
+    {
+        $this->pageStat = $pageStatr;
+    }
+   
 }
