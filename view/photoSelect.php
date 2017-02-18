@@ -4,6 +4,26 @@
     <?php foreach ($albums as $album): ?>
         <?php if(isset($album['photos']['data'])): ?> 
             <li class="tab col s3"><a href="#test-swipe-<?php echo $i; ?>"><?php echo $album['name'] ?></a></li>
+        <?php else: ?>
+            <div class="col s12">
+                                <div class="col s10">
+                                    <div class="file-field input-field">
+                                        <div class="btn   red accent-2">
+                                            <i class="material-icons">add_a_photo</i>
+                                            <label for="file_img"></label>
+                                            <input type="file" placeholder="" value="" class="" name="file_img">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input type="text" class="file-path validate">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s2 top-5">
+                                    <div class="top-5">
+                                        <button name="submit" id="submit" type="submit" onclick="" class="btn-large right green accent-4">Envoyer</button>
+                                    </div>
+                                </div>
+             </div>
         <?php endif; ?>
         <?php $i++; ?>
     <?php endforeach; ?>
