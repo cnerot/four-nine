@@ -290,6 +290,13 @@ class FormTheme
             } else {
                 $idClass5 = "";
             }
+           
+                if (isset($input['div_color1'])) {
+                    $div_color1 = $input['div_color1'];
+                } else {
+                    $div_color1 = "";
+                }
+           
             /**
              * display input data
              */
@@ -331,18 +338,20 @@ class FormTheme
             } elseif($type == "radio") {
                 ?>
                 <div class="<?php echo $div_class ?>">
-                    <input
-                        type="<?php echo $type ?>"
-                        value="<?php echo  $value1; ?>"
-                        name="<?php echo $name ?>"
-                        class="<?php echo $idClass1 ; ?>"
-                        id="<?php echo $idClass1 ; ?>"
-                    /> 
                     <label
                         class="<?php echo $idClass1 ; ?>"
                         for="<?php echo $idClass1 ; ?>">
-                            <?php echo  $value1; ?>
+                            <?php echo  $label; ?>
                     </label>
+                    <div class="<?php echo $div_color1 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color1; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $idClass1 ; ?>"
+                            id="<?php echo $idClass1 ; ?>"
+                        /> 
+                    </div>
                     <input
                         type="<?php echo $type ?>"
                         value="<?php echo  $value2; ?>"
@@ -350,11 +359,6 @@ class FormTheme
                         class="<?php echo $idClass2 ; ?>"
                         id="<?php echo $idClass2 ; ?>"
                     />
-                    <label
-                        class="<?php echo $idClass2 ; ?>"
-                        for="<?php echo $idClass2 ; ?>">
-                            <?php echo  $value2; ?>
-                    </label>
                     <input 
                         type="<?php echo $type ?>"
                         value="<?php echo  $value3; ?>"
@@ -362,11 +366,6 @@ class FormTheme
                         class="<?php echo $idClass3 ; ?>"
                         id="<?php echo $idClass3 ; ?>" 
                     />
-                    <label 
-                        class="<?php echo $idClass3 ; ?>"
-                        for="<?php echo $idClass3 ; ?>">
-                        <?php echo $value3; ?>
-                    </label>
                     <input
                         type="<?php echo $type ?>"
                         value="<?php echo  $value4; ?>"
@@ -374,11 +373,6 @@ class FormTheme
                         class="<?php echo $idClass4; ?>"
                         id="<?php echo $idClass4; ?>"
                     />
-                    <label
-                        class="<?php echo $idClass4; ?>"
-                        for="<?php echo $idClass4; ?>">
-                        <?php echo $value4; ?>
-                    </label>
                     <input
                         type="<?php echo $type ?>"
                         value="<?php echo  $value5; ?>"
@@ -386,12 +380,6 @@ class FormTheme
                         class="<?php echo $idClass5; ?>"
                         id="<?php echo $idClass5; ?>"
                     />
-                    <label
-                        class="<?php echo $idClass5; ?>"
-                        for="<?php echo $idClass5; ?>">
-                        <?php echo $value5; ?>
-                    </label>
-                    <span></span>
                 </div>
   
                 <?php
