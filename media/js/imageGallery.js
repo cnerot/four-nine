@@ -55,7 +55,7 @@ function getCurrentImage (currentImage) {
     //$caption.append($form);
     var base_url = window.location.origin;
     //alert(base_url+'/concours/ajax');
-    $.ajax({url: base_url+'/concours/ajax' , success: function(result){
+    $.ajax({url: base_url+'/vote/ajax' , success: function(result){
         $caption.append(result);
         document.getElementById("star-1").addEventListener("click", voteFunction1);
         document.getElementById("star-2").addEventListener("click", voteFunction2);
@@ -66,34 +66,34 @@ function getCurrentImage (currentImage) {
 
 }
 function voteFunction1() {
-    $.post('/concours/ajax', { star: $("#star-1").val()
+    $.post('/vote/ajax', { star: $("#star-1").val()
         }, function(data) {
             //alert($("#star-1").val());
 
         });
 }
 function voteFunction2() {
-    $.post('/concours/ajax', { star: $("#star-2").val()
+    $.post('/vote/ajax', { star: $("#star-2").val()
         }, function(data) {
             //alert($("#star-2").val());
 
         });
 }
 function voteFunction3() {
-    $.post('/concours/ajax', { star: $("#star-3").val()
+    $.post('/vote/ajax', { star: $("#star-3").val()
         }, function(data) {
            // alert($("#star-3").val());
 
         });}
 function voteFunction4() {
-    $.post('/concours/ajax', { star: $("#star-4").val()
+    $.post('/vote/ajax', { star: $("#star-4").val()
         }, function(data) {
            // alert($("#star-4").val());
 
         });
 }
 function voteFunction5() {
-    $.post('/concours/ajax', { star: $("#star-5").val()
+    $.post('/vote/ajax', { star: $("#star-5").val()
         }, function(data) {
           //  alert($("#star-5").val());
 
