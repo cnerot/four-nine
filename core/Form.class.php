@@ -288,6 +288,11 @@ class Form
             } else {
                 $values = "";
             }
+            if (isset($input['div_color'])) {
+                $div_color = $input['div_color'];
+            } else {
+                $div_color = "";
+            }
 
             /**
              * display input data
@@ -327,7 +332,7 @@ class Form
                 </div>
 
                 <?php
-            } elseif ($type == "radio") {
+            } elseif ($type == "radio" && $sumited==1) {
                 ?>
                 <div class="<?php echo $div_class ?>"><?php
                 foreach ($values as $value) { ?>
@@ -346,7 +351,28 @@ class Form
                 <?php } ?>
                 <span></span>
                 </div>
-                <?php
+             <?php } elseif ($type == "radio") { ?>
+
+               <div class="<?php echo $div_class ?>">
+                    <label
+                        class="<?php echo $class ; ?>"
+                        for="">
+                            <?php echo  $label; ?>
+                    </label>
+                   <?php foreach($div_color as $color) {?>
+                    <div class="center-align <?php echo $color ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $color; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id="<?php echo $id ; ?>"
+                        /> 
+                    </div>
+                   <?php } ?>
+               </div>
+                
+       <?php
             } else {
                 ?>
                 <div class="<?php echo $div_class ?>">

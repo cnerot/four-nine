@@ -15,7 +15,36 @@ class ThemeController
         if (!(new FBApp())->isAdmin()){
             Router::redirect();
         }
-        $this->theme = new FormTheme([
+        $colors = array(
+                      'pink darken-1',
+                       'red darken-1',
+                       'purple darken-1',
+                       'indigo darken-4',
+                       'blue darken-4',
+                       'blue accent-1',
+                       'teal darken-1',
+                       'teal accent-4',
+                       'light-green darken-4',
+                       'green accent-4',
+                       'yellow lighten-1',
+                       'amber lighten-1',
+                       'yellow darken-2',
+                       'yellow accent-4',
+                       'amber accent-3',
+                       'orange accent-3',
+                       'orange accent-4',
+                       'orange darken-4',
+                       'deep-orange darken-4',
+                       'brown darken-4',
+                       'grey darken-4',
+                       'grey darken-3',
+                       'grey darken-2',
+                       'grey',
+                       'black',
+                       'white',
+                       'transparent',);
+        
+        $this->theme = new Form([
             'options' => [
                 'method' => 'POST',
                 'action' => '#',
@@ -35,45 +64,136 @@ class ThemeController
                 ],
                 "bgColor" => [
                     "type" => "radio",
-                    "validation" => "date",
-                    "value" => '',
-                    "label" => '',
-                    "class"=> ''
+                    "validation" => "radio",
+                    "value" => 'jj',
+                    "label" => 'Couleur d\'arriere plan',
+                    "class" => 'center-align',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
                 ],
                 "bgImage" => [
-                    "type" => "radio",
-                    "validation" => "date",
+                    "type" => "file",
+                    "validation" => "file",
                     "value" => '',
-                    "label" => '',
-                    "class"=> ''
+                    "placeholder" => 'Image d\'arriere plan pour accueil',
+                    "class"=> 'radio-border theme',
+                    "div_class" =>'btn amber accent-4',
+                    "file_class" =>'file-field input-field',
+                    "icon_class" =>'material-icons left',
+                    "icon_content" =>'add_a_photo',
+                    "class_wrapper" =>'file-path-wrapper',
+                    "class_inputWrapper" =>'file-path validate',
+                    "type_inputWrapper" =>'text',
                 ],
                 "bgNavColor" => [
                     "type" => "radio",
-                    "validation" => "date",
+                    "validation" => "radio",
                     "value" => '',
-                    "label" => '',
-                    "class"=> ''
+                    "label" => 'Couleur de header :',
+                    "class"=> 'theme',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                    
                 ],
                 "iconHomeColor" => [
                     "type" => "radio",
-                    "validation" => "date",
+                    "validation" => "radio",
                     "value" => '',
-                    "label" => '',
-                    "class"=> ''
+                    "label" => 'Couleur de l\'icon home :',
+                    "class"=> 'theme',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                    
                 ],
-                "bgColor" => [
+                "iconOffColor" => [
                     "type" => "radio",
                     "validation" => "date",
                     "value" => '',
-                    "label" => '',
-                    "class"=> ''
+                    "label" => 'Couleur de l\'icon se deconnecter',
+                    "class"=> 'theme',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
                 ],
-                "bgColor" => [
+                "nameColor" => [
                     "type" => "radio",
-                    "validation" => "date",
+                    "validation" => "radio",
                     "value" => '',
-                    "label" => '',
-                    "class"=> ''
+                    "label" => 'Couleur de "pardon maman"',
+                    "class"=> 'theme',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                ],
+                "titleColor" => [
+                    "type" => "radio",
+                    "validation" => "radio",
+                    "value" => '',
+                    "label" => 'Couleur de titre:',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                ],
+                "textNavColor" => [
+                    "type" => "radio",
+                    "validation" => "radio",
+                    "value" => '',
+                    "label" => 'couleur de texte de la bare de navigation :',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                ],
+                "textColor" => [
+                    "type" => "radio",
+                    "validation" => "radio",
+                    "value" => '',
+                    "label" => 'Couleur du texte :',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                ],
+                "btnColor" => [
+                    "type" => "radio",
+                    "validation" => "radio",
+                    "value" => '',
+                    "label" => 'Couleur des button home : ',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                ],
+                "textBtnColor" => [
+                    "type" => "radio",
+                    "validation" => "radio",
+                    "value" => '',
+                    "label" => 'couleur du text des btn home : ',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                ],
+                "collapsibleHeader" => [
+                    "type" => "radio",
+                    "validation" => "radio",
+                    "value" => '',
+                    "label" => 'Couleur des header des pages static : ',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                ],
+                "collapsibleBody" => [
+                    "type" => "radio",
+                    "validation" => "radio",
+                    "value" => '',
+                    "label" => 'Couleur des conteneur des static :',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                ],
+                "pageStat" => [
+                    "type" => "radio",
+                    "validation" => "radio",
+                    "value" => '',
+                    "label" => 'Couleur de l\'arriere plan des titres : ',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
                 ],
                
             ]

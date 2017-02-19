@@ -335,5 +335,25 @@
     .no-margin{
         margin-top: 0px;
     }
+    .theme [type="radio"]:not(:checked), .theme [type="radio"]:checked{
+        position: inherit; 
+        left: -9999px;
+        opacity: 1; 
+    }
+    .theme input[type="radio"] {
+        -webkit-appearance: checkbox;
+        box-sizing: border-box;
+    }
+    .theme div {
+        width:20px;
+        height:20px;
+        display:inline-block;
+        
+    }
+    .theme{
+        display:inline-block;
+    }
+
+
 
  
