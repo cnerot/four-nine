@@ -353,6 +353,20 @@
     .theme{
         display:inline-block;
     }
+    .input input[type=text], .input input[type=text]:focus{
+        padding:3px;
+        border:1px solid white;
+        border-radius:5px;
+        width:100%;
+        box-shadow:1px 1px 8px black inset;
+    }
+    .input .input input[type=text]:active, .input input[type=text]:hover {
+        box-shadow:1px 1px 1px  white inset;
+        border:1px solid  black;
+    }
+    .input label{
+        color: black;
+    }
 
 
 

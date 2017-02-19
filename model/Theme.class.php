@@ -21,6 +21,7 @@ class Theme extends Entity
     public $collapsibleHeader;
     public $collapsibleBody;
     public $pageStat;
+    public $applicated;
 
 
     /**
@@ -251,6 +252,21 @@ class Theme extends Entity
     public function setPageStat($pageStat)
     {
         $this->pageStat = $pageStat;
+    }
+    /**
+     * @return mixed
+     */
+    public function getApplicated()
+    {
+        return $this->applicated;
+    }
+
+    /**
+     * @param mixed $applicated
+     */
+    public function setApplicated($applicated)
+    {
+        $this->applicated = $applicated;
     }
    
 }

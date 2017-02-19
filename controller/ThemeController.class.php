@@ -60,14 +60,15 @@ class ThemeController
                     "validation" => "text",
                     "value" => '',
                     "label" => 'Nom du theme :',
-                    "class"=> 'input-field'
+                    "class"=> 'back-text',
+                    'div_class'=>'input'
                 ],
                 "bgColor" => [
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => 'jj',
-                    "label" => 'Couleur d\'arriere plan',
-                    "class" => 'center-align',
+                    "label" => 'Couleur d\'arriere plan :',
+                    "class" => 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -90,7 +91,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur de header :',
-                    "class"=> 'theme',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                     
@@ -100,7 +101,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur de l\'icon home :',
-                    "class"=> 'theme',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                     
@@ -109,8 +110,8 @@ class ThemeController
                     "type" => "radio",
                     "validation" => "date",
                     "value" => '',
-                    "label" => 'Couleur de l\'icon se deconnecter',
-                    "class"=> 'theme',
+                    "label" => 'Couleur de l\'icon se deconnecter :',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -118,8 +119,8 @@ class ThemeController
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
-                    "label" => 'Couleur de "pardon maman"',
-                    "class"=> 'theme',
+                    "label" => 'Couleur de "pardon maman" :',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -127,8 +128,8 @@ class ThemeController
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
-                    "label" => 'Couleur de titre:',
-                    "class"=> '',
+                    "label" => 'Couleur de titre :',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -137,7 +138,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'couleur de texte de la bare de navigation :',
-                    "class"=> '',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -146,7 +147,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur du texte :',
-                    "class"=> '',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -155,7 +156,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur des button home : ',
-                    "class"=> '',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -164,7 +165,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'couleur du text des btn home : ',
-                    "class"=> '',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -173,7 +174,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur des header des pages static : ',
-                    "class"=> '',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -182,7 +183,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur des conteneur des static :',
-                    "class"=> '',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -191,7 +192,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur de l\'arriere plan des titres : ',
-                    "class"=> '',
+                    "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
