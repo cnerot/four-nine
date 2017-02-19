@@ -290,12 +290,141 @@ class FormTheme
             } else {
                 $idClass5 = "";
             }
-           
-                if (isset($input['div_color1'])) {
-                    $div_color1 = $input['div_color1'];
-                } else {
-                    $div_color1 = "";
-                }
+            if (isset($input['div_color1'])) {
+                $div_color1 = $input['div_color1'];
+            } else {
+                $div_color1 = "";
+            }
+            if (isset($input['div_color2'])) {
+                $div_color2 = $input['div_color2'];
+            } else {
+                $div_color2 = "";
+            }
+            if (isset($input['div_color3'])) {
+                $div_color3 = $input['div_color3'];
+            } else {
+                $div_color3 = "";
+            }
+            if (isset($input['div_color4'])) {
+                $div_color4 = $input['div_color4'];
+            } else {
+                $div_color4 = "";
+            }
+            if (isset($input['div_color5'])) {
+                $div_color5 = $input['div_color5'];
+            } else {
+                $div_color5 = "";
+            }
+            if (isset($input['div_color6'])) {
+                $div_color6 = $input['div_color6'];
+            } else {
+                $div_color6 = "";
+            }
+            if (isset($input['div_color7'])) {
+                $div_color7 = $input['div_color7'];
+            } else {
+                $div_color7 = "";
+            }
+            if (isset($input['div_color8'])) {
+                $div_color8 = $input['div_color8'];
+            } else {
+                $div_color8 = "";
+            }
+            if (isset($input['div_color9'])) {
+                $div_color9 = $input['div_color9'];
+            } else {
+                $div_color9 = "";
+            }
+            if (isset($input['div_color10'])) {
+                $div_color10 = $input['div_color10'];
+            } else {
+                $div_color10 = "";
+            }
+            if (isset($input['div_color11'])) {
+                $div_color11 = $input['div_color11'];
+            } else {
+                $div_color11 = "";
+            }
+            if (isset($input['div_color12'])) {
+                $div_color12 = $input['div_color12'];
+            } else {
+                $div_color12 = "";
+            }
+            if (isset($input['div_color13'])) {
+                $div_color13 = $input['div_color13'];
+            } else {
+                $div_color13 = "";
+            }
+            if (isset($input['div_color14'])) {
+                $div_color14 = $input['div_color14'];
+            } else {
+                $div_color14 = "";
+            }
+            if (isset($input['div_color15'])) {
+                $div_color15 = $input['div_color15'];
+            } else {
+                $div_color15 = "";
+            }
+            if (isset($input['div_color16'])) {
+                $div_color16 = $input['div_color16'];
+            } else {
+                $div_color16 = "";
+            }
+            if (isset($input['div_color17'])) {
+                $div_color17 = $input['div_color17'];
+            } else {
+                $div_color17 = "";
+            }
+            if (isset($input['div_color18'])) {
+                $div_color18 = $input['div_color18'];
+            } else {
+                $div_color18 = "";
+            }
+            if (isset($input['div_color19'])) {
+                $div_color19 = $input['div_color19'];
+            } else {
+                $div_color19 = "";
+            }
+            if (isset($input['div_color20'])) {
+                $div_color20 = $input['div_color20'];
+            } else {
+                $div_color20 = "";
+            }
+            if (isset($input['div_color21'])) {
+                $div_color21 = $input['div_color21'];
+            } else {
+                $div_color21 = "";
+            }
+            if (isset($input['div_color22'])) {
+                $div_color22 = $input['div_color22'];
+            } else {
+                $div_color22 = "";
+            }
+            if (isset($input['div_color23'])) {
+                $div_color23 = $input['div_color23'];
+            } else {
+                $div_color23 = "";
+            }
+            if (isset($input['div_color24'])) {
+                $div_color24 = $input['div_color24'];
+            } else {
+                $div_color24 = "";
+            }
+            if (isset($input['div_color25'])) {
+                $div_color25 = $input['div_color25'];
+            } else {
+                $div_color25 = "";
+            }
+            if (isset($input['div_color26'])) {
+                $div_color26 = $input['div_color26'];
+            } else {
+                $div_color26 = "";
+            }
+            if (isset($input['div_color27'])) {
+                $div_color27 = $input['div_color27'];
+            } else {
+                $div_color27 = "";
+            }
            
             /**
              * display input data
@@ -326,11 +455,11 @@ class FormTheme
                                 type="<?php echo $type ?>"
                                 class="<?php echo $class ?>"
                                 value="<?php echo (isset($data[$name])) ? $data[$name] : $value; ?>"
-                                placeholder="<?php echo $placeholder ?>"
+                                
                             >
                         </div>
                         <div class="<?php echo $class_wrapper ?>">
-                            <input class="<?php echo $class_inputWrapper ?>" type="text">
+                            <input class="<?php echo $class_inputWrapper ?>" placeholder="<?php echo $placeholder ?>" type="text">
                         </div>
                     </div>
   
@@ -343,44 +472,251 @@ class FormTheme
                         for="<?php echo $idClass1 ; ?>">
                             <?php echo  $label; ?>
                     </label>
-                    <div class="<?php echo $div_color1 ?>">
+                    <div class="center-align <?php echo $div_color1 ?>">
                         <input
                             type="<?php echo $type ?>"
                             value="<?php echo  $div_color1; ?>"
                             name="<?php echo $name ?>"
-                            class="<?php echo $idClass1 ; ?>"
+                            class="<?php echo $class ; ?>"
                             id="<?php echo $idClass1 ; ?>"
                         /> 
                     </div>
-                    <input
-                        type="<?php echo $type ?>"
-                        value="<?php echo  $value2; ?>"
-                        name="<?php echo $name ?>"
-                        class="<?php echo $idClass2 ; ?>"
-                        id="<?php echo $idClass2 ; ?>"
-                    />
-                    <input 
-                        type="<?php echo $type ?>"
-                        value="<?php echo  $value3; ?>"
-                        name="<?php echo $name ?>"
-                        class="<?php echo $idClass3 ; ?>"
-                        id="<?php echo $idClass3 ; ?>" 
-                    />
-                    <input
-                        type="<?php echo $type ?>"
-                        value="<?php echo  $value4; ?>"
-                        name="<?php echo $name ?>"
-                        class="<?php echo $idClass4; ?>"
-                        id="<?php echo $idClass4; ?>"
-                    />
-                    <input
-                        type="<?php echo $type ?>"
-                        value="<?php echo  $value5; ?>"
-                        name="<?php echo $name ?>"
-                        class="<?php echo $idClass5; ?>"
-                        id="<?php echo $idClass5; ?>"
-                    />
+                    <div class="center-align <?php echo $div_color2 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color2; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id="<?php echo $idClass2 ; ?>"
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color3 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color3; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id="<?php echo $idClass3 ; ?>"
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color4 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color4; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id="<?php echo $idClass3 ; ?>"
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color5 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color5; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id="<?php echo $idClass5 ; ?>"
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color6 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color6; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        />
+                    </div>
+                    <div class="center-align <?php echo $div_color7 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color7; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color8 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color8; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color9; ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color9; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color10 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color10; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color11 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color11; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color12 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color12; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color13 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color13; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color14 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color14; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color15 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color15; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color16 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color16; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color17 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color17; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color18 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color18; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color19 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color19; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color20 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color20; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color21 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color21; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color22 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color22; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color23 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color23; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color24 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color24; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color25 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color25; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color26 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color26; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
+                    <div class="center-align <?php echo $div_color27 ?>">
+                        <input
+                            type="<?php echo $type ?>"
+                            value="<?php echo  $div_color27; ?>"
+                            name="<?php echo $name ?>"
+                            class="<?php echo $class ; ?>"
+                            id=""
+                        /> 
+                    </div>
                 </div>
+                <br/>
   
                 <?php
             } else {

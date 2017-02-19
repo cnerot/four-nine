@@ -9,6 +9,7 @@
 
 class PhotoController
 {
+    
     public function preDeploy($args)
     {
 
@@ -23,11 +24,12 @@ class PhotoController
         $fb = new FBApp();
         $_SESSION['idUser'] = $fb->getFBUserData("/me")['id'];
 
-        $contestCurrent = (new Contest())->getCurrent();
-        $currentUserPhoto = (new Photo())->getCurrentUserPhoto($_SESSION['idUser'], $contestCurrent->getId());
-        $currentUserLink = (new Link())->getCurrentUserLink($_SESSION['idUser'], $contestCurrent->getId());
+        //$contestCurrent = (new Contest())->getCurrent();
+      //  $currentUserPhoto = (new Photo())->getCurrentUserPhoto($_SESSION['idUser'], $contestCurrent->getId());
+        //$currentUserLink = (new Link())->getCurrentUserLink($_SESSION['idUser'], $contestCurrent->getId());
         /**Get FB Albums*/
         $albums = $fb->getFBUserData("/me?fields=albums{name,photos{source}}");
+        
         if (isset($albums['albums'])) {
             $albums = $albums['albums']['data'];
         } else {
