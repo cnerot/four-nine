@@ -17,13 +17,21 @@ class ThemeController
         }
         $colors = array(
                       'pink darken-1',
+                      'pink lighten-2',
+                      'red darken-4',
+                       'red accent-4',
                        'red darken-1',
+                       'purple accent-1',
                        'purple darken-1',
+                       'purple darken-3',
                        'indigo darken-4',
+                       'indigo darken-1',
                        'blue darken-4',
                        'blue accent-1',
+                       'light-blue darken-3',
                        'teal darken-1',
                        'teal accent-4',
+                       'teal',
                        'light-green darken-4',
                        'green accent-4',
                        'yellow lighten-1',
@@ -35,6 +43,9 @@ class ThemeController
                        'orange accent-4',
                        'orange darken-4',
                        'deep-orange darken-4',
+                       'brown lighten-2',
+                       'brown darken-1',
+                       'brown darken-2',
                        'brown darken-4',
                        'grey darken-4',
                        'grey darken-3',
@@ -263,8 +274,9 @@ class ThemeController
             //Logger::debug($data);
             $theme->fromArray($theme_data);
             $theme->save();
+           
         }
-
+        
         $view = new View();
         $view->setView('gestionTheme');
         $view->putData('styles', ['home']);

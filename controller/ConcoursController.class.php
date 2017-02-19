@@ -41,7 +41,7 @@ class ConcoursController
                     "label" => 'Date de fin',
                     "class"=> 'datepicker'
                 ],
-                "title" => [
+                "name" => [
                     "type" => "text",
                     "validation" => "text",
                     "value" => '',

@@ -7,6 +7,7 @@
 class Theme extends Entity
 {
     public $id;
+    public $name;
     public $bgColor;
     public $bgImage;
     public $bgNavColor;
@@ -37,6 +38,20 @@ class Theme extends Entity
     public function setId($id)
     {
         $this->id = $id;
+    }
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
     /**
      * @param mixed $bgColor
@@ -98,7 +113,7 @@ class Theme extends Entity
     /**
      * @param mixed $textColor
      */
-    public function setName($textColor)
+    public function setTextColor($textColor)
     {
         $this->textColor = $textColor;
     }

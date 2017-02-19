@@ -102,7 +102,7 @@ $pages = (new Staticpages())->getWhere([]);
         <div class="row">
             <div class="col s10 ">
             </div>
-            <div class="col s2 right-align">
+            <div class="col s4 right">
                 <ul>
                     <?php foreach ($pages as $page): ?>
                         <li><a class="yellow-text text-lighten-1" href="<?php echo Router::getUrl("pages","show", ['id'=>$page->getId()])?>"><?php echo strtoupper($page->getTitle()); ?></a></li>

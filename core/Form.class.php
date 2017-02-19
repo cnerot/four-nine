@@ -363,23 +363,27 @@ class Form
                 </div>
              <?php } elseif ($type == "radio") { ?>
 
-               <div class="<?php echo $div_class ?>">
-                    <label
-                        class="<?php echo $class ; ?>"
-                        for="">
-                            <?php echo  $label; ?>
-                    </label>
-                   <?php foreach($div_color as $color) {?>
-                    <div class="center-align <?php echo $color ?>">
-                        <input
-                            type="<?php echo $type ?>"
-                            value="<?php echo  $color; ?>"
-                            name="<?php echo $name ?>"
+               <div class="top-5 down-5 <?php echo $div_class ?>">
+                   <div class="col s12">
+                        <label
                             class="<?php echo $class ; ?>"
-                            id="<?php echo $id ; ?>"
-                        /> 
-                    </div>
-                   <?php } ?>
+                            for="">
+                                <?php echo  $label; ?>
+                        </label>
+                   </div>
+                   <div class="col s12">
+                        <?php foreach($div_color as $color) {?>
+                         <div class="center-align <?php echo $color ?>">
+                             <input
+                                 type="<?php echo $type ?>"
+                                 value="<?php echo  $color; ?>"
+                                 name="<?php echo $name ?>"
+                                 class="<?php echo $class ; ?>"
+                                 id="<?php echo $id ; ?>"
+                             /> 
+                         </div>
+                        <?php } ?>
+                   </div>
                </div>
                 
        <?php
