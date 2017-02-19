@@ -31,14 +31,6 @@ abstract class Entity
         $this->columns = array_keys(array_diff_key($allProps, $classProps));
     }
     
-    public function savePicture($bgImage){
-        $dir = '/media/images/';
-        $ext = strtolower( pathinfo($bgImage['name'], PATHINFO_EXTENSION) );
-        $file=uniqid().'.'.$ext;
-
-         //**** on bouge l'image
-        move_uploaded_file($bgImage['tmp_name'], $dir.$file);
-    }
     /**
      * Will update or save the entity to the database
      *

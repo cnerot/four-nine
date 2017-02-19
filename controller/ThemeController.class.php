@@ -47,7 +47,7 @@ class ThemeController
         $this->theme = new Form([
             'options' => [
                 'method' => 'POST',
-                'action' => '#',
+                'action' => '/Theme/new',
                 'submit' => 'Valider',
                 'name' => 'postform',
                 'class' => '',
@@ -108,7 +108,7 @@ class ThemeController
                 ],
                 "iconOffColor" => [
                     "type" => "radio",
-                    "validation" => "date",
+                    "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur de l\'icon se deconnecter :',
                     "class"=> 'black-text',
@@ -216,7 +216,54 @@ class ThemeController
     }
     public function newAction($args)
     {
-       //a faire 
+       //a faire  
+         $data = $this->theme->validate();
+
+        if ($data) {
+
+        $theme = new Theme();
+  
+        if(isset($_FILES['bgImage'])) {
+            
+                if ($_FILES['bgImage']['type'] != "image/png" && $_FILES['bgImage']['type'] != "image/jpeg") {
+                    $error[] = "Veuillez sélectionner une image de type png ou jpg";
+                    $err = true;
+                }
+                if ($_FILES['bgImage']['size'] > 10000000) {
+                    $error[] = "Veuillez sélectionner un fichier de 10 mo maximum";
+                    $err = true;
+                }
+                $path = $_FILES['bgImage']['tmp_name'];
+                // a faire
+                $data['bgImage'] = $path;
+        }
+
+         //**** on bouge l'image
+       
+
+            /* Upload image */
+            /* prepare data */
+            $theme_data = [
+                "name" => $data['name'],
+                "bgColor" => $data['bgColor'],
+                "bgImage" => $data['bgImage'],
+                "bgNavColor" => $data['bgNavColor'],
+                "iconHomeColor" => $data['iconHomeColor'],
+                "iconOffColor" => $data['iconOffColor'],
+                "nameColor" => $data['nameColor'],
+                "titleColor" => $data['titleColor'],
+                "textNavColor" => $data['textNavColor'],
+                "textColor" => $data['textColor'],
+                "btnColor" => $data['btnColor'],
+                "textBtnColor" => $data['textBtnColor'],
+                "collapsibleHeader" => $data['collapsibleHeader'],
+                "collapsibleBody" => $data['collapsibleBody'],
+                "pageStat" => $data['pageStat'],
+            ];
+            //Logger::debug($data);
+            $theme->fromArray($theme_data);
+            $theme->save();
+        }
 
         $view = new View();
         $view->setView('gestionTheme');

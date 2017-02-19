@@ -182,6 +182,16 @@ class Form
                     Logger::log('invalid file');
                 }
             }
+            if ($input['validation'] == 'radio') {
+                $default = false;
+                if ($_POST[$key]) {
+                    $data[$key] =  $_POST[$key];
+                } else {
+                    $error["error"] = true;
+                    $error['fields'][] = $key;
+                    Logger::log('invalid radio value');
+                }
+            }
             if ($default) {
                 Logger::log('invalid default value (or unknown component)');
             }
