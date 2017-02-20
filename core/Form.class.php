@@ -192,6 +192,16 @@ class Form
                     Logger::log('invalid radio value');
                 }
             }
+            if ($input['validation'] == 'select') {
+                $default = false;
+                if ($_POST[$key]) {
+                    $data[$key] =  $_POST[$key];
+                } else {
+                    $error["error"] = true;
+                    $error['fields'][] = $key;
+                    Logger::log('invalid select value');
+                }
+            }
             if ($default) {
                 Logger::log('invalid default value (or unknown component)');
             }
@@ -298,6 +308,11 @@ class Form
             } else {
                 $values = "";
             }
+            if (isset($input['themes'])) {
+                $themes = $input['themes'];
+            } else {
+                $themes = "";
+            }
             if (isset($input['div_color'])) {
                 $div_color = $input['div_color'];
             } else {
@@ -340,8 +355,21 @@ class Form
                         <input class="<?php echo $class_inputWrapper ?>" type="text">
                     </div>
                 </div>
-
                 <?php
+            } elseif ($name == "select") {
+                ?>
+                    <div class="<?php echo $div_class ?>">
+                        <div class="<?php echo $class ?>">
+                            <label class="<?php echo $class ?>"><?php echo $label ?></label>
+                            <select name="<?php echo $name ?>" class="<?php echo $class ?>">
+                                <?php foreach ($themes as $theme){?>
+                                      <option value="<?php echo $theme->getId() ?>"><?php echo $theme->getName(); ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+               
+              <?php
             } elseif ($type == "radio" && $sumited==1) {
                 ?>
                 <div class="<?php echo $div_class ?>"><?php
@@ -403,7 +431,7 @@ class Form
                 <?php
             }
         }
-        if ($sumited != 1) {
+        if ($sumited != 1 && $sumited!=2) {
             echo '<div class="row">'
                 . '<div class="col s4">'
                 . '<a class="waves-effect waves-light btn left grey lighten-2 black-text">'
@@ -418,6 +446,17 @@ class Form
                 . '</div>';
             echo '</form>';
 
+        }elseif($sumited == 2){
+            echo  '<div class="top-5 col s4 right">'
+                    . '<button '
+                        . 'name="submit"'
+                        . ' id="submit"'
+                        . ' type="submit"'
+                        . ' onclick="' . $this->onclick . '" '
+                        . 'class="btn right blue accent-4">' . $this->submit
+                    . '</button>'
+                . '</div>';
+            echo '</form>';
         }
     }
 }

@@ -23,6 +23,15 @@ $fb = new FBApp();
  * Get Static pages
  */
 $pages = (new Staticpages())->getWhere([]);
+/*$themeApplicated = (new Theme())->getWhere(['applicated'=>true]);
+if(empty($themeApplicated)){
+    $themeApplicated = (new Theme())->getWhere(['name'=>'default']);
+}
+$theme= array();
+foreach($themeApplicated as $key=>$value){
+    $theme[$key] = $value;
+}/ a continuer*/
+//a tester ici
 ?>
 <head>
     <title><?php echo $params['title']; ?></title>
@@ -122,7 +131,7 @@ $pages = (new Staticpages())->getWhere([]);
             © 2017 Copyright Text
             <a class="yellow-text text-lighten-1 right" href="#!">Contactez-nous</a>
             </div>
-          </div>
+    </div>
         </footer>
       <script type="text/javascript" src="/media/js/jquery-3.1.1.min.js"></script>
       <script type="text/javascript" src="/media/js/materialize.js"></script>

@@ -15,6 +15,16 @@ class ThemeController
         if (!(new FBApp())->isAdmin()){
             Router::redirect();
         }
+        $theme = new Theme();
+        $themes = $theme->getWhere();
+//        //var_dump($themes);
+//        foreach ($themes as $theme){
+//           // var_dump($theme->getId());
+//        }
+//        $values=array();
+//        foreach ($themes as $theme){
+//            $values[]=$theme->getName();
+//        }
         $colors = array(
                       'pink darken-1',
                       'pink lighten-2',
@@ -210,6 +220,27 @@ class ThemeController
                
             ]
         ]);
+        $this->themeChoice = new Form([
+            'options' => [
+                'method' => 'POST',
+                'action' => '/Theme/edit',
+                'submit' => 'Appliquer',
+                'name' => 'postform',
+                'class' => '',
+                "id" => 'test',
+                'enctype' => "multipart/form-data"
+            ],
+            'data' => [
+                "select" => [
+                    "type" => "select",
+                    "validation" => "select",
+                    "themes" => $themes,
+                    "label" => 'choisir le théme à appliquer :',
+                    "class"=> 'browser-default black-text',
+                    'div_class'=>''
+                ]
+            ]
+        ]);
             
     
     }
@@ -219,6 +250,7 @@ class ThemeController
         $view = new View();
         $view->setView('gestionTheme');
         $view->putData('styles', ['home']);
+        $view->putData('themeChoice', $this->themeChoice);
         $view->putData('theme', $this->theme);
     }
 
@@ -270,6 +302,7 @@ class ThemeController
                 "collapsibleHeader" => $data['collapsibleHeader'],
                 "collapsibleBody" => $data['collapsibleBody'],
                 "pageStat" => $data['pageStat'],
+                "applicated" => false,
             ];
             //Logger::debug($data);
             $theme->fromArray($theme_data);
@@ -280,15 +313,29 @@ class ThemeController
         $view = new View();
         $view->setView('gestionTheme');
         $view->putData('styles', ['home']);
+        $view->putData('themeChoice', $this->themeChoice);
         $view->putData('theme', $this->theme);
     }
 
     public  function editAction()
     {
-        //a faire
+        $theme = (new Theme())->getOneWhere(['id' => $_POST["select"]]);
+        if (empty($theme)) {
+            echo '<script>Le thème n\'exite plus.</script>';
+        }
+        $themeApplicated = (new Theme())->getWhere(['applicated' => true]);
+        if (isset($themeApplicated)) {
+            foreach ($themeApplicated as $themeApp){
+                $themeApp->setApplicated(false);
+                $themeApp->save();
+            }
+        }
+        $theme->setApplicated(true);
+        $theme->save();
         
         $view = new View();
         $view->setView('gestionTheme');
+        $view->putData('themeChoice', $this->themeChoice);
         $view->putData('theme', $this->theme);
 
     }
