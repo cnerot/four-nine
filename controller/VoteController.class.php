@@ -58,27 +58,41 @@ class VoteController
     public function voteAction($args)
     {
         $fb = new FBApp();
-
+		
+		$err = [];
+		
         $contestCurrent = (new Contest())->getCurrent();
-        $links = (new Link())->getWhere(['id_contest' => $contestCurrent->getId()]);
-        $listPhotosForCurrentContest = array();
+		if(!empty($contestCurrent)){
+			$links = (new Link())->getWhere(['id_contest' => $contestCurrent->getId()]);
+			$listPhotosForCurrentContest = array();
 
-        foreach ($links as $link) {
-            $photo = (new Photo())->getOneWhere(['id' => $link->getIdPhoto()]);
-            $fbPhoto = $fb->getFBPageData($photo->getIdFb() . "?fields=source");
-            $fbPhoto = $fbPhoto->getDecodedBody();
-            $listPhotosForCurrentContest[] = [
-                'id' => $photo->getIdFb(),
-                'source' => $fbPhoto['source'],
-                'link_id' => $link->getId()
-            ];
-        }
+			foreach ($links as $link) {
+				$photo = (new Photo())->getOneWhere(['id' => $link->getIdPhoto()]);
+				$fbPhoto = $fb->getFBPageData($photo->getIdFb() . "?fields=source");
+				$fbPhoto = $fbPhoto->getDecodedBody();
+				$listPhotosForCurrentContest[] = [
+					'id' => $photo->getIdFb(),
+					'source' => $fbPhoto['source'],
+					'link_id' => $link->getId()
+				];
+			}
+		}else{
+			$msg = (new Contest())->getNext();
+			
+			$err[] = $msg;
+			
+			if($msg == false){
+				$err[] = "Aucun concours prévu pour le moment";
+			}
+		}
+        
 
         $view = new View();
         $view->setView('voteConcours');
         $view->putData('styles', ['gallery', 'stars']);
         $view->putData('voteform', $this->form);
         $view->putData('contestCurrent', $contestCurrent);
+        $view->putData('err', $err);
         $view->putData('listPhotos', $listPhotosForCurrentContest);
     }
 }
