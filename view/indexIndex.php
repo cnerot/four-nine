@@ -1,10 +1,21 @@
-     <div id="index-banner" class="parallax-container">
+     <pre>
+	 <?php
+	 print_r($contestCurrent);
+	 ?>
+	 </pre>
+	 <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
           <div class="container">
             <br><br>
             <h1 class="header center yellow-text text-accent-4">concours photo</h1>
             <div class="row center">
-              <h5 class="header col s12 white-text light">Lot à gagner en participant au concours</h5>
+              <h5 class="header col s12 white-text light">Lot à gagner en participant au concours <?php echo $contestCurrent->name; ?></h5>
+			  <label class="header col s12 white-text light">
+				<?php echo $contestCurrent->description; ?>
+			  </label>			  
+			  <p class="header col s12 white-text light">
+				Le concours a lieu du <span class="dateFR"><?php echo $contestCurrent->start; ?></span> au <span class="dateFR"><?php echo $contestCurrent->end; ?></span>
+			  </p>
             </div>
             <div class="row center">
               <a href="<?php echo Router::getUrl("Photo","index");?>" id="download-button" class="btn-large waves-effect waves-light black-text yellow lighten-1">Je participe <i class="material-icons right">play_arrow</i></a>

@@ -135,7 +135,7 @@ $(document).ready(function () {
 	var y, m, d;
 	
 	for(var i = 0; i<$(".dateFR").length; i++){
-		date = $(".dateFR").eq(i).html();
+		date = $(".dateFR").eq(i).html().split(" ")[0];
 		dateSplit = date.split('-');
 		
 		y = dateSplit[0];

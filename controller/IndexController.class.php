@@ -33,9 +33,12 @@ class IndexController
     }
     public function indexAction($args)
     {
+		$contestCurrent = (new Contest())->getCurrent();
+		
         $view = new View();
         $view->setView('indexIndex');
         $view->putData('name', 'moi');
+        $view->putData('contestCurrent', $contestCurrent);
         $view->putData('styles', ['home']);
     }
 

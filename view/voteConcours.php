@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col s12 p_pageStat">
             <p>Photos des participants au concours <?php echo $contestCurrent->name; ?></p>
-            <p>(concours valable du <?php echo $contestCurrent->start; ?> au <?php echo $contestCurrent->end; ?>
-                )</span></p>
+            <p>(concours valable du <span class="dateFR"><?php echo $contestCurrent->start; ?></span> au <span class="dateFR"><?php echo $contestCurrent->end; ?></span>
+                )</p>
         </div>
         <?php if (empty($listPhotos)) : ?>
             <div style="margin-bottom: 10px" class="center">
