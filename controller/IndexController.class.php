@@ -33,9 +33,25 @@ class IndexController
     }
     public function indexAction($args)
     {
+		$contestCurrent = (new Contest())->getCurrent();
+		
+		$err = [];
+		
+		if(empty($contestCurrent)){
+			$msg = (new Contest())->getNext();
+			
+			$err[] = $msg;
+			
+			if($msg == false){
+				$err[] = "Aucun concours prévu pour le moment";
+			}
+		}
+		
         $view = new View();
         $view->setView('indexIndex');
         $view->putData('name', 'moi');
+        $view->putData('contestCurrent', $contestCurrent);
+		$view->putData('err', $err);
         $view->putData('styles', ['home']);
     }
 

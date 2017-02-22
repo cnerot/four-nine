@@ -36,6 +36,30 @@ class Contest extends Entity
         return false;
 
     }
+	
+	/**
+     * @return mixed
+     */
+    public function getNext()
+    {
+		$today = date('Y-m-d');
+        $nextContestsStart = $this->getWhere(['start' => ['operator' => 'greater_equal', "value" => $today]]);
+			
+			if(!empty($nextContestsStart)){
+				$nextDate = $nextContestsStart[0]->start;
+				foreach($nextContestsStart as $nextContestStartCurrent){
+					if( strtotime($nextContestStartCurrent->start) < strtotime($nextDate) ){
+						$nextDate = $nextContestStartCurrent->start;
+					}
+				}
+				
+				$nextDate = explode(" ", $nextDate)[0];
+				return 'Aucun concours photo pour le moment, le prochain concours démarrera le <span class="dateFR">'.$nextDate.'</span>';
+			}
+			
+			return false;
+
+    }
 
     /**
      * @return mixed

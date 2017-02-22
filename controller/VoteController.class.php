@@ -58,7 +58,9 @@ class VoteController
     public function voteAction($args)
     {
         $fb = new FBApp();
-       
+		
+		$err = [];
+		
         $contestCurrent = (new Contest())->getCurrent();
 
         if($contestCurrent){
@@ -76,12 +78,21 @@ class VoteController
                     'link_id' => $link->getId()
                 ];
             }
-        }
+		}else{
+			$msg = (new Contest())->getNext();
+			
+			$err[] = $msg;
+			
+			if($msg == false){
+				$err[] = "Aucun concours prévu pour le moment";
+			}
+		}
         $view = new View();
         $view->setView('voteConcours');
         $view->putData('styles', ['gallery', 'stars']);
         $view->putData('voteform', $this->form);
         $view->putData('contestCurrent', $contestCurrent);
+        $view->putData('err', $err);
         $view->putData('listPhotos', $listPhotosForCurrentContest);
     }
 }
