@@ -1,14 +1,27 @@
 <div class="container">
     <div class="row">
-        <div class="col s12 p_pageStat <?php echo $themeApplicated->getPageStat(); ?>">
-            <p>Photos des participants au concours <?php echo $contestCurrent->name; ?></p>
-            <p>(concours valable du <?php echo $contestCurrent->start; ?> au <?php echo $contestCurrent->end; ?>
-                )</span></p>
+        <div class="col s12 p_pageStat">
+			<?php if(!empty($contestCurrent)) : ?>
+				<p>Photos des participants au concours <?php echo $contestCurrent->name; ?></p>
+				<p>(concours valable du <span class="dateFR"><?php echo $contestCurrent->start; ?></span> au <span class="dateFR"><?php echo $contestCurrent->end; ?></span>
+					)</p>
+			<?php endif; ?>
+			
+			<?php $dontDispErrListPhotos = false; ?>
+			
+			<?php foreach($err as $error) : ?>
+				<div class="header col s12 white-text light">
+					<?php echo $error; ?>
+				</div>
+				<?php $dontDispErrListPhotos = true; ?>
+			<?php endforeach; ?>
         </div>
         <?php if (empty($listPhotos)) : ?>
-            <div style="margin-bottom: 10px" class="center">
-                <p class="<?php echo $themeApplicated->getTextColor(); ?>"">Aucune photo n'a encore été uploadée</label>
-            </div>
+			<?php if($dontDispErrListPhotos == false) : ?>
+				<div style="margin-bottom: 10px" class="center">
+					<label>Aucune photo n'a encore été uploadée</label>
+				</div>
+			<?php endif; ?>
         <?php else : ?>
             <div class=" col s12 panelGalerie p_pageStat">
 

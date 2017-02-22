@@ -1,6 +1,5 @@
 <div class="container">
     <ul id="tabs-swipe" class="tabs">
-
         <li class="tab col s3"><a href="#test-swipe-1" class="active">Photo Actuel</a></li>
    </ul>
 </div>
@@ -10,7 +9,6 @@
 <div class="container">
     <ul id="tabs-swipe" class="tabs">
         <?php $i = 1; ?>
-        
         <?php foreach ($albums as $album): ?>
             <?php if (isset($album['photos']['data'])): ?>
                 <li class="tab col s3"><a href="#test-swipe-<?php echo $i; ?>"><?php echo $album['name'] ?></a></li>
@@ -18,7 +16,7 @@
                 <div class="col s12">
                     <div class="col s10">
                         <div class="file-field input-field">
-                            <div class="btn   red accent-2">
+                            <div class="btn red accent-2">
                                 <i class="material-icons">add_a_photo</i>
                                 <label for="file_img"></label>
                                 <input type="file" placeholder="" value="" class="" name="file_img">
@@ -134,8 +132,8 @@
 	$(document).ready(function(){
 		$("#ValidFormSendPhotoFromFb").click(function(){
 			// valide formulaire
-			
-			$("#typeSubmit").val("fb"); // envoi par fb			
+
+			$("#typeSubmit").val("fb"); // envoi par fb
 			$("#formAddPhoto").validate();
 		});
 	});

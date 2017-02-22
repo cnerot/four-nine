@@ -47,33 +47,27 @@ class PhotoController
         }
 
         if (isset($_POST['submit'])) {
+            $prize_img = new File("file_img");
             if (isset($_POST['idPhotoFbToSend'])) {
                 $source = $fb->getFBUserData($_POST['idPhotoFbToSend'] . '?fields=source');
                 $source = $source['source'];
-
                 $args = array('message' => 'Photo Caption',
                     'url' => $source
                 );
                 $data = $fb->postFBPageData(Config::DATA_PAGE_ID . '/photos', $args);
                 $newFb = $data->getDecodedBody();
                 $newFbId = $newFb['id'];
-            } elseif (isset($_FILES['file_img'])) {
-                if ($_FILES['file_img']['type'] != "image/png" && $_FILES['file_img']['type'] != "image/jpeg") {
-                    $error[] = "Veuillez sélectionner une image de type png ou jpg";
-                    $err = true;
+            } elseif ($prize_img) {
+                if ($prize_img->check_size(10,'mo') && $prize_img->check_extention(['png', 'jpg'])){
+                    $args = array(
+                        'source' => $fb->fb->fileToUpload($prize_img->getTmpName()),
+                    );
+                    $data = $fb->postFBPageData(Config::DATA_PAGE_ID . '/photos', $args);
+                    $newFb = $data->getDecodedBody();
+                    $newFbId = $newFb['id'];
+                } else {
+                    $error[] = "Une erreur s'est produite";
                 }
-                if ($_FILES['file_img']['size'] > 10000000) {
-                    $error[] = "Veuillez sélectionner un fichier de 10 mo maximum";
-                    $err = true;
-                }
-                $path = $_FILES['file_img']['tmp_name'];
-                $args = array(
-                    'source' => $fb->fb->fileToUpload($path),
-                );
-                $data = $fb->postFBPageData(Config::DATA_PAGE_ID . '/photos', $args);
-
-                $newFb = $data->getDecodedBody();
-                $newFbId = $newFb['id'];
             }
             if (isset($newFbId)) {
                 $new_photo = new Photo();

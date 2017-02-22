@@ -1,10 +1,27 @@
-     <div id="index-banner" class="parallax-container">
+	 <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
           <div class="container">
             <br><br>
             <h1 class="header center <?php echo $themeApplicated->getTitleColor(); ?>">concours photo</h1>
             <div class="row center">
-              <h5 class="header col s12 <?php echo $themeApplicated->getTextColor(); ?> light">Lot à gagner en participant au concours</h5>
+
+			<?php if(!empty($contestCurrent)) : ?>
+                <h5 class="header col s12 <?php echo $themeApplicated->getTextColor(); ?> light">Lot à gagner en participant au concours</h5>
+
+                <h5 class="header col s12 <?php echo $themeApplicated->getTextColor(); ?> light">Lot à gagner en participant au concours <?php echo $contestCurrent->name; ?></h5>
+			  <label class="header col s12 <?php echo $themeApplicated->getTextColor(); ?> light">
+				<?php echo $contestCurrent->description; ?>
+			  </label>			  
+			  <p class="header col s12 <?php echo $themeApplicated->getTextColor(); ?> light">
+				Le concours a lieu du <span class="dateFR"><?php echo $contestCurrent->start; ?></span> au <span class="dateFR"><?php echo $contestCurrent->end; ?></span>
+			  </p>
+			<?php endif; ?>
+			
+			<?php foreach($err as $error) : ?>
+				<div class="header col s12 <?php echo $themeApplicated->getTextColor(); ?> light">
+					<?php echo $error; ?>
+				</div>
+			<?php endforeach; ?>
             </div>
             <div class="row center">
               <a href="<?php echo Router::getUrl("Photo","index");?>" 
