@@ -81,7 +81,7 @@ class ThemeController
                     "validation" => "text",
                     "value" => '',
                     "label" => 'Nom du theme :',
-                    "class"=> 'back-text',
+                    "class"=> 'black-text',
                     'div_class'=>'input'
                 ],
                 "bgColor" => [
@@ -120,6 +120,7 @@ class ThemeController
                 "iconHomeColor" => [
                     "type" => "radio",
                     "validation" => "radio",
+                    "text" =>'1',
                     "value" => '',
                     "label" => 'Couleur de l\'icon home :',
                     "class"=> 'black-text',
@@ -130,6 +131,7 @@ class ThemeController
                 "iconOffColor" => [
                     "type" => "radio",
                     "validation" => "radio",
+                    "text" =>'1',
                     "value" => '',
                     "label" => 'Couleur de l\'icon se deconnecter :',
                     "class"=> 'black-text',
@@ -149,6 +151,7 @@ class ThemeController
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
+                    "text" =>'1',
                     "label" => 'Couleur de titre :',
                     "class"=> 'black-text',
                     "div_class"=> 'theme',
@@ -158,6 +161,7 @@ class ThemeController
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
+                    "text" =>'1',
                     "label" => 'couleur de texte de la bare de navigation :',
                     "class"=> 'black-text',
                     "div_class"=> 'theme',
@@ -167,6 +171,7 @@ class ThemeController
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
+                    "text" =>'1',
                     "label" => 'Couleur du texte :',
                     "class"=> 'black-text',
                     "div_class"=> 'theme',
@@ -185,6 +190,7 @@ class ThemeController
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
+                    "text" =>'1',
                     "label" => 'couleur du text des btn home : ',
                     "class"=> 'black-text',
                     "div_class"=> 'theme',

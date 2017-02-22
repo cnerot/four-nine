@@ -318,6 +318,11 @@ class Form
             } else {
                 $div_color = "";
             }
+            if (isset($input['text'])) {
+                $text = $input['text'];
+            } else {
+                $text = "";
+            }
 
             /**
              * display input data
@@ -389,7 +394,7 @@ class Form
                 <?php } ?>
                 <span></span>
                 </div>
-             <?php } elseif ($type == "radio") { ?>
+           <?php } elseif ($type == "radio") { ?>
 
                <div class="top-5 down-5 <?php echo $div_class ?>">
                    <div class="col s12">
@@ -401,15 +406,31 @@ class Form
                    </div>
                    <div class="col s12">
                         <?php foreach($div_color as $color) {?>
-                         <div class="center-align <?php echo $color ?>">
-                             <input
-                                 type="<?php echo $type ?>"
-                                 value="<?php echo  $color; ?>"
-                                 name="<?php echo $name ?>"
-                                 class="<?php echo $class ; ?>"
-                                 id="<?php echo $id ; ?>"
-                             /> 
-                         </div>
+                       
+                            <?php if($text=='1'){?>
+                              <div class="center-align <?php echo $color ?>">
+                                  <input
+                                      type="<?php echo $type ?>"
+                                      value="<?php
+                                                        $newTextColor = str_replace(' ', '-text text-',$color);
+                                                        echo  $newTextColor;
+                                            ?>"
+                                      name="<?php echo $name ?>"
+                                      class="<?php echo $class ; ?>"
+                                      id="<?php echo $id ; ?>"
+                                  /> 
+                              </div>
+                            <?php }else{?>
+                              <div class="center-align <?php echo $color ?>">
+                                  <input
+                                      type="<?php echo $type ?>"
+                                      value="<?php echo  $color; ?>"
+                                      name="<?php echo $name ?>"
+                                      class="<?php echo $class ; ?>"
+                                      id="<?php echo $id ; ?>"
+                                  /> 
+                              </div>
+                            <?php }?>
                         <?php } ?>
                    </div>
                </div>
