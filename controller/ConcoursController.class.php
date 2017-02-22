@@ -13,7 +13,7 @@ class ConcoursController
 
     public function preDeploy($args)
     {
-        if (!(new FBApp())->isAdmin()){
+        if (!(new FBApp())->isAdmin()) {
             Router::redirect();
         }
         $this->form = new Form([
@@ -32,14 +32,23 @@ class ConcoursController
                     "validation" => "date",
                     "value" => '',
                     "label" => 'Date de début :',
-                    "class"=> 'datepicker'
+                    "class" => 'datepicker'
                 ],
                 "end" => [
                     "type" => "date",
                     "validation" => "date",
                     "value" => '',
                     "label" => 'Date de fin',
-                    "class"=> 'datepicker'
+                    "class" => 'datepicker'
+                ],
+                "upload_msg" => [
+                    "type" => "text",
+                    "validation" => "text",
+                    "value" => '',
+                    "label" => 'Post message :',
+                    "Placeholder" => "replace values ({title}, {start}, {end})",
+                    "class" => 'validate',
+                    "div_class" => 'input-field'
                 ],
                 "title" => [
                     "type" => "text",
@@ -61,13 +70,13 @@ class ConcoursController
                     "type" => "file",
                     "validation" => "file",
                     "value" => '',
-                    "div_class" =>'btn amber accent-4',
-                    "file_class" =>'file-field input-field',
-                    "icon_class" =>'material-icons left',
-                    "icon_content" =>'add_a_photo',
-                    "class_wrapper" =>'file-path-wrapper',
-                    "class_inputWrapper" =>'file-path validate',
-                    "type_inputWrapper" =>'text',
+                    "div_class" => 'btn amber accent-4',
+                    "file_class" => 'file-field input-field',
+                    "icon_class" => 'material-icons left',
+                    "icon_content" => 'add_a_photo',
+                    "class_wrapper" => 'file-path-wrapper',
+                    "class_inputWrapper" => 'file-path validate',
+                    "type_inputWrapper" => 'text',
                 ],
                 "description" => [
                     "type" => "textarea",
@@ -80,7 +89,7 @@ class ConcoursController
                 ],
             ]
         ]);
-            
+
         $this->voteform = new Form([
             'options' => [
                 'method' => 'POST',
@@ -88,7 +97,7 @@ class ConcoursController
                 'submit' => 'Send',
                 'name' => 'postform',
                 'class' => '',
-                'id'    => 'ratingsForm',
+                'id' => 'ratingsForm',
                 'enctype' => "multipart/form-data"
             ],
             'data' => [
@@ -101,16 +110,17 @@ class ConcoursController
                     "value3" => '3',
                     "value4" => '4',
                     "value5" => '5',
-                    "idClass1"=> 'star-1', //id and class have the same value, i will use it for the both.
-                    "idClass2"=> 'star-2',
-                    "idClass3"=> 'star-3',
-                    "idClass4"=> 'star-4',
-                    "idClass5"=> 'star-5',
+                    "idClass1" => 'star-1', //id and class have the same value, i will use it for the both.
+                    "idClass2" => 'star-2',
+                    "idClass3" => 'star-3',
+                    "idClass4" => 'star-4',
+                    "idClass5" => 'star-5',
                 ],
             ]
         ]);
 
     }
+
     public function indexAction($args)
     {
         $concours = new Contest();
@@ -122,26 +132,45 @@ class ConcoursController
         $view->putData('concours', $concours);
     }
 
-    public function deleteAction($args){
+    public function deleteAction($args)
+    {
         $concours = new Contest();
-        $concours = $concours->getOneWhere(["id"=>$_REQUEST['id']]);
+        $concours = $concours->getOneWhere(["id" => $_REQUEST['id']]);
         $concours->delete();
     }
+
     public function newAction($args)
     {
         $data = $this->form->validate();
 
         if ($data) {
-
             $contest = new Contest();
-
+            $fb = new FBApp();
             /* Upload image */
+            $prize_img = new File("prize_img");
+            if ($prize_img->check_size(10,'mo') && $prize_img->check_extention(['png', 'jpg'])){
+                $message = $data['upload_msg'];
+                $message = str_replace('{title}', $data['title'],$message);
+                $message = str_replace('{start}', $data['start'],$message);
+                $message = str_replace('{end}', $data['end'],$message);
+                $args = array(
+                    'message'       => $message,
+                    'source'        => $fb->fb->fileToUpload($prize_img->getTmpName()),
+                );
+                $fb_response = $fb->postFBPageData(Config::DATA_PAGE_ID . '/photos', $args);
+                $newFb = $fb_response->getDecodedBody();
+                $newFbId = $newFb['id'];
+            } else {
+                $newFbId = "";
+            }
+
             /* prepare data */
             $contest_data = [
-                "name" => $data['name'],
+                "name" => $data['title'],
                 "description" => $data['description'],
                 "start" => $data['start'],
                 "end" => $data['end'],
+                "photo" => $newFbId,
             ];
             //Logger::debug($data);
             $contest->fromArray($contest_data);
@@ -153,10 +182,12 @@ class ConcoursController
         $view->putData('styles', ['home']);
         $view->putData('form', $this->form);
     }
-    public  function editAction(){
+
+    public function editAction()
+    {
 
         $concours = new Contest();
-        $concours = $concours->getOneWhere(["id"=>$_REQUEST['id']]);
+        $concours = $concours->getOneWhere(["id" => $_REQUEST['id']]);
 
         $data = $this->form->validate();
         if ($data && !$data['error']) {

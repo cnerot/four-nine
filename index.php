@@ -4,7 +4,7 @@ require_once 'Config.class.php';
 
 // Core classes autoloader
 spl_autoload_register(function ($class) {
-    $searchPaths = [Config::CORE_PATH, Config::MODEL_PATH];
+    $searchPaths = [Config::CORE_PATH, Config::MODEL_PATH, Config::HELPER_PATH];
     foreach($searchPaths as $dir) {
         $path = $dir . DIRECTORY_SEPARATOR . $class . '.class.php';
         if (file_exists($path)) {
