@@ -50,7 +50,7 @@ class ConcoursController
                     "class" => 'validate',
                     "div_class" => 'input-field'
                 ],
-                "title" => [
+                "name" => [
                     "type" => "text",
                     "validation" => "text",
                     "value" => '',

@@ -58,22 +58,25 @@ class VoteController
     public function voteAction($args)
     {
         $fb = new FBApp();
-
+       
         $contestCurrent = (new Contest())->getCurrent();
-        $links = (new Link())->getWhere(['id_contest' => $contestCurrent->getId()]);
-        $listPhotosForCurrentContest = array();
 
-        foreach ($links as $link) {
-            $photo = (new Photo())->getOneWhere(['id' => $link->getIdPhoto()]);
-            $fbPhoto = $fb->getFBPageData($photo->getIdFb() . "?fields=source");
-            $fbPhoto = $fbPhoto->getDecodedBody();
-            $listPhotosForCurrentContest[] = [
-                'id' => $photo->getIdFb(),
-                'source' => $fbPhoto['source'],
-                'link_id' => $link->getId()
-            ];
+        if($contestCurrent){
+            $links = (new Link())->getWhere(['id_contest' => $contestCurrent->getId()]);
+
+            $listPhotosForCurrentContest = array();
+
+            foreach ($links as $link) {
+                $photo = (new Photo())->getOneWhere(['id' => $link->getIdPhoto()]);
+                $fbPhoto = $fb->getFBPageData($photo->getIdFb() . "?fields=source");
+                $fbPhoto = $fbPhoto->getDecodedBody();
+                $listPhotosForCurrentContest[] = [
+                    'id' => $photo->getIdFb(),
+                    'source' => $fbPhoto['source'],
+                    'link_id' => $link->getId()
+                ];
+            }
         }
-
         $view = new View();
         $view->setView('voteConcours');
         $view->putData('styles', ['gallery', 'stars']);

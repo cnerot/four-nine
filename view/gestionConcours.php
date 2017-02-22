@@ -1,5 +1,4 @@
-<div class="grey darken-2"> 
-    <div class="container">
+ <div class="container">
             <div class="row">
                 <h5 class="header col s12 white-text light center-align margin-top">Liste des concours</h5>
                 <div class="col s12 margin-top">
@@ -36,4 +35,3 @@
                 </div>
             </div>         
     </div>
- </div>
