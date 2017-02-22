@@ -153,7 +153,7 @@ class Theme extends Entity
      */
     public function getIconOffColor()
     {
-        return $this->iconHomeColor;
+        return $this->iconOffColor;
     }
 
     /**

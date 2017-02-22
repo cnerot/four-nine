@@ -323,6 +323,11 @@ class Form
             } else {
                 $text = "";
             }
+            if (isset($input['labelClass'])) {
+                $labelClass = $input['labelClass'];
+            } else {
+                $labelClass = "";
+            }
 
             /**
              * display input data
@@ -331,7 +336,7 @@ class Form
                 ?>
                 <div class="<?php echo $div_class ?>">
                     <i class="<?php echo $icon_class ?>"><?php echo $icon_content ?></i>
-                    <label for="<?php echo $name ?>"><?php echo $label ?></label>
+                    <label for="<?php echo $name ?>" class="<?php echo $labelClass ?>"><?php echo $label ?></label>
                     <textarea
                         name="<?php echo $name ?>"
                         placeholder="<?php echo $placeholder ?>"
@@ -412,8 +417,12 @@ class Form
                                   <input
                                       type="<?php echo $type ?>"
                                       value="<?php
+                                                    if (preg_match('(\ )',$color)){
                                                         $newTextColor = str_replace(' ', '-text text-',$color);
                                                         echo  $newTextColor;
+                                                    }else{
+                                                        echo  $color .'-text';
+                                                    }
                                             ?>"
                                       name="<?php echo $name ?>"
                                       class="<?php echo $class ; ?>"
@@ -440,7 +449,7 @@ class Form
                 ?>
                 <div class="<?php echo $div_class ?>">
                     <i class="<?php echo $icon_class ?>"><?php echo $icon_content ?></i>
-                    <label for="<?php echo $name ?>"><?php echo $label ?></label>
+                    <label for="<?php echo $name ?>" class="<?php echo $labelClass ?>"><?php echo $label ?></label>
                     <input
                         name="<?php echo $name ?>"
                         type="<?php echo $type ?>"

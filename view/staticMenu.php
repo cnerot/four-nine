@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col s12 p_pageStat">
+        <div class="col s12 p_pageStat <?php echo $themeApplicated->getPageStat(); ?>">
             <p>Création des pages statiques</p>
         </div>
         <div class="col s12 margin-top">
