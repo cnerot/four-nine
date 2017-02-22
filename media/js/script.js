@@ -144,6 +144,21 @@ $(document).ready(function () {
 
 		$(".dateFR").eq(i).html(d+"/"+m+"/"+y);
 	}
+	
+	$('.datepicker').Picker({
+	  labelMonthNext: 'Mois suivant',
+	  labelMonthPrev: 'Mois passé',
+	  labelMonthSelect: 'Sélectionnez un mois',
+	  labelYearSelect: 'Sélectionnez une année',
+	  monthsFull: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
+	  monthsShort: [ 'Jan', 'Feb', 'Mar', 'Avr', 'Mai', 'Jui', 'Jui', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc' ],
+	  weekdaysFull: [ 'Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi' ],
+	  weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
+	  weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+	  today: 'Aujourd\'hui',
+	  clear: 'Effacer',
+	  close: 'Fermer'
+	});
 });
 
 //cacher radio

@@ -7164,8 +7164,22 @@ return _.node(
 DatePicker.defaults = (function( prefix ) {
 
     return {
-
-        // The title label to use for the month nav buttons
+		
+		labelMonthNext: 'Mois suivant',
+	  labelMonthPrev: 'Mois passé',
+	  labelMonthSelect: 'Sélectionnez un mois',
+	  labelYearSelect: 'Sélectionnez une année',
+	  monthsFull: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
+	  monthsShort: [ 'Jan', 'Feb', 'Mar', 'Avr', 'Mai', 'Jui', 'Jui', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc' ],
+	  weekdaysFull: [ 'Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi' ],
+	  weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
+	  weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+	  today: 'Aujourd\'hui',
+	  clear: 'Effacer',
+	  close: 'Fermer',
+	  format: 'dd/mm/yyyy',
+		
+        /*// The title label to use for the month nav buttons
         labelMonthNext: 'Next month',
         labelMonthPrev: 'Previous month',
 
@@ -7188,7 +7202,7 @@ DatePicker.defaults = (function( prefix ) {
         close: 'Close',
 
         // The format to show on the `input` element
-        format: 'd mmmm, yyyy',
+        format: 'd mmmm, yyyy',*/
 
         // Classes
         klass: {

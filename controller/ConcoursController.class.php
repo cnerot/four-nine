@@ -129,6 +129,8 @@ class ConcoursController
     }
     public function newAction($args)
     {
+		$err = [];
+		
         $data = $this->form->validate();
 
         if ($data) {
@@ -138,20 +140,49 @@ class ConcoursController
             /* Upload image */
             /* prepare data */
             $contest_data = [
-                "name" => $data['name'],
+                "name" => $data['title'],
                 "description" => $data['description'],
                 "start" => $data['start'],
                 "end" => $data['end'],
             ];
             //Logger::debug($data);
             $contest->fromArray($contest_data);
-            $contest->save();
+			
+			$contests = $contest->getWhere([]);
+						
+			$dateStart = explode("/", $data['start']);
+			$dateStart = $dateStart[2]."-".$dateStart[1]."-".$dateStart[0]; // transformation de la date du format français vers le format anglo saxon
+			$dateEnd = explode("/", $data['end']);
+			$dateEnd = $dateEnd[2]."-".$dateEnd[1]."-".$dateEnd[0]; // transformation de la date du format français vers le format anglo saxon
+						
+			$contest->setStart($dateStart);
+			$contest->setEnd($dateEnd);
+			
+			foreach($contests as $contest_recup){
+				$today = date('Y-m-d');
+				
+				if(strtotime($dateEnd) < strtotime($today)){
+					$err[] = "Les dates de concours sont fausses";
+					break;
+				}else if(strtotime($dateStart) > strtotime($dateEnd)){
+					$err[] = "Les dates de fin et de début du concours sont fausses";
+					break;
+				}else if(strtotime($dateEnd) > strtotime($contest_recup->start) && strtotime($dateStart) < strtotime($contest_recup->end)){
+					$err[] = "Le concours ".$contest_recup->name." chevauche déjà cette période";
+					break;
+				}
+			}
+			
+			if(empty($err)){
+				$contest->save();
+			}            
         }
 
         $view = new View();
         $view->setView('newConcours');
         $view->putData('styles', ['home']);
         $view->putData('form', $this->form);
+        $view->putData('err', $err);
     }
     public  function editAction(){
 
