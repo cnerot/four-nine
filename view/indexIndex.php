@@ -18,8 +18,8 @@
 			<?php endif; ?>
 			
 			<?php foreach($err as $error) : ?>
-				<div class="header col s12 <?php echo $themeApplicated->getTextColor(); ?> light">
-					<?php echo $error; ?>
+				<div class="header col s12 <?php echo $themeApplicated->getTextColor(); ?> ">
+                                    <h2><?php echo $error; ?></h2>
 				</div>
 			<?php endforeach; ?>
             </div>

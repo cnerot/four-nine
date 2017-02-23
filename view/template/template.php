@@ -152,7 +152,7 @@ if(empty($themeApplicated)){
     <div class="footer-copyright">
         <div class="container">
             © 2017 Copyright Text
-            <a class="yellow-text text-lighten-1 right" href="#!">Contactez-nous</a>
+            <a class="right <?php echo $themeApplicated->getTextNavColor(); ?>" href="#!">Contactez-nous</a>
             </div>
     </div>
         </footer>
