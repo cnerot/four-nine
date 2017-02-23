@@ -25,7 +25,6 @@ class PhotoController
         $_SESSION['idUser'] = $fb->getFBUserData("/me")['id'];
 
         $contestCurrent = (new Contest())->getCurrent();
-        var_dump($_SESSION['idUser']);
         if($contestCurrent!=null){
         $currentUserPhoto = (new Photo())->getCurrentUserPhoto($_SESSION['idUser'], $contestCurrent->getId());
         $currentUserLink = (new Link())->getCurrentUserLink($_SESSION['idUser'], $contestCurrent->getId());

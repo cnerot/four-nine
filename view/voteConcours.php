@@ -19,7 +19,7 @@
         <?php if (empty($listPhotos)) : ?>
 			<?php if($dontDispErrListPhotos == false) : ?>
 				<div style="margin-bottom: 10px" class="center">
-					<p class="<?php echo $themeApplicated->getTextColor(); ?>"">Aucune photo n'a encore été uploadée</p>
+					<p class="<?php echo $themeApplicated->getTextColor(); ?>">Aucune photo n'a encore été uploadée</p>
 				</div>
 			<?php endif; ?>
         <?php else : ?>

@@ -471,7 +471,6 @@ class Form
                 . '<div class="col s4"></div>'
                 . '<div class="col s4">'
                 . '<button name="submit" id="submit" type="submit" onclick="' . $this->onclick . '" class="btn right green accent-4">' . $this->submit
-                . '<i class="material-icons">arrow_forward</i>'
                 . '</button>'
                 . '</div>';
             echo '</form>';
