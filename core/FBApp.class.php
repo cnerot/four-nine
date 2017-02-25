@@ -25,7 +25,7 @@ class FBApp
     {
 		$this->fbCallback = Config::URL . 'facebook/callback';
 		$this->logoutUrl = Config::URL . 'facebook/logout';
-		$this->fbPermissions = ['user_photos','publish_actions', 'manage_pages'];
+		$this->fbPermissions = ['user_photos','publish_actions', 'manage_pages','publish_pages'];
         $this->fb = new Facebook\Facebook([
             'app_id' => Config::FB_ID,
             'app_secret' => Config::FB_SECRET,

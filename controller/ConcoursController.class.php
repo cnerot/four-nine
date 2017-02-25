@@ -238,5 +238,53 @@ class ConcoursController
 
     }
 
+        foreach($links as $linkCurrent){
+			foreach($photos as $photoCurrent){
+				if($linkCurrent->id_photo == $photoCurrent->id && $linkCurrent->id_contest == $contestCurrent->id){
+					$listPhotosForCurrentContest[] = $photoCurrent;  // liste les photos qui appartiennent au concours courant
+					$albums = $fb->getFBUserData("1250869114948648?fields=albums{name,photos{source}}");
+					//$albums = $fb->getFBUserData("191380041334779"."?fields=albums{name,photos{source}}");
+					if (isset($albums['albums'])) {
+						$albums = $albums['albums']['data'];
+					} else {
+						$albums = [];
+					}
+					
+					foreach($albums as $album_){
+						if(!empty($album_['photos'])){
+							foreach($album_['photos']['data'] as $album){
+								if($photoCurrent->id_fb == $album['id']){
+								//if("123063731499744" == $album['id'])
+                                                                    $temp_link = (new Link())->getOneWhere(
+                                                                                                           ['id_photo'=>$photoCurrent->id_fb,
+                                                                                                           // 'id_contest'=>$->getId()
+                                                                                                           ]);
+                                                                    $temp_user = (new User())->getOneWhere(['id'=>$temp_link->getUserId()]);
+                                                                    
+                                                                    $listPhotosForCurrentContest[$i]->infosPhotoFb = ['id'=>$album['id'], 'source'=>$album['source'], "name"=>$temp_user->getName(), "surname"=>getSurname()];
+									$i++;
+								}	
+							}
+						}												
+					}					
+				}
+			}
+		}
+		//echo "<pre>";
+		//print_r($fb->getFBUserData("191380041334779?fields=albums{name,photos{source}}"));
+		//echo "</pre>";
+		//echo "<pre>";
+		//	print_r($albums);
+		//echo "</pre>";
+		
+		$_SESSION['idContest'] = $contestCurrent->id;
+		
+        $view = new View();
+        $view->setView('voteConcours');
+        $view->putData('styles', ['gallery','stars']);
+        $view->putData('voteForm', $this->voteform);
+		$view->putData('contestCurrent', $contestCurrent);
+		$view->putData('listPhotos', $listPhotosForCurrentContest);
+    }
 }
-  
+
