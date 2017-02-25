@@ -40,7 +40,7 @@
         <div class="col s12">
             <input type="hidden" id="nbPhotosToDisp" value="8">
             <?php if (!empty($listPhotos)) : ?>
-                <input type="button" id="seeMorePhotos" value="Voir +" class="btn right top-5">
+                <input type="button" id="seeMorePhotos" value="Voir +" class="btn right top-5 <?php echo $themeApplicated->getBtnColor(); ?>">
             <?php endif; ?>
         </div>
 
