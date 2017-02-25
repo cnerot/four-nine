@@ -37,5 +37,12 @@
 
           </div>
         </div>
-            <div class="parallax"><img src="/media/images/test1.jpg" alt="Unsplashed background img 1"></div>
+            <div class="parallax"><img src="<?php   if($themeApplicated->getBgImage()){
+                                                        echo $themeApplicated->getBgImage();
+                                                    } else {
+                                                        echo"/media/images/test1.jpg";
+                                                    }
+                                            ?>"
+                                        alt="Unsplashed background img 1">
+            </div>
       </div>
