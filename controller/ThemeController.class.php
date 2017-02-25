@@ -17,14 +17,7 @@ class ThemeController
         }
         $theme = new Theme();
         $themes = $theme->getWhere();
-//        //var_dump($themes);
-//        foreach ($themes as $theme){
-//           // var_dump($theme->getId());
-//        }
-//        $values=array();
-//        foreach ($themes as $theme){
-//            $values[]=$theme->getName();
-//        }
+
         $colors = array(
                       'pink darken-1',
                       'pink lighten-2',
@@ -112,7 +105,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur de header :',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                     
@@ -123,7 +116,7 @@ class ThemeController
                     "text" =>'1',
                     "value" => '',
                     "label" => 'Couleur de l\'icon home :',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                     
@@ -134,7 +127,7 @@ class ThemeController
                     "text" =>'1',
                     "value" => '',
                     "label" => 'Couleur de l\'icon se deconnecter :',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -143,7 +136,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur de "pardon maman" :',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -153,7 +146,7 @@ class ThemeController
                     "value" => '',
                     "text" =>'1',
                     "label" => 'Couleur de titre :',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -163,7 +156,7 @@ class ThemeController
                     "value" => '',
                     "text" =>'1',
                     "label" => 'couleur de texte de la bare de navigation :',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -182,7 +175,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur des button home : ',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -192,7 +185,7 @@ class ThemeController
                     "value" => '',
                     "text" =>'1',
                     "label" => 'couleur du text des btn home : ',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -201,7 +194,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur des header des pages static : ',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -210,7 +203,7 @@ class ThemeController
                     "validation" => "radio",
                     "value" => '',
                     "label" => 'Couleur des conteneur des static :',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
@@ -220,7 +213,7 @@ class ThemeController
                     "value" => '',
                     "text" => '1',
                     "label" => 'Couleur des titres des pages : ',
-                    "class"=> 'black-text',
+                    "class"=> '',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
                 ],
