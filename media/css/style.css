@@ -231,22 +231,24 @@
    }
    /* label focus color */
    .input-field input[type=text]:focus + label {
-     color: #ffab00;
+     color: #fffff;
    }
    /* label underline focus color */
    .input-field input[type=text]:focus {
-     border-bottom: 1px solid #ffab00;
-     box-shadow: 0 1px 0 0 #ffab00;
+     border-bottom: 1px solid black;
+     box-shadow:1px 1px 8px white inset;
+     margin: 5px;
    }
    /* valid color */
    .input-field input[type=text].valid{
-     border-bottom: 1px solid #FFF;
-     box-shadow: 0 1px 0 0 #ffab00;
+      border-bottom: 1px solid #FFF;
+      box-shadow:1px 1px 8px black inset;
+      margin: 5px
    }
    /* invalid color */
    .input-field input[type=text].invalid{
-     border-bottom: 1px solid #ffffff;
-     box-shadow: 0 1px 0 0 #ffffff;
+     border-bottom: 1px solid red;
+     box-shadow:1px 1px 8px white inset;
    }
    /* icon prefix focus color */
    .input-field .prefix.active {
@@ -255,28 +257,31 @@
    /** textarea */   
    /* label focus color */
    .input-field textarea.materialize-textarea:focus + label {
-     color: #ffab00;
+     color: black;
    }
    /* label underline focus color */
    .input-field textarea.materialize-textarea:focus  {
-     border-bottom: 1px solid #ffab00;
-     box-shadow: 0 1px 0 0 #ffab00;
+     border-bottom: 1px solid black;
+     box-shadow:1px 1px 8px white inset;
+     margin: 5px
    }
    /* valid color */
    .input-field textarea.materialize-textarea.valid{
      border-bottom: 1px solid #FFF;
-     box-shadow: 0 1px 0 0 #ffab00;
+     box-shadow:1px 1px 8px white inset;
+     margin: 5px
    }
    /* invalid color */
    .input-field textarea.materialize-textarea.invalid{
-     border-bottom: 1px solid #ffffff;
-     box-shadow: 0 1px 0 0 #ffffff;
+     border-bottom: 1px solid red;
+     box-shadow:1px 1px 8px white inset;
+     margin: 5px
    }
    .picker__date-display{
-      background-color: #fdd835;
+      background-color: #1a1a1a;
    }
    .picker__weekday-display{
-       background-color: #f9a825;
+       background-color: #4d4d4d;
        color : #ffffff;
        font-weight: bold;
    }
@@ -284,16 +289,16 @@
         color : #ffffff;
    }
    .picker__today{
-       color: #f9a825;
+       color: #737373;
    }
    .picker__close{
-       color: #f9a825;
+       color: #737373;
    }
    .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected{
-        background-color: #f9a825;
+        background-color: #737373;
    }
    .picker__day.picker__day--today{
-        color: #f9a825;  
+        color: #737373;  
    }
    tr td{
        border-bottom: 1px solid white;

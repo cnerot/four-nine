@@ -107,7 +107,7 @@ class Theme extends Entity
      */
     public function getTextColor()
     {
-        return $this->TextColor;
+        return $this->textColor;
     }
 
     /**

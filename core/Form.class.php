@@ -220,6 +220,10 @@ class Form
 
     public function display($main_class = "", $data = [], $sumited = null)
     {
+        $themeApplicated = (new Theme())->getOneWhere(['applicated'=>true]);
+        if(empty($themeApplicated)){
+            $themeApplicated = (new Theme())->getWhere(['name'=>'default']);
+        }
         echo '<form data-extra="" action="' . $this->action . '" method="' . $this->method . '" name="' . $this->name . '" class="' . $this->class . ' ' . $main_class . '" id="' . $this->id . ' ' . $main_class . '" enctype="' . $this->enctype . '">';
         echo '<input type="hidden" value="' . $this->name . '" name="type">';
         if (isset($main_class)) {
@@ -336,11 +340,11 @@ class Form
                 ?>
                 <div class="<?php echo $div_class ?>">
                     <i class="<?php echo $icon_class ?>"><?php echo $icon_content ?></i>
-                    <label for="<?php echo $name ?>" class="<?php echo $labelClass ?>"><?php echo $label ?></label>
+                    <label for="<?php echo $name ?>" class="<?php echo $labelClass . ' ' . $themeApplicated->getTextColor() ?>"><?php echo $label ?></label>
                     <textarea
                         name="<?php echo $name ?>"
                         placeholder="<?php echo $placeholder ?>"
-                        class="<?php echo $class ?>"
+                        class="<?php echo $class .' '. $themeApplicated->getTextColor()?>"
                         id="<?php echo $id ?>"
                     >
                     <?php echo (isset($data[$name])) ? $data[$name] : $value; ?>
@@ -356,13 +360,13 @@ class Form
                         <input
                             name="<?php echo $name ?>"
                             type="<?php echo $type ?>"
-                            class="<?php echo $class ?>"
+                            class="<?php echo $class  ?>"
                             value="<?php echo (isset($data[$name])) ? $data[$name] : $value; ?>"
                             placeholder="<?php echo $placeholder ?>"
                         >
                     </div>
                     <div class="<?php echo $class_wrapper ?>">
-                        <input class="<?php echo $class_inputWrapper ?>" type="text">
+                        <input class="<?php echo $class_inputWrapper . ' '.$themeApplicated->getTextColor() ?>" type="text">
                     </div>
                 </div>
                 <?php
@@ -370,7 +374,7 @@ class Form
                 ?>
                     <div class="<?php echo $div_class ?>">
                         <div class="<?php echo $class ?>">
-                            <label class="<?php echo $class ?>"><?php echo $label ?></label>
+                            <label class="<?php echo $class .' '. $themeApplicated->getTextColor() ?>"><?php echo $label ?></label>
                             <select name="<?php echo $name ?>" class="<?php echo $class ?>">
                                 <?php foreach ($themes as $theme){?>
                                       <option value="<?php echo $theme->getId() ?>"><?php echo $theme->getName(); ?></option>
@@ -404,7 +408,7 @@ class Form
                <div class="top-5 down-5 <?php echo $div_class ?>">
                    <div class="col s12">
                         <label
-                            class="<?php echo $class ; ?>"
+                            class="<?php echo $class . ' ' . $themeApplicated->getTextColor() ; ?>"
                             for="">
                                 <?php echo  $label; ?>
                         </label>
@@ -449,11 +453,11 @@ class Form
                 ?>
                 <div class="<?php echo $div_class ?>">
                     <i class="<?php echo $icon_class ?>"><?php echo $icon_content ?></i>
-                    <label for="<?php echo $name ?>" class="<?php echo $labelClass ?>"><?php echo $label ?></label>
+                    <label for="<?php echo $name ?>" class="<?php echo $labelClass .' '. $themeApplicated->getTextColor() ?>"><?php echo $label ?></label>
                     <input
                         name="<?php echo $name ?>"
                         type="<?php echo $type ?>"
-                        class="<?php echo $class ?>"
+                        class="<?php echo $class .' '. $themeApplicated->getTextColor()?>"
                         value="<?php echo (isset($data[$name])) ? $data[$name] : $value; ?>"
                     >
                 </div>
