@@ -24,9 +24,11 @@ if(in_array($themeApplicated->getCollapsibleHeader(),$darkTab)){
     <div class="collapsible-body <?php echo $themeApplicated->getCollapsibleBody(); ?>">
         <div class="container">
             <div class="right">
+<?php if (isset($page)): ?>
                 <a href="<?php echo Router::getUrl('Pages','delete', ["id"=> $page->getID()])?>" class="btn-floating btn-small waves-effect waves-light red">
                     <i class="material-icons center-align">delete</i>
                 </a>
+<?php endif; ?>
             </div>
             <?php
             if (isset($page)) {
