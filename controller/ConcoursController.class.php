@@ -146,8 +146,8 @@ class ConcoursController
 
     public function newAction($args)
     {
-		$err = [];
-		
+        $err = [];
+        
         $data = $this->form->validate();
 
         if ($data) {
@@ -173,7 +173,7 @@ class ConcoursController
 
             /* prepare data */
             $contest_data = [
-                "name" => $data['title'],
+                "name" => $data['name'],
                 "description" => $data['description'],
                 "start" => $data['start'],
                 "end" => $data['end'],
@@ -181,35 +181,35 @@ class ConcoursController
             ];
             //Logger::debug($data);
             $contest->fromArray($contest_data);
-			
-			$contests = $contest->getWhere([]);
-						
-			$dateStart = explode("/", $data['start']);
-			$dateStart = $dateStart[2]."-".$dateStart[1]."-".$dateStart[0]; // transformation de la date du format français vers le format anglo saxon
-			$dateEnd = explode("/", $data['end']);
-			$dateEnd = $dateEnd[2]."-".$dateEnd[1]."-".$dateEnd[0]; // transformation de la date du format français vers le format anglo saxon
-						
-			$contest->setStart($dateStart);
-			$contest->setEnd($dateEnd);
-			
-			foreach($contests as $contest_recup){
-				$today = date('Y-m-d');
-				
-				if(strtotime($dateEnd) < strtotime($today)){
-					$err[] = "Les dates de concours sont fausses";
-					break;
-				}else if(strtotime($dateStart) > strtotime($dateEnd)){
-					$err[] = "Les dates de fin et de début du concours sont fausses";
-					break;
-				}else if(strtotime($dateEnd) > strtotime($contest_recup->start) && strtotime($dateStart) < strtotime($contest_recup->end)){
-					$err[] = "Le concours ".$contest_recup->name." chevauche déjà cette période";
-					break;
-				}
-			}
-			
-			if(empty($err)){
-				$contest->save();
-			}            
+            
+            $contests = $contest->getWhere([]);
+                        
+            $dateStart = explode("/", $data['start']);
+            $dateStart = $dateStart[2]."-".$dateStart[1]."-".$dateStart[0]; // transformation de la date du format français vers le format anglo saxon
+            $dateEnd = explode("/", $data['end']);
+            $dateEnd = $dateEnd[2]."-".$dateEnd[1]."-".$dateEnd[0]; // transformation de la date du format français vers le format anglo saxon
+                        
+            $contest->setStart($dateStart);
+            $contest->setEnd($dateEnd);
+            
+            foreach($contests as $contest_recup){
+                $today = date('Y-m-d');
+                
+                if(strtotime($dateEnd) < strtotime($today)){
+                    $err[] = "Les dates de concours sont fausses";
+                    break;
+                }else if(strtotime($dateStart) > strtotime($dateEnd)){
+                    $err[] = "Les dates de fin et de début du concours sont fausses";
+                    break;
+                }else if(strtotime($dateEnd) > strtotime($contest_recup->start) && strtotime($dateStart) < strtotime($contest_recup->end)){
+                    $err[] = "Le concours ".$contest_recup->name." chevauche déjà cette période";
+                    break;
+                }
+            }
+            
+            if(empty($err)){
+                $contest->save();
+            }            
         }
 
         $view = new View();
@@ -238,53 +238,5 @@ class ConcoursController
 
     }
 
-        foreach($links as $linkCurrent){
-			foreach($photos as $photoCurrent){
-				if($linkCurrent->id_photo == $photoCurrent->id && $linkCurrent->id_contest == $contestCurrent->id){
-					$listPhotosForCurrentContest[] = $photoCurrent;  // liste les photos qui appartiennent au concours courant
-					$albums = $fb->getFBUserData("1250869114948648?fields=albums{name,photos{source}}");
-					//$albums = $fb->getFBUserData("191380041334779"."?fields=albums{name,photos{source}}");
-					if (isset($albums['albums'])) {
-						$albums = $albums['albums']['data'];
-					} else {
-						$albums = [];
-					}
-					
-					foreach($albums as $album_){
-						if(!empty($album_['photos'])){
-							foreach($album_['photos']['data'] as $album){
-								if($photoCurrent->id_fb == $album['id']){
-								//if("123063731499744" == $album['id'])
-                                                                    $temp_link = (new Link())->getOneWhere(
-                                                                                                           ['id_photo'=>$photoCurrent->id_fb,
-                                                                                                           // 'id_contest'=>$->getId()
-                                                                                                           ]);
-                                                                    $temp_user = (new User())->getOneWhere(['id'=>$temp_link->getUserId()]);
-                                                                    
-                                                                    $listPhotosForCurrentContest[$i]->infosPhotoFb = ['id'=>$album['id'], 'source'=>$album['source'], "name"=>$temp_user->getName(), "surname"=>getSurname()];
-									$i++;
-								}	
-							}
-						}												
-					}					
-				}
-			}
-		}
-		//echo "<pre>";
-		//print_r($fb->getFBUserData("191380041334779?fields=albums{name,photos{source}}"));
-		//echo "</pre>";
-		//echo "<pre>";
-		//	print_r($albums);
-		//echo "</pre>";
-		
-		$_SESSION['idContest'] = $contestCurrent->id;
-		
-        $view = new View();
-        $view->setView('voteConcours');
-        $view->putData('styles', ['gallery','stars']);
-        $view->putData('voteForm', $this->voteform);
-		$view->putData('contestCurrent', $contestCurrent);
-		$view->putData('listPhotos', $listPhotosForCurrentContest);
-    }
 }
-
+  
