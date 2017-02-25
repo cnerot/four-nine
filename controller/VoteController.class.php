@@ -58,12 +58,12 @@ class VoteController
     public function voteAction($args)
     {
         $fb = new FBApp();
-		
-		$err = [];
-		
+
+        $err = [];
+
         $contestCurrent = (new Contest())->getCurrent();
 
-        if($contestCurrent){
+        if ($contestCurrent) {
             $links = (new Link())->getWhere(['id_contest' => $contestCurrent->getId()]);
 
             $listPhotosForCurrentContest = array();
@@ -78,22 +78,23 @@ class VoteController
                     'link_id' => $link->getId()
                 ];
             }
-		}else{
-			$msg = (new Contest())->getNext();
-			
-			$err[] = $msg;
-			
-			if($msg == false){
-				$err[] = "Aucun concours prévu pour le moment";
-			}
-		}
+        } else {
+            $msg = (new Contest())->getNext();
+
+            $err[] = $msg;
+
+            if ($msg == false) {
+                $err[] = "Aucun concours prévu pour le moment";
+            }
+        }
         $view = new View();
         $view->setView('voteConcours');
         $view->putData('styles', ['gallery', 'stars']);
         $view->putData('voteform', $this->form);
         $view->putData('contestCurrent', $contestCurrent);
         $view->putData('err', $err);
-        $view->putData('listPhotos', $listPhotosForCurrentContest);
+        if (isset($listPhotosForCurrentContest))
+            $view->putData('listPhotos', $listPhotosForCurrentContest);
     }
 }
   
