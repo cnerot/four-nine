@@ -161,13 +161,16 @@ $(document).ready(function () {
 	});
 });
 
-//cacher radio
-function upload(id){
-    $('#imageToUpload-'+id).css('border', '2px solid #ef5350  ');
-    $('#idToUpload-'+id).prop("checked", true);
+function selectedPic(){
+    $('.image_upload').each(function () {
+        $(this).css('border', '1px solid white');
+        $('input[name=idPhotoFbToSend]').prop("checked", false); 
+    });
 }
-function uploadPair(id){
-    $('#imageToUploadP-'+id).css('border', '2px solid #ef5350 ');
-    $('#idToUpload-'+id).prop("checked", true);
-    alert('#imageToUploadP-'+id);
-}
+$('.image_upload').each(function () {
+    $(this).click(function () {
+            selectedPic();
+            $(this).css('border', '3px solid #1E90FF');
+            $('input[name=idPhotoFbToSend]').prop("checked", true);
+    });
+});

@@ -20,7 +20,7 @@ class ConcoursController
             'options' => [
                 'method' => 'POST',
                 'action' => '#',
-                'submit' => 'Send',
+                'submit' => 'Valider',
                 'name' => 'postform',
                 'class' => '',
                 "id" => 'test',
@@ -31,6 +31,7 @@ class ConcoursController
                     "type" => "date",
                     "validation" => "date",
                     "value" => '',
+                    "labelClass" => 'black-text',
                     "label" => 'Date de début :',
                     "class" => 'datepicker'
                 ],
@@ -38,6 +39,7 @@ class ConcoursController
                     "type" => "date",
                     "validation" => "date",
                     "value" => '',
+                    "labelClass" => 'black-text',
                     "label" => 'Date de fin',
                     "class" => 'datepicker'
                 ],
@@ -55,6 +57,7 @@ class ConcoursController
                     "validation" => "text",
                     "value" => '',
                     "label" => 'Titre de concours :',
+                    "labelClass" => 'black-text',
                     "class" => 'validate',
                     "div_class" => 'input-field'
                 ],
@@ -63,6 +66,7 @@ class ConcoursController
                     "validation" => "text",
                     "value" => '',
                     "label" => 'Lot :',
+                    "labelClass" => 'black-text',
                     "class" => 'validate',
                     "div_class" => 'input-field'
                 ],
@@ -82,6 +86,7 @@ class ConcoursController
                     "type" => "textarea",
                     "validation" => "text",
                     "value" => '',
+                    "labelClass" => 'black-text',
                     "class" => 'materialize-textarea',
                     "div_class" => 'input-field',
                     "id" => 'textarea1',

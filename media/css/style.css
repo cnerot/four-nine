@@ -308,8 +308,7 @@
         font-size: 20px;
         font-family: arial, helvetica;
         text-align: center;
-        background-color: rgba(255, 255, 77, 0.2);
-        color: white;
+        background-color: rgba(230, 245, 255, 0.2);
     }  
    footer.page-footer{
         margin-top:0;
@@ -383,6 +382,15 @@
     .down-5{
         margin-bottom: 60px;
     }
+    }
+    h1{
+       font-weight: bold;
+       font-size: 50px;
+       font-family: arial, helvetica; 
+    }
+    h2{
+       font-size: 30px;
+       font-family: arial, impact; 
     }
 
 

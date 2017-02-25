@@ -1,13 +1,15 @@
  <div class="container">
             <div class="row">
-                <h5 class="header col s12 white-text light center-align margin-top">Liste des concours</h5>
+                <div class="col s12 p_pageStat <?php echo $themeApplicated->getPageStat(); ?>">
+                    <p>Liste des concours</p>
+                </div>
                 <div class="col s12 margin-top">
                     <a href="<?php echo Router::getUrl("Concours", "New"); ?>" id="new_button" class="btn-large right lime darken-3">Créer un concours<i class="material-icons right">add</i></a>
                 </div>
                 <div class="margin-top">
                     <table class="table">
                       <thead>
-                        <tr class="white-text">
+                        <tr class="<?php echo $themeApplicated->getPageStat(); ?>">
                           <th>Concours</th>
                           <th>Date de début</th>
                           <th>Date de fin</th>

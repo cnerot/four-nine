@@ -218,7 +218,8 @@ class ThemeController
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
-                    "label" => 'Couleur de l\'arriere plan des titres : ',
+                    "text" => '1',
+                    "label" => 'Couleur des titres des pages : ',
                     "class"=> 'black-text',
                     "div_class"=> 'theme',
                     "div_color"=> $colors
