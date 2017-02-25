@@ -1,34 +1,59 @@
-  <div class="container">
+<div class="container">
     <div class="row">
         <div class="col s12 p_pageStat">
-            <p>Photos des participants au concours <?php echo $contestCurrent->name; ?></p>
-            <p>(concours valable du <?php echo $contestCurrent->start; ?> au <?php echo $contestCurrent->end; ?>)</span></p>
+			<?php if(!empty($contestCurrent)) : ?>
+				<p>Photos des participants au concours <?php echo $contestCurrent->name; ?></p>
+				<p>(concours valable du <span class="dateFR"><?php echo $contestCurrent->start; ?></span> au <span class="dateFR"><?php echo $contestCurrent->end; ?></span>
+					)</p>
+			<?php endif; ?>
+			
+			<?php $dontDispErrListPhotos = false; ?>
+			
+			<?php foreach($err as $error) : ?>
+				<div class="header col s12 white-text light">
+					<?php echo $error; ?>
+				</div>
+				<?php $dontDispErrListPhotos = true; ?>
+			<?php endforeach; ?>
         </div>
-            <?php if(empty($listPhotos)) : ?>
+        <?php if (empty($listPhotos)) : ?>
+			<?php if($dontDispErrListPhotos == false) : ?>
 				<div style="margin-bottom: 10px" class="center">
 					<label>Aucune photo n'a encore été uploadée</label>
 				</div>
-	   <?php else : ?>
-            <input type="hidden" value="<?php count($listPhotos); ?>" id="nbAllPhotos">
+			<?php endif; ?>
+        <?php else : ?>
             <div class=" col s12 panelGalerie p_pageStat">
-                <?php for($i = 0; $i<count($listPhotos); $i++) : ?>
-                            <?php foreach($listPhotos as $photo) : ?>
-                            <div class="col s3 <?php echo $i+1; ?> <?php if($i>=8) echo "hidden"; ?>">
-                                <div id="imageGallery">
-                                   <a id="<?php echo $photo->infosPhotoFb['id']; ?>" href="<?php echo $photo->infosPhotoFb['source']; ?>">
-                                       <img src="<?php echo $photo->infosPhotoFb['source']; ?>" width="100" alt="<?php echo $photo->infosPhotoFb['name'] .' '. $photo->infosPhotoFb['surname']; ?>" class="top-5" title="<?php echo $photo->infosPhotoFb['name'] .' '. $photo->infosPhotoFb['surname']; ?>">
-                                   </a>
-                               </div>
-                            </div>
-                           <?php endforeach; ?> 
-                <?php endfor; ?>
+
+                <?php foreach ($listPhotos as $photo) : ?>
+                    <div class="col s3" name="image_div" data-source="<?php echo $photo['source']; ?>" data-link="<?php echo $photo['link_id']; ?>">
+                        <div id="imageGallery">
+                            <a id="<?php echo $photo['id']; ?>">
+                                <img src="<?php echo $photo['source']; ?>" width="100" alt="" class="top-5" title="">
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
             </div>
         <?php endif; ?>
-			<div class="col s12">
-				<input type="hidden" id="nbPhotosToDisp" value="8">
-				<?php if(!empty($listPhotos)) : ?>
-					<input type="button" id="seeMorePhotos" value="Voir +" class="btn right top-5">
-				<?php endif; ?>
-			</div>
+        <div class="col s12">
+            <input type="hidden" id="nbPhotosToDisp" value="8">
+            <?php if (!empty($listPhotos)) : ?>
+                <input type="button" id="seeMorePhotos" value="Voir +" class="btn right top-5">
+            <?php endif; ?>
+        </div>
 
-  </div>
+    </div>
+    <div id="overlay" style="display: none;">
+        <div id="closeLightbox" onclick="hideoverlay()"></div>
+        <div style="clear:both"></div>
+        <div id="leftArrow" onclick="previousImage()"></div>
+        <img id="overlay_image">
+        <div id="rightArrow" onclick="nextImage()"></div>
+        <p>
+        <div id="rating">
+            <?php $voteform->display('', '', 1); ?>
+        </div>
+        </p>
+    </div>

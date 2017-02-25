@@ -135,7 +135,7 @@ $(document).ready(function () {
 	var y, m, d;
 	
 	for(var i = 0; i<$(".dateFR").length; i++){
-		date = $(".dateFR").eq(i).html();
+		date = $(".dateFR").eq(i).html().split(" ")[0];
 		dateSplit = date.split('-');
 		
 		y = dateSplit[0];
@@ -144,6 +144,21 @@ $(document).ready(function () {
 
 		$(".dateFR").eq(i).html(d+"/"+m+"/"+y);
 	}
+	
+	$('.datepicker').Picker({
+	  labelMonthNext: 'Mois suivant',
+	  labelMonthPrev: 'Mois passé',
+	  labelMonthSelect: 'Sélectionnez un mois',
+	  labelYearSelect: 'Sélectionnez une année',
+	  monthsFull: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
+	  monthsShort: [ 'Jan', 'Feb', 'Mar', 'Avr', 'Mai', 'Jui', 'Jui', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc' ],
+	  weekdaysFull: [ 'Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi' ],
+	  weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
+	  weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+	  today: 'Aujourd\'hui',
+	  clear: 'Effacer',
+	  close: 'Fermer'
+	});
 });
 
 //cacher radio

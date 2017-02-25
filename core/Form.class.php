@@ -174,7 +174,7 @@ class Form
             }
             if ($input['validation'] == 'file') {
                 $default = false;
-                if (true){
+                if (true) {
                     $data[$key] = $_FILES[$key];
                 } else {
                     $error["error"] = true;
@@ -182,11 +182,31 @@ class Form
                     Logger::log('invalid file');
                 }
             }
+            if ($input['validation'] == 'radio') {
+                $default = false;
+                if ($_POST[$key]) {
+                    $data[$key] =  $_POST[$key];
+                } else {
+                    $error["error"] = true;
+                    $error['fields'][] = $key;
+                    Logger::log('invalid radio value');
+                }
+            }
+            if ($input['validation'] == 'select') {
+                $default = false;
+                if ($_POST[$key]) {
+                    $data[$key] =  $_POST[$key];
+                } else {
+                    $error["error"] = true;
+                    $error['fields'][] = $key;
+                    Logger::log('invalid select value');
+                }
+            }
             if ($default) {
                 Logger::log('invalid default value (or unknown component)');
             }
         }
-        if (isset($error['state'])){
+        if (isset($error['state'])) {
             return $error;
         }
         return $data;
@@ -197,10 +217,10 @@ class Form
      * @param array $data
      * @return bool
      */
-   
+
     public function display($main_class = "", $data = [], $sumited = null)
     {
-        echo '<form action="' . $this->action . '" method="' . $this->method . '" name="' . $this->name . '" class="' . $this->class . ' ' . $main_class . '" id="' . $this->id . ' ' . $main_class . '" enctype="' . $this->enctype . '">';
+        echo '<form data-extra="" action="' . $this->action . '" method="' . $this->method . '" name="' . $this->name . '" class="' . $this->class . ' ' . $main_class . '" id="' . $this->id . ' ' . $main_class . '" enctype="' . $this->enctype . '">';
         echo '<input type="hidden" value="' . $this->name . '" name="type">';
         if (isset($main_class)) {
             echo '<input type="hidden" value="' . $main_class . '" name="seperator">';
@@ -274,65 +294,36 @@ class Form
                 $class_wrapper = "";
             }
             if (isset($input['class_inputWrapper'])) {
-                $class_inputWrapper= $input['class_inputWrapper'];
+                $class_inputWrapper = $input['class_inputWrapper'];
             } else {
                 $class_inputWrapper = "";
             }
             if (isset($input['type_inputWrapper'])) {
-                $type_inputWrapper= $input['type_inputWrapper'];
+                $type_inputWrapper = $input['type_inputWrapper'];
             } else {
                 $type_inputWrapper = "";
             }
-            if (isset($input['value1'])) {
-                $value1 = $input['value1'];
+            if (isset($input['values'])) {
+                $values = $input['values'];
             } else {
-                $value1 = "";
+                $values = "";
             }
-            if (isset($input['value2'])) {
-                $value2 = $input['value2'];
+            if (isset($input['themes'])) {
+                $themes = $input['themes'];
             } else {
-                $value2 = "";
+                $themes = "";
             }
-            if (isset($input['value3'])) {
-                $value3 = $input['value3'];
+            if (isset($input['div_color'])) {
+                $div_color = $input['div_color'];
             } else {
-                $value3 = "";
+                $div_color = "";
             }
-            if (isset($input['value4'])) {
-                $value4 = $input['value4'];
+            if (isset($input['text'])) {
+                $text = $input['text'];
             } else {
-                $value4 = "";
+                $text = "";
             }
-            if (isset($input['value5'])) {
-                $value5 = $input['value5'];
-            } else {
-                $value5 = "";
-            }
-            if (isset($input['idClass1'])) {
-                $idClass1 = $input['idClass1'];
-            } else {
-                $idClass1 = "";
-            }
-            if (isset($input['idClass2'])) {
-                $idClass2 = $input['idClass2'];
-            } else {
-                $idClass2 = "";
-            }
-            if (isset($input['idClass3'])) {
-                $idClass3 = $input['idClass3'];
-            } else {
-                $idClass3 = "";
-            }
-            if (isset($input['idClass4'])) {
-                $idClass4 = $input['idClass4'];
-            } else {
-                $idClass4 = "";
-            }
-            if (isset($input['idClass5'])) {
-                $idClass5 = $input['idClass5'];
-            } else {
-                $idClass5 = "";
-            }
+
             /**
              * display input data
              */
@@ -351,95 +342,9 @@ class Form
                     </textarea>
                 </div>
                 <?php
-            } elseif($type == "file") {
+            } elseif ($type == "file") {
                 ?>
-                    <div class="<?php echo $file_class ?>">
-                        <div class="<?php echo $div_class ?>">
-                            <i class="<?php echo $icon_class ?>"><?php echo $icon_content ?></i>
-                            <label for="<?php echo $name ?>"><?php echo $label ?></label>
-                            <input
-                                name="<?php echo $name ?>"
-                                type="<?php echo $type ?>"
-                                class="<?php echo $class ?>"
-                                value="<?php echo (isset($data[$name])) ? $data[$name] : $value; ?>"
-                                placeholder="<?php echo $placeholder ?>"
-                            >
-                        </div>
-                        <div class="<?php echo $class_wrapper ?>">
-                            <input class="<?php echo $class_inputWrapper ?>" type="text">
-                        </div>
-                    </div>
-  
-                <?php
-            } elseif($type == "radio") {
-                ?>
-                <div class="<?php echo $div_class ?>">
-                    <input
-                        type="<?php echo $type ?>"
-                        value="<?php echo  $value1; ?>"
-                        name="<?php echo $name ?>"
-                        class="<?php echo $idClass1 ; ?>"
-                        id="<?php echo $idClass1 ; ?>"
-                    /> 
-                    <label
-                        class="<?php echo $idClass1 ; ?>"
-                        for="<?php echo $idClass1 ; ?>">
-                            <?php echo  $value1; ?>
-                    </label>
-                    <input
-                        type="<?php echo $type ?>"
-                        value="<?php echo  $value2; ?>"
-                        name="<?php echo $name ?>"
-                        class="<?php echo $idClass2 ; ?>"
-                        id="<?php echo $idClass2 ; ?>"
-                    />
-                    <label
-                        class="<?php echo $idClass2 ; ?>"
-                        for="<?php echo $idClass2 ; ?>">
-                            <?php echo  $value2; ?>
-                    </label>
-                    <input 
-                        type="<?php echo $type ?>"
-                        value="<?php echo  $value3; ?>"
-                        name="<?php echo $name ?>"
-                        class="<?php echo $idClass3 ; ?>"
-                        id="<?php echo $idClass3 ; ?>" 
-                    />
-                    <label 
-                        class="<?php echo $idClass3 ; ?>"
-                        for="<?php echo $idClass3 ; ?>">
-                        <?php echo $value3; ?>
-                    </label>
-                    <input
-                        type="<?php echo $type ?>"
-                        value="<?php echo  $value4; ?>"
-                        name="<?php echo $name ?>"
-                        class="<?php echo $idClass4; ?>"
-                        id="<?php echo $idClass4; ?>"
-                    />
-                    <label
-                        class="<?php echo $idClass4; ?>"
-                        for="<?php echo $idClass4; ?>">
-                        <?php echo $value4; ?>
-                    </label>
-                    <input
-                        type="<?php echo $type ?>"
-                        value="<?php echo  $value5; ?>"
-                        name="<?php echo $name ?>"
-                        class="<?php echo $idClass5; ?>"
-                        id="<?php echo $idClass5; ?>"
-                    />
-                    <label
-                        class="<?php echo $idClass5; ?>"
-                        for="<?php echo $idClass5; ?>">
-                        <?php echo $value5; ?>
-                    </label>
-                    <span></span>
-                </div>
-  
-                <?php
-            } else {
-                ?>
+                <div class="<?php echo $file_class ?>">
                     <div class="<?php echo $div_class ?>">
                         <i class="<?php echo $icon_class ?>"><?php echo $icon_content ?></i>
                         <label for="<?php echo $name ?>"><?php echo $label ?></label>
@@ -448,27 +353,131 @@ class Form
                             type="<?php echo $type ?>"
                             class="<?php echo $class ?>"
                             value="<?php echo (isset($data[$name])) ? $data[$name] : $value; ?>"
+                            placeholder="<?php echo $placeholder ?>"
                         >
                     </div>
+                    <div class="<?php echo $class_wrapper ?>">
+                        <input class="<?php echo $class_inputWrapper ?>" type="text">
+                    </div>
+                </div>
+                <?php
+            } elseif ($name == "select") {
+                ?>
+                    <div class="<?php echo $div_class ?>">
+                        <div class="<?php echo $class ?>">
+                            <label class="<?php echo $class ?>"><?php echo $label ?></label>
+                            <select name="<?php echo $name ?>" class="<?php echo $class ?>">
+                                <?php foreach ($themes as $theme){?>
+                                      <option value="<?php echo $theme->getId() ?>"><?php echo $theme->getName(); ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+               
+              <?php
+            } elseif ($type == "radio" && $sumited==1) {
+                ?>
+                <div class="<?php echo $div_class ?>"><?php
+                foreach ($values as $value) { ?>
+                    <input
+                        type="radio"
+                        value="<?php echo $value; ?>"
+                        name="<?php echo $name ?>"
+                        class="<?php echo $class . "-" .$value; ?>"
+                        id="<?php echo $class . "-" .$value; ?>"
+                    />
+                    <label
+                        class="<?php echo $class . "-" .$value; ?>"
+                        for="<?php echo $class . "-" .$value; ?>">
+                        <?php echo $value; ?>
+                    </label>
+                <?php } ?>
+                <span></span>
+                </div>
+           <?php } elseif ($type == "radio") { ?>
+
+               <div class="top-5 down-5 <?php echo $div_class ?>">
+                   <div class="col s12">
+                        <label
+                            class="<?php echo $class ; ?>"
+                            for="">
+                                <?php echo  $label; ?>
+                        </label>
+                   </div>
+                   <div class="col s12">
+                        <?php foreach($div_color as $color) {?>
+                       
+                            <?php if($text=='1'){?>
+                              <div class="center-align <?php echo $color ?>">
+                                  <input
+                                      type="<?php echo $type ?>"
+                                      value="<?php
+                                                        $newTextColor = str_replace(' ', '-text text-',$color);
+                                                        echo  $newTextColor;
+                                            ?>"
+                                      name="<?php echo $name ?>"
+                                      class="<?php echo $class ; ?>"
+                                      id="<?php echo $id ; ?>"
+                                  /> 
+                              </div>
+                            <?php }else{?>
+                              <div class="center-align <?php echo $color ?>">
+                                  <input
+                                      type="<?php echo $type ?>"
+                                      value="<?php echo  $color; ?>"
+                                      name="<?php echo $name ?>"
+                                      class="<?php echo $class ; ?>"
+                                      id="<?php echo $id ; ?>"
+                                  /> 
+                              </div>
+                            <?php }?>
+                        <?php } ?>
+                   </div>
+               </div>
+                
+       <?php
+            } else {
+                ?>
+                <div class="<?php echo $div_class ?>">
+                    <i class="<?php echo $icon_class ?>"><?php echo $icon_content ?></i>
+                    <label for="<?php echo $name ?>"><?php echo $label ?></label>
+                    <input
+                        name="<?php echo $name ?>"
+                        type="<?php echo $type ?>"
+                        class="<?php echo $class ?>"
+                        value="<?php echo (isset($data[$name])) ? $data[$name] : $value; ?>"
+                    >
+                </div>
 
                 <?php
             }
         }
-if( $sumited != 1){
-        echo '<div class="row">'
-                             . '<div class="col s4">'
-                             . '<a class="waves-effect waves-light btn left grey lighten-2 black-text">'
-                             . '<i class="material-icons left">subdirectory_arrow_left</i>Retour'
-                             . '</a>'
-                             . '</div>'
-                             . '<div class="col s4"></div>'
-                             . '<div class="col s4">'
-                             . '<button name="submit" id="submit" type="submit" onclick="' . $this->onclick . '" class="btn right green accent-4">'. $this->submit 
-                             . '<i class="material-icons">arrow_forward</i>'
-                             . '</button>'
-                             . '</div>';
-        echo '</form>';
+        if ($sumited != 1 && $sumited!=2) {
+            echo '<div class="row">'
+                . '<div class="col s4">'
+                . '<a class="waves-effect waves-light btn left grey lighten-2 black-text">'
+                . '<i class="material-icons left">subdirectory_arrow_left</i>Retour'
+                . '</a>'
+                . '</div>'
+                . '<div class="col s4"></div>'
+                . '<div class="col s4">'
+                . '<button name="submit" id="submit" type="submit" onclick="' . $this->onclick . '" class="btn right green accent-4">' . $this->submit
+                . '<i class="material-icons">arrow_forward</i>'
+                . '</button>'
+                . '</div>';
+            echo '</form>';
 
-    }
+        }elseif($sumited == 2){
+            echo  '<div class="top-5 col s4 right">'
+                    . '<button '
+                        . 'name="submit"'
+                        . ' id="submit"'
+                        . ' type="submit"'
+                        . ' onclick="' . $this->onclick . '" '
+                        . 'class="btn right blue accent-4">' . $this->submit
+                    . '</button>'
+                . '</div>';
+            echo '</form>';
+        }
     }
 }

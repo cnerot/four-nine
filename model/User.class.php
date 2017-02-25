@@ -16,6 +16,10 @@ class User extends Entity
     public $email;
     public $id_user;
 
+    public function getCurrentUser(){
+        return $this->getWhere(['id'=>$_SESSION['idUser']]);
+    }
+
     /**
      * @return mixed
      */
