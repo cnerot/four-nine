@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <?php
 const DEFAULT_TITLE = 'Pardon Maman';
 
@@ -24,9 +25,9 @@ $fb = new FBApp();
  */
 $pages = (new Staticpages())->getWhere([]);
 
-$themeApplicated = (new Theme())->getOneWhere(['applicated'=>true]);
-if(empty($themeApplicated)){
-    $themeApplicated = (new Theme())->getWhere(['name'=>'default']);
+$themeApplicated = (new Theme())->getOneWhere(['applicated' => true]);
+if (empty($themeApplicated)) {
+    $themeApplicated = (new Theme())->getWhere(['name' => 'default']);
 }
 //a tester ici
 ?>
@@ -48,11 +49,14 @@ if(empty($themeApplicated)){
 <body class="<?php echo $themeApplicated->getBgColor(); ?>">
 <?php //$fb->printFBLogin("<div class='login_obligatory'><p>Please click anywhere to log in</p><img src='media/images/téléchargement.png'></div>","<div class='logged_in'>LogOut</div>") ?>
 <?php if (!$fb->isLogged()): ?>
-    <a href="<?php echo $fb->getLoginUrl()?>"><div class='login_obligatory'><p>Please click anywhere to log in</p><img src='media/images/téléchargement.png'></div></a>
+    <a href="<?php echo $fb->getLoginUrl() ?>">
+        <div class='login_obligatory'><p>Please click anywhere to log in</p><img src='media/images/téléchargement.png'>
+        </div>
+    </a>
 <?php endif; ?>
 <ul id="dropdown1" class="dropdown-content <?php echo $themeApplicated->getBgNavColor(); ?>">
     <li>
-        <a href="<?php echo Router::getUrl("Concours", "New"); ?>"> 
+        <a href="<?php echo Router::getUrl("Concours", "New"); ?>">
             <span class="<?php echo $themeApplicated->getTextNavColor(); ?>">Créer un concours</span>
         </a>
     </li>
@@ -74,7 +78,7 @@ if(empty($themeApplicated)){
 </ul>
 <ul id="dropdown2" class="dropdown-content <?php echo $themeApplicated->getBgNavColor(); ?>">
     <li>
-        <a href="<?php echo Router::getUrl("Concours", "New"); ?>"> 
+        <a href="<?php echo Router::getUrl("Concours", "New"); ?>">
             <span class="<?php echo $themeApplicated->getTextNavColor(); ?>">Créer un concours</span>
         </a>
     </li>
@@ -99,15 +103,17 @@ if(empty($themeApplicated)){
     <div class="nav-wrapper <?php echo $themeApplicated->getBgNavColor(); ?>">
         <div class="nav-wrapper container">
             <a id="logo-container" href="<?php echo Router::getUrl("Index", "Index"); ?>" class="brand-logo">
-                <i class="material-icons left <?php echo $themeApplicated->getIconHomeColor(); ?>">home</i><span class="<?php echo $themeApplicated->getNameColor(); ?> knockout">Pardon maman</span>
+                <i class="material-icons left <?php echo $themeApplicated->getIconHomeColor(); ?>">home</i><span
+                    class="<?php echo $themeApplicated->getNameColor(); ?> knockout">Pardon maman</span>
             </a>
-         
+
             <?php if ($fb->isLogged()): ?>
-            <div class="right">
-                <a href="<?php echo $fb->getLogoutUrl()?>"><i class="material-icons  <?php echo $themeApplicated->getIconOffColor(); ?>">power_settings_new</i></a>
-            </div>
+                <div class="right">
+                    <a href="<?php echo $fb->getLogoutUrl() ?>"><i
+                            class="material-icons  <?php echo $themeApplicated->getIconOffColor(); ?>">power_settings_new</i></a>
+                </div>
             <?php endif; ?>
-               <?php if ($fb->isAdmin()): ?>
+            <?php if ($fb->isAdmin()): ?>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administrateur<span><i
                                         class="material-icons right">arrow_drop_down</i></a></li>
@@ -137,7 +143,9 @@ if(empty($themeApplicated)){
             <div class="col s4 right">
                 <ul>
                     <?php foreach ($pages as $page): ?>
-                        <li><a class="<?php echo $themeApplicated->getTextNavColor(); ?>" href="<?php echo Router::getUrl("pages","show", ['id'=>$page->getId()])?>"><?php echo strtoupper($page->getTitle()); ?></a></li>
+                        <li><a class="<?php echo $themeApplicated->getTextNavColor(); ?>"
+                               href="<?php echo Router::getUrl("pages", "show", ['id' => $page->getId()]) ?>"><?php echo strtoupper($page->getTitle()); ?></a>
+                        </li>
                     <?php endforeach; ?>
                     <!--
                     <li><a class="yellow-text text-lighten-1" href="#!">CGU </a></li>
@@ -153,13 +161,21 @@ if(empty($themeApplicated)){
         <div class="container">
             © 2017 Copyright Text
             <a class="right <?php echo $themeApplicated->getTextNavColor(); ?>" href="#!">Contactez-nous</a>
-            </div>
+        </div>
     </div>
-        </footer>
-      <script type="text/javascript" src="/media/js/jquery-3.1.1.min.js"></script>
-      <script type="text/javascript" src="/media/js/materialize.js"></script>
-      <script src="/media/js/init.js"></script>
-      <script src="/media/js/script.js"></script>
-      <script src="/media/js/imageGallery.js"></script>
+</footer>
+<script>
+    var alerts = [<?php
+        if (isset($_SESSION['alert'])) {
+            echo implode(',', $_SESSION['alert']);
+            unset($_SESSION['alert']);
+        }
+    ?>];
+</script>
+<script type="text/javascript" src="/media/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/media/js/materialize.js"></script>
+<script src="/media/js/init.js"></script>
+<script src="/media/js/script.js"></script>
+<script src="/media/js/imageGallery.js"></script>
 </body>
 </html>

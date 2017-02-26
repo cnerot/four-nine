@@ -1,11 +1,9 @@
-<div class="container">
-    <ul id="tabs-swipe" class="tabs">
-        <li class="tab col s3"><a href="#test-swipe-1" class="active">Photo Actuel</a></li>
-   </ul>
+<div class="col s12 p_pageStat white-text">
+    <p>Photo Actuel</p>
 </div>
-
-<img src="<?php echo $currentPhoto;?>">
-
+<div class="row center">
+<img style="width: 70vw" src="<?php echo $currentPhoto;?>">
+</div>
 <div class="container">
     <ul id="tabs-swipe" class="tabs">
         <?php $i = 1; ?>

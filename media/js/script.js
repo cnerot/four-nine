@@ -1,4 +1,9 @@
 $(document).ready(function () {
+	console.log(alerts);
+	alerts.forEach(function(element) {
+		console.log(element);
+		Materialize.toast(element, 4000);
+	});
     showHideGift("hide");
 
     $("#nameGift").change(function () { // quand photo sélectionnée

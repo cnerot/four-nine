@@ -11,6 +11,7 @@ class Contest extends Entity
     public $end;
     public $name;
     public $description;
+    public $photo;
 
     /**
      * @return mixed
@@ -75,6 +76,22 @@ class Contest extends Entity
     public function setId($concoursId)
     {
         $this->concoursId = $concoursId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
     }
 
     /**

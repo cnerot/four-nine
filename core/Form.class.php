@@ -184,7 +184,7 @@ class Form
             }
             if ($input['validation'] == 'radio') {
                 $default = false;
-                if ($_POST[$key]) {
+                if (isset($_POST[$key])) {
                     $data[$key] =  $_POST[$key];
                 } else {
                     $error["error"] = true;
@@ -206,9 +206,10 @@ class Form
                 Logger::log('invalid default value (or unknown component)');
             }
         }
-        if (isset($error['state'])) {
-            return $error;
-        }
+        $data["error"] = $error;
+        //if (isset($error['state'])) {
+        //    return $error;
+        //}
         return $data;
     }
 
