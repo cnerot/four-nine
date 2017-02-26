@@ -143,7 +143,6 @@ class ConcoursController
         $concours = $concours->getOneWhere(["id" => $_REQUEST['id']]);
         $concours->delete();
         Router::redirect('Concours', 'index');
-
     }
 
     public function newAction($args)

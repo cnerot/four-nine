@@ -72,10 +72,19 @@ class VoteController
                 $photo = (new Photo())->getOneWhere(['id' => $link->getIdPhoto()]);
                 $fbPhoto = $fb->getFBPageData($photo->getIdFb() . "?fields=source");
                 $fbPhoto = $fbPhoto->getDecodedBody();
+                $photo_user = (new User())->getOneWhere(['id_user'=>$photo->getIdUser()]);
+                $votes = (new Vote())->getWhere(['id_link'=>$link->getId()]);
+                $total_grade = 0;
+                foreach ($votes as $vote){
+                    $total_grade += $vote->getGrade();
+                }
+
                 $listPhotosForCurrentContest[] = [
                     'id' => $photo->getIdFb(),
                     'source' => $fbPhoto['source'],
-                    'link_id' => $link->getId()
+                    'link_id' => $link->getId(),
+                    'grade' => $total_grade/count($votes),
+                    'user' => $photo_user->getName(),
                 ];
             }
         } else {

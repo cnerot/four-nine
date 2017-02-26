@@ -34,9 +34,7 @@ class IndexController
     public function indexAction($args)
     {
 		$contestCurrent = (new Contest())->getCurrent();
-		
 		$err = [];
-		
 		if(empty($contestCurrent)){
 			$msg = (new Contest())->getNext();
 			

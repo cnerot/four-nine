@@ -26,7 +26,7 @@
             <div class=" col s12 panelGalerie p_pageStat">
 
                 <?php foreach ($listPhotos as $photo) : ?>
-                    <div class="col s3" name="image_div" data-source="<?php echo $photo['source']; ?>" data-link="<?php echo $photo['link_id']; ?>">
+                    <div class="col s3" name="image_div" data-grade="<?php echo $photo['grade']; ?>" data-user="<?php echo $photo['user']; ?>" data-source="<?php echo $photo['source']; ?>" data-link="<?php echo $photo['link_id']; ?>">
                         <div id="imageGallery">
                             <a id="<?php echo $photo['id']; ?>">
                                 <img src="<?php echo $photo['source']; ?>" width="100" alt="" class="top-5" title="">
@@ -52,6 +52,8 @@
         <img id="overlay_image">
         <div id="rightArrow" onclick="nextImage()"></div>
         <p>
+        <div id="photo_user"></div>
+        <div id="photo_grade"></div>
         <div id="rating">
             <?php $voteform->display('', '', 1); ?>
         </div>

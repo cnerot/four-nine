@@ -16,21 +16,33 @@ function setCurrentLink(link) {
     var image = $('#overlay_image');
     image.attr('data-extra', link);
 }
+function setCurrentGrade(link) {
+    var image = $('#photo_grade');
+    image.html(link);
+}
+function setCurrentPhotoUser(link) {
+    var image = $('#photo_user');
+    image.html(link);
+}
 function nextImage() {
+    console.log($(currentImage).data('grade'));
     currentImage = $(currentImage).next();
     setCurrentImage($(currentImage).data('source'));
     setCurrentLink($(currentImage).data('link'));
+    setCurrentPhotoUser($(currentImage).data('grade'));
+    setCurrentGrade($(currentImage).data('user'));
     resetStars();
 }
 function previousImage() {
     currentImage = $(currentImage).prev();
     setCurrentImage($(currentImage).data('source'));
     setCurrentLink($(currentImage).data('link'));
+    setCurrentPhotoUser($(currentImage).data('grade'));
+    setCurrentGrade($(currentImage).data('user'));
     resetStars();
 }
 function resetStars(){
     $('[name="star"]').each(function () {
-        console.log(this);
         $(this).prop('checked', false);
 
     });
