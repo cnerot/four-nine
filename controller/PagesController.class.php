@@ -53,9 +53,7 @@ class PagesController
         $page = new Staticpages();
         $data = $this->form->validate();
 		
-
-		
-        if ($data && !isset($data['error'])) {
+        if ($data) {
             if (isset($_POST['seperator'])) {
                 $pages = $page->getWhere(['id' => $_POST['seperator']]);
                 $data['id'] = $_POST['seperator'];
