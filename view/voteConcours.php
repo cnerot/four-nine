@@ -30,7 +30,7 @@
                         <div id="imageGallery">
                             <div class="bordered">
                                 <a id="<?php echo $photo['id']; ?>">
-                                    <img src="<?php echo $photo['source']; ?>" width="150" alt="hhhhh" class="margin-top-10" title="hhhh">
+                                    <img src="<?php echo $photo['source']; ?>" width="150" height="120" alt="user name" class="margin-top-10" title="user name">
                                 </a>
                                 <div><span class="note">note : <?php echo $photo['grade']; ?></span></div>
                             </div>
