@@ -19,12 +19,12 @@
   </job>
   <job>
     <time>
-      <minute>*</minute>
-      <hour>*</hour>
+      <minute>00</minute>
+      <hour>12</hour>
       <day_of_month>*</day_of_month>
       <month>*</month>
       <day_of_week>*</day_of_week>
     </time>
-    <cmd>php tfffr.php</cmd>
+    <cmd>"curl http://four-nine.local.fr/Photo/index"</cmd>
   </job>
 </cronjobs>
