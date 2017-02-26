@@ -18,9 +18,10 @@
                         Le concours a lieu du <span class="dateFR"><?php echo $contestCurrent->start; ?></span> au <span
                             class="dateFR"><?php echo $contestCurrent->end; ?></span>
                     </p>
-		    <?php if ($contestCurrent->getPhoto() != null):?>
-                        <img style="width: 20vw;" src="<?php echo (new Photo())->getFbPhotoUrlFromID($contestCurrent->getPhoto()); ?>">
-		    <?php endif; ?>
+                    <?php if ($contestCurrent->getPhoto() != null): ?>
+                        <img style="width: 20vw;"
+                             src="<?php echo (new Photo())->getFbPhotoUrlFromID($contestCurrent->getPhoto()); ?>">
+                    <?php endif; ?>
                 <?php endif; ?>
 
                 <?php foreach ($err as $error) : ?>
@@ -29,24 +30,28 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div class="row center">
-                <a href="<?php echo Router::getUrl("Photo", "index"); ?>"
-                   id="download-button"
-                   class="btn-large waves-effect waves-light <?php
-                   echo $themeApplicated->getBtnColor() . ' ' . $themeApplicated->getTextBtnColor(); ?>">Je participe <i
-                        class="material-icons right">play_arrow</i></a>
-                <a href="<?php echo Router::getUrl("Vote", "vote"); ?>"
-                   id="download-button"
-                   class="btn-large waves-effect waves-light <?php
-                   echo $themeApplicated->getBtnColor() . ' ' . $themeApplicated->getTextBtnColor(); ?>">Je vote <i
-                        class="material-icons right">play_arrow</i></a>
-            </div>
+            <?php if (!empty($contestCurrent)) : ?>
+
+                <div class="row center">
+                    <a href="<?php echo Router::getUrl("Photo", "index"); ?>"
+                       id="download-button"
+                       class="btn-large waves-effect waves-light <?php
+                       echo $themeApplicated->getBtnColor() . ' ' . $themeApplicated->getTextBtnColor(); ?>">Je
+                        participe <i
+                            class="material-icons right">play_arrow</i></a>
+                    <a href="<?php echo Router::getUrl("Vote", "vote"); ?>"
+                       id="download-button"
+                       class="btn-large waves-effect waves-light <?php
+                       echo $themeApplicated->getBtnColor() . ' ' . $themeApplicated->getTextBtnColor(); ?>">Je vote <i
+                            class="material-icons right">play_arrow</i></a>
+                </div>
+            <?php endif; ?>
             <br><br>
 
         </div>
     </div>
     <div class="parallax"><img src="<?php if ($themeApplicated->getBgImage()) {
-            echo "/".$themeApplicated->getBgImage();
+            echo "/" . $themeApplicated->getBgImage();
         } else {
             echo "/media/images/test1.jpg";
         }
