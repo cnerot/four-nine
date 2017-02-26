@@ -80,7 +80,7 @@ class ThemeController
                 "bgColor" => [
                     "type" => "radio",
                     "validation" => "radio",
-                    "value" => 'jj',
+                    "value" => '',
                     "label" => 'Couleur d\'arriere plan :',
                     "class" => 'black-text',
                     "div_class" => 'theme',
@@ -90,25 +90,35 @@ class ThemeController
                     "type" => "file",
                     "validation" => "file",
                     "value" => '',
-                    "placeholder" => 'Image d\'arriere plan pour accueil',
-                    "class" => 'radio-border theme',
-                    "div_class" => 'btn amber accent-4',
-                    "file_class" => 'file-field input-field',
-                    "icon_class" => 'material-icons left',
-                    "icon_content" => 'add_a_photo',
-                    "class_wrapper" => 'file-path-wrapper',
-                    "class_inputWrapper" => 'file-path validate',
-                    "type_inputWrapper" => 'text',
+                    "placeholder" => 'Image d\'arriere plan pour la page d\'accueil',
+                    "class"=> 'radio-border theme',
+                    "div_class" =>'btn amber accent-4',
+                    "file_class" =>'file-field input-field',
+                    "icon_class" =>'material-icons left',
+                    "icon_content" =>'add_a_photo',
+                    "class_wrapper" =>'file-path-wrapper',
+                    "class_inputWrapper" =>'file-path validate',
+                    "type_inputWrapper" =>'text',
                 ],
                 "bgNavColor" => [
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
-                    "label" => 'Couleur de header :',
-                    "class" => '',
-                    "div_class" => 'theme',
-                    "div_color" => $colors
-
+                    "label" => 'Couleur de header/footer(menu) :',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                    
+                ],
+                "textNavColor" => [
+                    "type" => "radio",
+                    "validation" => "radio",
+                    "value" => '',
+                    "text" =>'1',
+                    "label" => 'couleur du texte de la bare de navigation :',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
                 ],
                 "iconHomeColor" => [
                     "type" => "radio",
@@ -144,50 +154,40 @@ class ThemeController
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
-                    "text" => '1',
-                    "label" => 'Couleur de titre :',
-                    "class" => '',
-                    "div_class" => 'theme',
-                    "div_color" => $colors
-                ],
-                "textNavColor" => [
-                    "type" => "radio",
-                    "validation" => "radio",
-                    "value" => '',
-                    "text" => '1',
-                    "label" => 'couleur de texte de la bare de navigation :',
-                    "class" => '',
-                    "div_class" => 'theme',
-                    "div_color" => $colors
+                    "text" =>'1',
+                    "label" => 'Couleur du titre de la page d\'accueil :',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
                 ],
                 "textColor" => [
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
-                    "text" => '1',
-                    "label" => 'Couleur du texte :',
-                    "class" => 'black-text',
-                    "div_class" => 'theme',
-                    "div_color" => $colors
+                    "text" =>'1',
+                    "label" => 'Couleur du texte de site :',
+                    "class"=> 'black-text',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
                 ],
                 "btnColor" => [
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
-                    "label" => 'Couleur des button home : ',
-                    "class" => '',
-                    "div_class" => 'theme',
-                    "div_color" => $colors
+                    "label" => 'Couleur des buttons "je participe/je vote" : ',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
                 ],
                 "textBtnColor" => [
                     "type" => "radio",
                     "validation" => "radio",
                     "value" => '',
-                    "text" => '1',
-                    "label" => 'couleur du text des btn home : ',
-                    "class" => '',
-                    "div_class" => 'theme',
-                    "div_color" => $colors
+                    "text" =>'1',
+                    "label" => 'couleur du text des buttons "je participe/je vote" : ',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
                 ],
                 "collapsibleHeader" => [
                     "type" => "radio",
