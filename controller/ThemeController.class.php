@@ -275,10 +275,10 @@ class ThemeController
                     $error[] = "Veuillez sélectionner une image de type png ou jpg";
                     $err = true;
                 }
-                if ($_FILES['bgImage']['size'] > 10000000) {
-                    $error[] = "Veuillez sélectionner un fichier de 10 mo maximum";
-                    $err = true;
-                }
+                //if ($_FILES['bgImage']['size'] > 10000000) {
+                //    $error[] = "Veuillez sélectionner un fichier de 10 mo maximum";
+                //    $err = true;
+                //}
                 $path = $_FILES['bgImage']['tmp_name'];
                 if (!$err) {
                     if (move_uploaded_file($path, Config::UPLOAD_FOLDER . "/" . $_FILES['bgImage']['name'])) {
