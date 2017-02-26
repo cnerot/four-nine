@@ -123,6 +123,16 @@ class ThemeController
                 "iconHomeColor" => [
                     "type" => "radio",
                     "validation" => "radio",
+                    "value" => '',
+                    "text" =>'1',
+                    "label" => 'couleur du texte de la bare de navigation :',
+                    "class"=> '',
+                    "div_class"=> 'theme',
+                    "div_color"=> $colors
+                ],
+                "iconHomeColor" => [
+                    "type" => "radio",
+                    "validation" => "radio",
                     "text" => '1',
                     "value" => '',
                     "label" => 'Couleur de l\'icon home :',

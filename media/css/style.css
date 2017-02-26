@@ -397,6 +397,12 @@
        font-size: 30px;
        font-family: arial, impact; 
     }
+    .bordered {
+        height: 190px;
+        width: 170px;
+        border: 1px solid black;
+        margin: 5px;
+    }
 
 
  
