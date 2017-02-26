@@ -28,9 +28,12 @@
                 <?php foreach ($listPhotos as $photo) : ?>
                     <div class="col s3" name="image_div" data-source="<?php echo $photo['source']; ?>" data-link="<?php echo $photo['link_id']; ?>">
                         <div id="imageGallery">
-                            <a id="<?php echo $photo['id']; ?>">
-                                <img src="<?php echo $photo['source']; ?>" width="100" alt="" class="top-5" title="">
-                            </a>
+                            <div class="bordered">
+                                <a id="<?php echo $photo['id']; ?>">
+                                    <img src="<?php echo $photo['source']; ?>" width="150" alt="hhhhh" class="margin-top-10" title="hhhh">
+                                </a>
+                                <div><span>note : </span></div>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
