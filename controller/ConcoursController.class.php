@@ -174,18 +174,18 @@ class ConcoursController
             $contest_data = [
                 "name" => $data['name'],
                 "description" => $data['description'],
-                "start" => DateTime::createFromFormat("d M, Y",$data['start']),
-                "end" => DateTime::createFromFormat("d M, Y",$data['start']),
+                "start" => DateTime::createFromFormat("d/m/Y",$data['start']),
+                "end" => DateTime::createFromFormat("d/m/Y",$data['end']),
                 "photo" => $newFbId,
             ];
             //Logger::debug($data);
             $contest->fromArray($contest_data);
             
             $contests = $contest->getWhere([]);
-            $dateStart = DateTime::createFromFormat("d M, Y",$data['start'])->format('Y-m-d');
+            $dateStart = DateTime::createFromFormat("d/m/Y",$data['start'])->format('Y-m-d');
             //$dateStart = explode("/", $data['start']);
             //$dateStart = $dateStart[2]."-".$dateStart[1]."-".$dateStart[0]; // transformation de la date du format français vers le format anglo saxon
-            $dateEnd = DateTime::createFromFormat("d M, Y",$data['start'])->format('Y-m-d');
+            $dateEnd = DateTime::createFromFormat("d/m/Y",$data['start'])->format('Y-m-d');
             //$dateEnd = explode("/", $data['end']);
             //$dateEnd = $dateEnd[2]."-".$dateEnd[1]."-".$dateEnd[0]; // transformation de la date du format français vers le format anglo saxon
                         
