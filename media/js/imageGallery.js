@@ -9,25 +9,31 @@ function hideoverlay() {
 }
 function setCurrentImage(url) {
     var image = $('#overlay_image');
-    image.attr('src', url)
+    image.attr('src', url);
+
 }
 function setCurrentLink(link) {
     var image = $('#overlay_image');
-    console.log(image);
-
     image.attr('data-extra', link);
 }
 function nextImage() {
     currentImage = $(currentImage).next();
     setCurrentImage($(currentImage).data('source'));
     setCurrentLink($(currentImage).data('link'));
-
+    resetStars();
 }
 function previousImage() {
     currentImage = $(currentImage).prev();
     setCurrentImage($(currentImage).data('source'));
     setCurrentLink($(currentImage).data('link'));
+    resetStars();
+}
+function resetStars(){
+    $('[name="star"]').each(function () {
+        console.log(this);
+        $(this).prop('checked', false);
 
+    });
 }
 $('[name="image_div"]').each(function () {
     $(this).click(function () {
@@ -48,6 +54,7 @@ $('[name="star"]').each(function () {
             type: 'POST',
             data: data,
             success: function (code_html, statut) {
+                Materialize.toast('Merci d\'avoir voté.', 4000);
             }
         });
     });

@@ -27,9 +27,7 @@ class Cron
 			}
 			$job_string .= $job->cmd . PHP_EOL;
 		}
-		var_dump($job_string);
-
-		$output = shell_exec('crontab -l');
+		$output = '';
 		file_put_contents('/tmp/crontab.txt', $output.$job_string);
 		echo exec('crontab /tmp/crontab.txt');
 	}
