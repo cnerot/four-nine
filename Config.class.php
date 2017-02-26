@@ -4,7 +4,7 @@ class Config {
     /* display error */
     const DEV_MODE = true;
     /* die on error */
-    const DIE_MODE = true;
+    const DIE_MODE = false;
 
 
     /*Urls & path*/
@@ -29,6 +29,7 @@ class Config {
     const HELPER_PATH = 'helper';
     const LOG_DIR = 'media/log';
     const CSS_DIR = 'media/css';
+    const UPLOAD_FOLDER = 'media/imgFiles';
 
     /*Database data*/
     const DB_HOST = 'localhost';

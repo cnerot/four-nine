@@ -18,8 +18,9 @@
                         Le concours a lieu du <span class="dateFR"><?php echo $contestCurrent->start; ?></span> au <span
                             class="dateFR"><?php echo $contestCurrent->end; ?></span>
                     </p>
-                    <img style="width: 20vw;" src="<?php echo (new Photo())->getFbPhotoUrlFromID($contestCurrent->getPhoto()); ?>">
-
+		    <?php if ($contestCurrent->getPhoto() != null):?>
+                        <img style="width: 20vw;" src="<?php echo (new Photo())->getFbPhotoUrlFromID($contestCurrent->getPhoto()); ?>">
+		    <?php endif; ?>
                 <?php endif; ?>
 
                 <?php foreach ($err as $error) : ?>
