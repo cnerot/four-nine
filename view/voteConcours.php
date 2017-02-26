@@ -26,7 +26,7 @@
             <div class=" col s12 panelGalerie p_pageStat">
 
                 <?php foreach ($listPhotos as $photo) : ?>
-                    <div class="col s3" name="image_div" data-source="<?php echo $photo['source']; ?>" data-link="<?php echo $photo['link_id']; ?>">
+                    <div class="col" name="image_div" data-source="<?php echo $photo['source']; ?>" data-link="<?php echo $photo['link_id']; ?>">
                         <div id="imageGallery">
                             <div class="bordered">
                                 <a id="<?php echo $photo['id']; ?>">
