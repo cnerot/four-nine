@@ -25,7 +25,6 @@ function setCurrentPhotoUser(link) {
     image.html(link);
 }
 function nextImage() {
-    console.log($(currentImage).data('grade'));
     currentImage = $(currentImage).next();
     setCurrentImage($(currentImage).data('source'));
     setCurrentLink($(currentImage).data('link'));
@@ -53,6 +52,8 @@ $('[name="image_div"]').each(function () {
         showoverlay();
         setCurrentImage($(this).data('source'));
         setCurrentLink($(this).data('link'));
+        setCurrentPhotoUser($(this).data('grade'));
+        setCurrentGrade($(this).data('user'));
     });
 });
 $('[name="star"]').each(function () {
