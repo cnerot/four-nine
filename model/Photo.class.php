@@ -31,6 +31,12 @@ class Photo extends Entity
         $decodedBody = $data->getDecodedBody();
         return $decodedBody["source"];
     }
+    public function getFbPhotoUrlFromID($id){
+        $fb = new FBApp();
+        $data = $fb->getFBPageData($id . '?fields=source');
+        $decodedBody = $data->getDecodedBody();
+        return $decodedBody["source"];
+    }
 
     /**
      * @return mixed

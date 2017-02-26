@@ -149,7 +149,6 @@ class ConcoursController
         $err = [];
         
         $data = $this->form->validate();
-
         if ($data) {
             $contest = new Contest();
             $fb = new FBApp();
@@ -157,7 +156,7 @@ class ConcoursController
             $prize_img = new File("prize_img");
             if ($prize_img->check_size(10,'mo') && $prize_img->check_extention(['png', 'jpg'])){
                 $message = $data['upload_msg'];
-                $message = str_replace('{title}', $data['title'],$message);
+                $message = str_replace('{title}', $data['name'],$message);
                 $message = str_replace('{start}', $data['start'],$message);
                 $message = str_replace('{end}', $data['end'],$message);
                 $args = array(
@@ -175,19 +174,20 @@ class ConcoursController
             $contest_data = [
                 "name" => $data['name'],
                 "description" => $data['description'],
-                "start" => $data['start'],
-                "end" => $data['end'],
+                "start" => DateTime::createFromFormat("d M, Y",$data['start']),
+                "end" => DateTime::createFromFormat("d M, Y",$data['start']),
                 "photo" => $newFbId,
             ];
             //Logger::debug($data);
             $contest->fromArray($contest_data);
             
             $contests = $contest->getWhere([]);
-                        
-            $dateStart = explode("/", $data['start']);
-            $dateStart = $dateStart[2]."-".$dateStart[1]."-".$dateStart[0]; // transformation de la date du format français vers le format anglo saxon
-            $dateEnd = explode("/", $data['end']);
-            $dateEnd = $dateEnd[2]."-".$dateEnd[1]."-".$dateEnd[0]; // transformation de la date du format français vers le format anglo saxon
+            $dateStart = DateTime::createFromFormat("d M, Y",$data['start'])->format('Y-m-d');
+            //$dateStart = explode("/", $data['start']);
+            //$dateStart = $dateStart[2]."-".$dateStart[1]."-".$dateStart[0]; // transformation de la date du format français vers le format anglo saxon
+            $dateEnd = DateTime::createFromFormat("d M, Y",$data['start'])->format('Y-m-d');
+            //$dateEnd = explode("/", $data['end']);
+            //$dateEnd = $dateEnd[2]."-".$dateEnd[1]."-".$dateEnd[0]; // transformation de la date du format français vers le format anglo saxon
                         
             $contest->setStart($dateStart);
             $contest->setEnd($dateEnd);
@@ -209,7 +209,12 @@ class ConcoursController
             
             if(empty($err)){
                 $contest->save();
-            }            
+                Alert::addAlert('Concours ajouté');
+            } else {
+                foreach ($err as $item) {
+                    Alert::addAlert($item);
+                }
+            }
         }
 
         $view = new View();

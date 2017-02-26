@@ -280,7 +280,7 @@ class ThemeController
                     $err = true;
                 }
                 $path = $_FILES['bgImage']['tmp_name'];
-                if ($err) {
+                if (!$err) {
                     if (move_uploaded_file($path, Config::UPLOAD_FOLDER . "/" . $_FILES['bgImage']['name'])) {
                         $data['bgImage'] = Config::UPLOAD_FOLDER . "/" . $_FILES['bgImage']['name'];
                     } else {

@@ -190,7 +190,7 @@
 }
 /********************New style******************/
     .parallax-container {
-         height: 570px;
+         height: auto;
        } 
     .knockout {
      -webkit-text-fill-color: transparent;
