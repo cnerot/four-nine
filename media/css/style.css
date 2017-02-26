@@ -314,7 +314,11 @@
         font-family: arial, helvetica;
         text-align: center;
         background-color: rgba(230, 245, 255, 0.2);
-    }  
+    } 
+    .note{
+      font-weight: normal;  
+      font-size: 16px;
+    }
    footer.page-footer{
         margin-top:0;
     }
@@ -400,6 +404,7 @@
         height: 190px;
         width: 170px;
         border: 1px solid black;
+        box-shadow: 1px 1px 8px black inset;
         margin: 5px;
     }
 
