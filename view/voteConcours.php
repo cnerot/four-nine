@@ -55,9 +55,14 @@
         <img id="overlay_image">
         <div id="rightArrow" onclick="nextImage()"></div>
         <p>
-        <div id="photo_user"></div>
-        <div id="photo_grade"></div>
-        <div id="rating">
+
+	<div style="color:white;"> 
+<span id="photo_grade"></span>
+        </div>
+	<div style="color:white;">
+        <span id="photo_user"></span>
+        </div>
+<div id="rating">
             <?php $voteform->display('', '', 1); ?>
         </div>
         </p>

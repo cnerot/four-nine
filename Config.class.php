@@ -11,7 +11,7 @@ class Config {
     const URL = 'http://vps323708.ovh.net/';
     //const URL = 'http://localhost/fournine/';
     //const PATH = 'C:\xampp\htdocs\fournine';
-    const PATH = '/var/www/html/four-nine';
+    const PATH = '/var/www/html';
 
     /*Facebook Data*/
    
@@ -33,7 +33,7 @@ class Config {
 
     /*Database data*/
     const DB_HOST = 'localhost';
-    const DB_NAME = 'four'; 
+    const DB_NAME = 'four';
     const DB_PASSWORD = 'fournine'; 
     const DB_USER = 'root';
 }

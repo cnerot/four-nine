@@ -83,7 +83,7 @@ class VoteController
                     'id' => $photo->getIdFb(),
                     'source' => $fbPhoto['source'],
                     'link_id' => $link->getId(),
-                    'grade' => $total_grade/count($votes),
+                    'grade' => round($total_grade/count($votes),2),
                     'user' => $photo_user->getName(),
                 ];
             }

@@ -51,7 +51,7 @@
         </div>
     </div>
     <div class="parallax"><img src="<?php if ($themeApplicated->getBgImage()) {
-            echo "/" . $themeApplicated->getBgImage();
+            echo "/".$themeApplicated->getBgImage();
         } else {
             echo "/media/images/test1.jpg";
         }

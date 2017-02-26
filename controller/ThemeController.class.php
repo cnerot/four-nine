@@ -291,10 +291,10 @@ class ThemeController
                 //}
                 $path = $_FILES['bgImage']['tmp_name'];
                 if (!$err) {
-                    if (move_uploaded_file($path, Config::UPLOAD_FOLDER . "/" . $_FILES['bgImage']['name'])) {
-                        $data['bgImage'] = Config::UPLOAD_FOLDER . "/" . $_FILES['bgImage']['name'];
+                    if (move_uploaded_file($path,Config::PATH."/". Config::UPLOAD_FOLDER . "/" . $_FILES['bgImage']['name'])) {
+                        $data['bgImage'] ="/".Config::UPLOAD_FOLDER . "/" . $_FILES['bgImage']['name'];
                     } else {
-                        $error[] = "Veuillez sélectionner un fichier de 10 mo maximum";
+                        $error[] = "Une erreur s'est produite";
                     }
                 }
             }
