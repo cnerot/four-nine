@@ -142,12 +142,14 @@ class ConcoursController
         $concours = new Contest();
         $concours = $concours->getOneWhere(["id" => $_REQUEST['id']]);
         $concours->delete();
+        Router::redirect('Concours', 'index');
+
     }
 
     public function newAction($args)
     {
         $err = [];
-        
+
         $data = $this->form->validate();
         if ($data) {
             $contest = new Contest();
