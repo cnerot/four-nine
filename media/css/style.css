@@ -318,6 +318,7 @@
     .note{
       font-weight: normal;  
       font-size: 16px;
+      margin-bottom: 5px;
     }
    footer.page-footer{
         margin-top:0;
