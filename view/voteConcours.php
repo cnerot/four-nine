@@ -32,7 +32,7 @@
                                 <a id="<?php echo $photo['id']; ?>">
                                     <img src="<?php echo $photo['source']; ?>" width="150" alt="hhhhh" class="margin-top-10" title="hhhh">
                                 </a>
-                                <div><span>note : <?php echo $photo['grade']; ?></span></div>
+                                <div><span class="note">note : <?php echo $photo['grade']; ?></span></div>
                             </div>
                         </div>
                     </div>
