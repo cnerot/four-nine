@@ -39,7 +39,7 @@ class PhotoController
             $albums = array();
         }
         /**Get Current Photo URL*/
-        if ($currentUserPhoto) {
+        if (isset($currentUserPhoto) && $currentUserPhoto) {
             $currentUserPhotoUrl = $currentUserPhoto->getFbPhotoUrl();
         } else {
             $currentUserPhotoUrl = false;
@@ -95,6 +95,5 @@ class PhotoController
         $view->putData('Error', $error);
         $view->putData('albums', $albums);
         $view->putData('currentPhoto', $currentUserPhotoUrl);
-    
     }
 }
